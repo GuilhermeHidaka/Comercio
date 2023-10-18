@@ -61,9 +61,9 @@ object frmRelatorios: TfrmRelatorios
         object lblNomeTela: TLabel
           Left = 8
           Top = 12
-          Width = 79
+          Width = 89
           Height = 25
-          Caption = 'Cadastro'
+          Caption = 'Relatorios'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -19

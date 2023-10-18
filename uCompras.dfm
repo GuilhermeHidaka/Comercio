@@ -63,7 +63,7 @@ object frmCompras: TfrmCompras
           Top = 12
           Width = 79
           Height = 25
-          Caption = 'Cadastro'
+          Caption = 'Compras'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -19

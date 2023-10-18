@@ -16,6 +16,10 @@ type
     btnFinalizar: TSpeedButton;
     lblNomeTela: TLabel;
     pnlMid: TPanel;
+    pnlLeft: TPanel;
+    Panel1: TPanel;
+    btnCadastroClientes: TBitBtn;
+    btnCadastroProdutos: TBitBtn;
   private
     { Private declarations }
   public

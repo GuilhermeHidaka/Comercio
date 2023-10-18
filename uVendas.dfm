@@ -61,9 +61,9 @@ object frmVendas: TfrmVendas
         object lblNomeTela: TLabel
           Left = 8
           Top = 12
-          Width = 79
+          Width = 64
           Height = 25
-          Caption = 'Cadastro'
+          Caption = 'Vendas'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -19

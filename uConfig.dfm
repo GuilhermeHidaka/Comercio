@@ -61,9 +61,9 @@ object frmConfig: TfrmConfig
         object lblNomeTela: TLabel
           Left = 8
           Top = 12
-          Width = 79
+          Width = 129
           Height = 25
-          Caption = 'Cadastro'
+          Caption = 'Configura'#231#245'es'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -19
