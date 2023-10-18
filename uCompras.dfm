@@ -47,6 +47,7 @@ object frmCompras: TfrmCompras
           Font.Name = '@Malgun Gothic'
           Font.Style = [fsBold]
           ParentFont = False
+          OnClick = btnFinalizarClick
         end
       end
       object pnlMidFooter: TPanel
@@ -394,6 +395,7 @@ object frmCompras: TfrmCompras
             0000000000000000000000000000000000000000000000000000000000000000
             00000000000000000000000000000000000000000000}
           TabOrder = 0
+          OnClick = btnHomeClick
         end
       end
       object pnlMid: TPanel

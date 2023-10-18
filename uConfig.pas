@@ -16,6 +16,8 @@ type
     lblNomeTela: TLabel;
     btnHome: TBitBtn;
     pnlMid: TPanel;
+    procedure btnHomeClick(Sender: TObject);
+    procedure btnFinalizarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,5 +30,18 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uMenu;
+
+procedure TfrmConfig.btnFinalizarClick(Sender: TObject);
+begin
+Application.Terminate;
+end;
+
+procedure TfrmConfig.btnHomeClick(Sender: TObject);
+begin
+frmConfig.Hide;
+frmMenu.Show;
+end;
 
 end.

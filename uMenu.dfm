@@ -22,23 +22,24 @@ object frmMenu: TfrmMenu
     ParentBackground = False
     TabOrder = 0
     object pnlButtons: TPanel
-      Left = 57
+      Left = 33
       Top = 7
-      Width = 57
+      Width = 81
       Height = 585
       BevelOuter = bvNone
       Color = clHighlight
       ParentBackground = False
       TabOrder = 0
-      object btnCadastro: TBitBtn
+      object btnConfig: TBitBtn
         AlignWithMargins = True
         Left = 3
-        Top = 518
-        Width = 51
-        Height = 57
-        Margins.Bottom = 10
+        Top = 509
+        Width = 75
+        Height = 70
+        Hint = 'Configura'#231#245'es'
+        Margins.Bottom = 6
         Align = alBottom
-        Cancel = True
+        Caption = 'Config'
         Glyph.Data = {
           42240000424D4224000000000000420000002800000030000000300000000100
           20000300000000240000130B0000130B000000000000000000000000FF0000FF
@@ -331,17 +332,24 @@ object frmMenu: TfrmMenu
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000}
+        Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 0
+        OnClick = btnConfigClick
+        ExplicitTop = 518
       end
-      object BitBtn2: TBitBtn
+      object btnRelatorios: TBitBtn
         AlignWithMargins = True
         Left = 3
-        Top = 283
-        Width = 51
-        Height = 57
+        Top = 335
+        Width = 75
+        Height = 70
+        Hint = 'Relat'#243'rios'
         Margins.Top = 10
         Align = alTop
         Cancel = True
+        Caption = 'Relat'#243'rios'
         Glyph.Data = {
           42240000424D4224000000000000420000002800000030000000300000000100
           20000300000000240000130B0000130B000000000000000000000000FF0000FF
@@ -634,17 +642,23 @@ object frmMenu: TfrmMenu
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000}
+        Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 1
+        OnClick = btnRelatoriosClick
+        ExplicitLeft = 6
       end
-      object BitBtn3: TBitBtn
+      object btnEstoque: TBitBtn
         AlignWithMargins = True
         Left = 3
-        Top = 213
-        Width = 51
-        Height = 57
+        Top = 252
+        Width = 75
+        Height = 70
+        Hint = 'Estoque'
         Margins.Top = 10
         Align = alTop
-        Cancel = True
+        Caption = 'Estoque'
         Glyph.Data = {
           42240000424D4224000000000000420000002800000030000000300000000100
           20000300000000240000130B0000130B000000000000000000000000FF0000FF
@@ -937,17 +951,23 @@ object frmMenu: TfrmMenu
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000}
+        Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 2
+        OnClick = btnEstoqueClick
       end
-      object BitBtn4: TBitBtn
+      object btnVendas: TBitBtn
         AlignWithMargins = True
         Left = 3
-        Top = 143
-        Width = 51
-        Height = 57
+        Top = 169
+        Width = 75
+        Height = 70
+        Hint = 'Vendas'
         Margins.Top = 10
         Align = alTop
         Cancel = True
+        Caption = 'Vendas'
         Glyph.Data = {
           42240000424D4224000000000000420000002800000030000000300000000100
           20000300000000240000130B0000130B000000000000000000000000FF0000FF
@@ -1240,17 +1260,24 @@ object frmMenu: TfrmMenu
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000}
+        Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 3
+        OnClick = btnVendasClick
+        ExplicitLeft = 6
       end
-      object BitBtn5: TBitBtn
+      object btnCompras: TBitBtn
         AlignWithMargins = True
         Left = 3
-        Top = 73
-        Width = 51
-        Height = 57
+        Top = 86
+        Width = 75
+        Height = 70
+        Hint = 'Compras'
         Margins.Top = 10
         Align = alTop
         Cancel = True
+        Caption = 'Compras'
         Glyph.Data = {
           42240000424D4224000000000000420000002800000030000000300000000100
           20000300000000240000130B0000130B000000000000000000000000FF0000FF
@@ -1543,16 +1570,23 @@ object frmMenu: TfrmMenu
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000}
+        Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 4
+        OnClick = btnComprasClick
+        ExplicitLeft = 6
       end
-      object BitBtn6: TBitBtn
+      object btnCadastro: TBitBtn
         AlignWithMargins = True
         Left = 3
         Top = 3
-        Width = 51
-        Height = 57
+        Width = 75
+        Height = 70
+        Hint = 'Cadastro'
         Align = alTop
-        Cancel = True
+        Caption = 'Cadastro'
+        DisabledImageName = 'btnCadastro'
         Glyph.Data = {
           42240000424D4224000000000000420000002800000030000000300000000100
           20000300000000240000130B0000130B000000000000000000000000FF0000FF
@@ -1845,7 +1879,12 @@ object frmMenu: TfrmMenu
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000}
+        Layout = blGlyphTop
+        ParentShowHint = False
+        ShowHint = True
         TabOrder = 5
+        OnClick = btnCadastroClick
+        ExplicitWidth = 51
       end
     end
     object pnlLogo: TPanel
@@ -1857,7 +1896,7 @@ object frmMenu: TfrmMenu
       Color = cl3DLight
       ParentBackground = False
       TabOrder = 1
-      object Image1: TImage
+      object imgLogo: TImage
         Left = 256
         Top = 200
         Width = 129
@@ -4560,6 +4599,7 @@ object frmMenu: TfrmMenu
           Font.Name = '@Malgun Gothic'
           Font.Style = [fsBold]
           ParentFont = False
+          OnClick = btnFinalizarClick
           ExplicitLeft = 648
           ExplicitTop = 1
           ExplicitHeight = 39
@@ -4567,7 +4607,7 @@ object frmMenu: TfrmMenu
       end
     end
     object pnlLateralBarra: TPanel
-      Left = 47
+      Left = 23
       Top = 23
       Width = 4
       Height = 546

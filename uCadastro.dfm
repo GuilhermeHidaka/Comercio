@@ -49,6 +49,7 @@ object frmCadastro: TfrmCadastro
           Font.Name = '@Malgun Gothic'
           Font.Style = [fsBold]
           ParentFont = False
+          OnClick = btnFinalizarClick
         end
       end
       object pnlMidFooter: TPanel
@@ -396,6 +397,7 @@ object frmCadastro: TfrmCadastro
             0000000000000000000000000000000000000000000000000000000000000000
             00000000000000000000000000000000000000000000}
           TabOrder = 0
+          OnClick = btnHomeClick
         end
       end
       object pnlMid: TPanel
@@ -749,6 +751,7 @@ object frmCadastro: TfrmCadastro
             Layout = blGlyphTop
             ParentFont = False
             TabOrder = 0
+            OnClick = btnCadastroProdutosClick
             ExplicitLeft = 2
             ExplicitTop = 2
           end
@@ -1092,6 +1095,7 @@ object frmCadastro: TfrmCadastro
             Layout = blGlyphTop
             ParentFont = False
             TabOrder = 0
+            OnClick = btnCadastroClientesClick
             ExplicitLeft = 0
             ExplicitTop = -2
           end

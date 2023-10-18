@@ -20,6 +20,10 @@ type
     Panel1: TPanel;
     btnCadastroClientes: TBitBtn;
     btnCadastroProdutos: TBitBtn;
+    procedure btnHomeClick(Sender: TObject);
+    procedure btnFinalizarClick(Sender: TObject);
+    procedure btnCadastroProdutosClick(Sender: TObject);
+    procedure btnCadastroClientesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -32,5 +36,30 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uMenu, uCadastroClientes, uCadastroProdutos;
+
+procedure TfrmCadastro.btnCadastroClientesClick(Sender: TObject);
+begin
+frmCadastro.Hide;
+frmCadastroClientes.Show;
+end;
+
+procedure TfrmCadastro.btnCadastroProdutosClick(Sender: TObject);
+begin
+frmCadastro.Hide;
+frmCadastroProdutos.Show;
+end;
+
+procedure TfrmCadastro.btnFinalizarClick(Sender: TObject);
+begin
+Application.Terminate;
+end;
+
+procedure TfrmCadastro.btnHomeClick(Sender: TObject);
+begin
+frmCadastro.Hide;
+frmMenu.Show;
+end;
 
 end.

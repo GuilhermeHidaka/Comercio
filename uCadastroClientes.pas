@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
-  TForm1 = class(TForm)
+  TfrmCadastroClientes = class(TForm)
     pnlCenter: TPanel;
     pnlMidTop: TPanel;
     pnlTop2: TPanel;
@@ -16,6 +16,8 @@ type
     lblNomeTela: TLabel;
     btnHome: TBitBtn;
     pnlMid: TPanel;
+    procedure btnFinalizarClick(Sender: TObject);
+    procedure btnHomeClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -23,10 +25,23 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmCadastroClientes: TfrmCadastroClientes;
 
 implementation
 
 {$R *.dfm}
+
+uses uCadastro, uCadastroProdutos;
+
+procedure TfrmCadastroClientes.btnFinalizarClick(Sender: TObject);
+begin
+Application.Terminate;
+end;
+
+procedure TfrmCadastroClientes.btnHomeClick(Sender: TObject);
+begin
+frmCadastroClientes.Hide;
+frmCadastro.Show;
+end;
 
 end.

@@ -1,4 +1,4 @@
-object Form1: TForm1
+object frmCadastroClientes: TfrmCadastroClientes
   Left = 0
   Top = 0
   Caption = 'Cadastro Clientes'
@@ -47,6 +47,7 @@ object Form1: TForm1
           Font.Name = '@Malgun Gothic'
           Font.Style = [fsBold]
           ParentFont = False
+          OnClick = btnFinalizarClick
         end
       end
       object pnlMidFooter: TPanel
@@ -370,6 +371,7 @@ object Form1: TForm1
             0000000000000000000000000000000000000000000000000000000000000000
             000000000000}
           TabOrder = 0
+          OnClick = btnHomeClick
         end
       end
       object pnlMid: TPanel

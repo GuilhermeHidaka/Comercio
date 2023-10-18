@@ -16,6 +16,8 @@ type
     lblNomeTela: TLabel;
     btnHome: TBitBtn;
     pnlMid: TPanel;
+    procedure btnFinalizarClick(Sender: TObject);
+    procedure btnHomeClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,5 +30,18 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uCadastro, uCadastroClientes;
+
+procedure TfrmCadastroProdutos.btnFinalizarClick(Sender: TObject);
+begin
+Application.Terminate;
+end;
+
+procedure TfrmCadastroProdutos.btnHomeClick(Sender: TObject);
+begin
+frmCadastroProdutos.Hide;
+frmCadastro.Show;
+end;
 
 end.

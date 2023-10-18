@@ -14,17 +14,24 @@ type
     pnlTopCenter: TPanel;
     pnlTopFooter: TPanel;
     btnFinalizar: TSpeedButton;
-    Image1: TImage;
-    btnCadastro: TBitBtn;
+    imgLogo: TImage;
+    btnConfig: TBitBtn;
     pnlLateralBarra: TPanel;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
-    BitBtn6: TBitBtn;
+    btnRelatorios: TBitBtn;
+    btnEstoque: TBitBtn;
+    btnVendas: TBitBtn;
+    btnCompras: TBitBtn;
+    btnCadastro: TBitBtn;
     lblMenu: TLabel;
     BitBtn7: TBitBtn;
     Panel1: TPanel;
+    procedure btnCadastroClick(Sender: TObject);
+    procedure btnComprasClick(Sender: TObject);
+    procedure btnVendasClick(Sender: TObject);
+    procedure btnEstoqueClick(Sender: TObject);
+    procedure btnRelatoriosClick(Sender: TObject);
+    procedure btnConfigClick(Sender: TObject);
+    procedure btnFinalizarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,5 +44,48 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uCadastro, uCompras, uConfig, uEstoque, uRelatorios, uVendas;
+
+procedure TfrmMenu.btnCadastroClick(Sender: TObject);
+begin
+frmMenu.Hide;
+frmCadastro.Show;
+end;
+
+procedure TfrmMenu.btnComprasClick(Sender: TObject);
+begin
+frmMenu.Hide;
+frmCompras.Show;
+end;
+
+procedure TfrmMenu.btnConfigClick(Sender: TObject);
+begin
+frmMenu.Hide;
+frmConfig.Show;
+end;
+
+procedure TfrmMenu.btnEstoqueClick(Sender: TObject);
+begin
+frmMenu.Hide;
+frmEstoque.Show;
+end;
+
+procedure TfrmMenu.btnFinalizarClick(Sender: TObject);
+begin
+Application.Terminate;
+end;
+
+procedure TfrmMenu.btnRelatoriosClick(Sender: TObject);
+begin
+frmMenu.Hide;
+frmRelatorios.Show;
+end;
+
+procedure TfrmMenu.btnVendasClick(Sender: TObject);
+begin
+frmMenu.Hide;
+frmVendas.Show;
+end;
 
 end.
