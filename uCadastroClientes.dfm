@@ -3,7 +3,7 @@ object frmCadastroClientes: TfrmCadastroClientes
   Top = 0
   Caption = 'Cadastro Clientes'
   ClientHeight = 600
-  ClientWidth = 800
+  ClientWidth = 983
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -373,6 +373,14 @@ object frmCadastroClientes: TfrmCadastroClientes
           TabOrder = 0
           OnClick = btnHomeClick
         end
+        object DBNavigator1: TDBNavigator
+          Left = 197
+          Top = 14
+          Width = 470
+          Height = 25
+          DataSource = dsClientes
+          TabOrder = 1
+        end
       end
       object pnlMid: TPanel
         Left = 1
@@ -385,5 +393,65 @@ object frmCadastroClientes: TfrmCadastroClientes
         TabOrder = 2
       end
     end
+  end
+  object Conexao: TFDConnection
+    Params.Strings = (
+      'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Server=localhost'
+      'Port=3050'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 846
+    Top = 7
+  end
+  object TabelaClientes: TFDQuery
+    Active = True
+    ChangeAlertName = 'TabelaClientes'
+    Connection = Conexao
+    SQL.Strings = (
+      'select * from Clientes')
+    Left = 848
+    Top = 64
+    object TabelaClientesID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+      Origin = 'ID_CLIENTE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object TabelaClientesNOME_CLIENTE: TStringField
+      FieldName = 'NOME_CLIENTE'
+      Origin = 'NOME_CLIENTE'
+      Size = 28
+    end
+    object TabelaClientesCPF_CLIENTE: TStringField
+      FieldName = 'CPF_CLIENTE'
+      Origin = 'CPF_CLIENTE'
+    end
+    object TabelaClientesNUMERO_CLIENTE: TStringField
+      FieldName = 'NUMERO_CLIENTE'
+      Origin = 'NUMERO_CLIENTE'
+      Size = 18
+    end
+    object TabelaClientesCREDITO_CLIENTE: TSingleField
+      FieldName = 'CREDITO_CLIENTE'
+      Origin = 'CREDITO_CLIENTE'
+    end
+    object TabelaClientesCOINS_CLIENTE: TSingleField
+      FieldName = 'COINS_CLIENTE'
+      Origin = 'COINS_CLIENTE'
+    end
+  end
+  object dsClientes: TDataSource
+    DataSet = TabelaClientes
+    Left = 848
+    Top = 176
+  end
+  object fbClient: TFDPhysFBDriverLink
+    VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
+    Left = 848
+    Top = 120
   end
 end
