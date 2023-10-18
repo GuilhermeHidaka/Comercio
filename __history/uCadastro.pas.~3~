@@ -9,9 +9,9 @@ uses
 type
   TfrmCadastro = class(TForm)
     pnlCenter: TPanel;
-    pnlMidTop: TPanel;
+    Panel1: TPanel;
     pnlTop2: TPanel;
-    pnlMidFooter: TPanel;
+    Panel2: TPanel;
     btnHome: TBitBtn;
     btnFinalizar: TSpeedButton;
     lblNomeTela: TLabel;

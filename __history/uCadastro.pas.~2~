@@ -9,12 +9,12 @@ uses
 type
   TfrmCadastro = class(TForm)
     pnlCenter: TPanel;
-    pnlMidTop: TPanel;
+    Panel1: TPanel;
     pnlTop2: TPanel;
-    pnlMidFooter: TPanel;
-    btnHome: TBitBtn;
-    btnFinalizar: TSpeedButton;
-    lblNomeTela: TLabel;
+    Panel2: TPanel;
+    BitBtn1: TBitBtn;
+    SpeedButton1: TSpeedButton;
+    Label1: TLabel;
     pnlMid: TPanel;
   private
     { Private declarations }

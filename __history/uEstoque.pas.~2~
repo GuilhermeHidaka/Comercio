@@ -1,4 +1,4 @@
-unit uCadastro;
+unit uEstoque;
 
 interface
 
@@ -7,14 +7,14 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
-  TfrmCadastro = class(TForm)
+  TfrmEstoque = class(TForm)
     pnlCenter: TPanel;
-    pnlMidTop: TPanel;
+    Panel1: TPanel;
     pnlTop2: TPanel;
-    pnlMidFooter: TPanel;
-    btnHome: TBitBtn;
-    btnFinalizar: TSpeedButton;
-    lblNomeTela: TLabel;
+    SpeedButton1: TSpeedButton;
+    Panel2: TPanel;
+    Label1: TLabel;
+    BitBtn1: TBitBtn;
     pnlMid: TPanel;
   private
     { Private declarations }
@@ -23,7 +23,7 @@ type
   end;
 
 var
-  frmCadastro: TfrmCadastro;
+  frmEstoque: TfrmEstoque;
 
 implementation
 
