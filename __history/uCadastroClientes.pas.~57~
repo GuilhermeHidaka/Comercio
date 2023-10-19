@@ -66,7 +66,11 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure edtdbCPFKeyPress(Sender: TObject; var Key: Char);
+    procedure edtdbNomeEnter(Sender: TObject);
+    procedure edtdbCPFEnter(Sender: TObject);
+    procedure edtdbCelularEnter(Sender: TObject);
+    procedure edtdbCreditoEnter(Sender: TObject);
+    procedure edtBuscarChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,22 +89,26 @@ uses uCadastro, uCadastroProdutos;
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
 TabelaClientes.Cancel;
+//Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
 end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
 TabelaClientes.Delete;
+//Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
 procedure TfrmCadastroClientes.btnFinalizarClick(Sender: TObject);
 begin
 Application.Terminate;
+//Finaliza aplicação
 end;
 
 procedure TfrmCadastroClientes.btnHomeClick(Sender: TObject);
 begin
 frmCadastroClientes.Hide;
 frmCadastro.Show;
+//Troca de janelas, fechando uma e abrindo outra
 end;
 
 procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
@@ -112,31 +120,64 @@ edtdbNome.Enabled:=True;
 edtdbCPF.Enabled:=True;
 edtdbCelular.Enabled:=True;
 edtdbCredito.Enabled:=True;
+//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
 end;
 
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
 TabelaClientes.Edit;
+//utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
 end;
 
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
 begin
 TabelaClientes.Post;
 Conexao.Commit;
-
-
-
 //para gravar no banco de dados todos os registros da Qry (TabelaClientes)
 btnIncluir.Enabled:=True;
 //Voltar enabled incluir
 end;
 
-procedure TfrmCadastroClientes.edtdbCPFKeyPress(Sender: TObject; var Key: Char);
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+procedure TfrmCadastroClientes.edtBuscarChange(Sender: TObject);
+begin
+TabelaClientes.Locate('NOME_CLIENTE',edtBuscar.Text);
+//Qry.Locate('COLUNA',componente.propriedade;)
+end;
+
+procedure TfrmCadastroClientes.edtdbCelularEnter(Sender: TObject);
 begin
 if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
 btnSalvar.Enabled:=True;
+if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
+btnSalvar.Enabled:=False;
 end;
 
+procedure TfrmCadastroClientes.edtdbCPFEnter(Sender: TObject);
+begin
+if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
+btnSalvar.Enabled:=True;
+if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
+btnSalvar.Enabled:=False;
+end;
+
+procedure TfrmCadastroClientes.edtdbCreditoEnter(Sender: TObject);
+begin
+if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
+btnSalvar.Enabled:=True;
+if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
+btnSalvar.Enabled:=False;
+end;
+
+procedure TfrmCadastroClientes.edtdbNomeEnter(Sender: TObject);
+begin
+if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
+btnSalvar.Enabled:=True;
+if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
+btnSalvar.Enabled:=False;
+end;
+     // Definindo condições para liberar a gravação apenas se todos os campos estiverem preenchidos
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 procedure TfrmCadastroClientes.FormCreate(Sender: TObject);
 begin
 Conexao.Connected:=True;

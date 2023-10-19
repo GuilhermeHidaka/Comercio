@@ -3,7 +3,7 @@ object frmCadastroClientes: TfrmCadastroClientes
   Top = 0
   Caption = 'Cadastro Clientes'
   ClientHeight = 600
-  ClientWidth = 800
+  ClientWidth = 1013
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -64,12 +64,13 @@ object frmCadastroClientes: TfrmCadastroClientes
           ParentFont = False
         end
         object edtBuscar: TEdit
-          Left = 72
-          Top = 10
+          Left = 74
+          Top = 6
           Width = 246
           Height = 23
+          BevelOuter = bvNone
           TabOrder = 0
-          Text = 'edtBuscar'
+          OnChange = edtBuscarChange
         end
       end
       object pnlMidFooter: TPanel

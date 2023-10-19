@@ -706,6 +706,7 @@ object frmCadastroClientes: TfrmCadastroClientes
             ShowHint = True
             TabOrder = 0
             OnClick = btnSalvarClick
+            ExplicitTop = 2
           end
           object btnIncluir: TBitBtn
             AlignWithMargins = True
@@ -1916,7 +1917,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 DataField = 'CPF_CLIENTE'
                 DataSource = dsClientes
                 TabOrder = 0
-                OnKeyPress = edtdbCPFKeyPress
+                OnEnter = edtdbCPFEnter
               end
             end
           end
@@ -1963,6 +1964,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 DataField = 'NUMERO_CLIENTE'
                 DataSource = dsClientes
                 TabOrder = 0
+                OnEnter = edtdbCelularEnter
               end
             end
             object pnlDadosCredito: TPanel
@@ -1993,6 +1995,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 DataField = 'CREDITO_CLIENTE'
                 DataSource = dsClientes
                 TabOrder = 0
+                OnEnter = edtdbCreditoEnter
               end
             end
           end
@@ -2032,7 +2035,7 @@ object frmCadastroClientes: TfrmCadastroClientes
     DataSource = dsClientes
     ImeName = 'Portuguese (Brazilian ABNT)'
     TabOrder = 1
-    OnKeyPress = edtdbNomeKeyPress
+    OnEnter = edtdbNomeEnter
   end
   object Conexao: TFDConnection
     Params.Strings = (

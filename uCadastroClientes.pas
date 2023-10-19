@@ -70,6 +70,7 @@ type
     procedure edtdbCPFEnter(Sender: TObject);
     procedure edtdbCelularEnter(Sender: TObject);
     procedure edtdbCreditoEnter(Sender: TObject);
+    procedure edtBuscarChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -134,10 +135,18 @@ TabelaClientes.Post;
 Conexao.Commit;
 //para gravar no banco de dados todos os registros da Qry (TabelaClientes)
 btnIncluir.Enabled:=True;
+btnSalvar.Enabled:=False;
 //Voltar enabled incluir
 end;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+procedure TfrmCadastroClientes.edtBuscarChange(Sender: TObject);
+begin
+TabelaClientes.Locate('NOME_CLIENTE',edtBuscar.Text,[loPartialKey]);
+//Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
+//loCaseInsensitive %consulta
+end;
+
 procedure TfrmCadastroClientes.edtdbCelularEnter(Sender: TObject);
 begin
 if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
