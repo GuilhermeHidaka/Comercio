@@ -54,6 +54,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Top = 6
           Width = 240
           Height = 25
+          DataSource = dsProdutos
           TabOrder = 0
         end
       end
@@ -2039,6 +2040,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Width = 765
           Height = 271
           Align = alClient
+          DataSource = dsProdutos
           ImeName = 'Portuguese (Brazilian ABNT)'
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
