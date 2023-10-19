@@ -3,7 +3,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Top = 0
   Caption = 'Cadastro Produtos'
   ClientHeight = 600
-  ClientWidth = 988
+  ClientWidth = 1041
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -49,6 +49,14 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           ParentFont = False
           OnClick = btnFinalizarClick
         end
+        object DBNavigator1: TDBNavigator
+          Left = 224
+          Top = 6
+          Width = 240
+          Height = 25
+          DataSource = dsProdutos
+          TabOrder = 0
+        end
       end
       object pnlMidFooter: TPanel
         Left = 1
@@ -59,8 +67,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
         Color = clHighlight
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 0
-        ExplicitTop = -5
         object lblNomeTela: TLabel
           Left = 8
           Top = 12
@@ -1828,9 +1834,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
         Color = clWhite
         ParentBackground = False
         TabOrder = 2
-        ExplicitLeft = -5
-        ExplicitTop = 61
-        object Panel1: TPanel
+        object pnlDados: TPanel
           Left = 0
           Top = 0
           Width = 765
@@ -1840,8 +1844,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Color = clMenu
           ParentBackground = False
           TabOrder = 0
-          ExplicitLeft = -1
-          ExplicitTop = 4
           object pnlProCod: TPanel
             Left = 8
             Top = 6
@@ -1867,6 +1869,9 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               Top = 10
               Width = 92
               Height = 23
+              DataField = 'COD_PRODUTO'
+              DataSource = dsProdutos
+              Enabled = False
               TabOrder = 0
             end
           end
@@ -1890,50 +1895,217 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               Font.Style = [fsBold]
               ParentFont = False
             end
-            object edtdbDescricao: TDBEdit
+            object edtdbDescricaoProduto: TDBEdit
               Left = 78
-              Top = 10
+              Top = 17
               Width = 340
               Height = 23
+              DataField = 'NOME_PRODUTO'
+              DataSource = dsProdutos
               TabOrder = 0
             end
           end
-          object Panel4: TPanel
+          object pnlCusto: TPanel
             Left = 443
             Top = 6
-            Width = 314
+            Width = 158
             Height = 41
             BevelOuter = bvLowered
-            Caption = 'Panel2'
             TabOrder = 2
+            object lblCusto: TLabel
+              Left = 11
+              Top = 12
+              Width = 42
+              Height = 17
+              Caption = 'Custo :'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object edtdbCusto: TDBEdit
+              Left = 67
+              Top = 10
+              Width = 78
+              Height = 23
+              DataField = 'CUSTO_PRODUTO'
+              DataSource = dsProdutos
+              TabOrder = 0
+              OnChange = edtdbCustoChange
+            end
           end
-          object Panel5: TPanel
+          object pnlVenda: TPanel
             Left = 443
             Top = 51
-            Width = 314
+            Width = 158
             Height = 41
             BevelOuter = bvLowered
-            Caption = 'Panel2'
             TabOrder = 3
+            object lblVenda: TLabel
+              Left = 11
+              Top = 11
+              Width = 44
+              Height = 17
+              Caption = 'Venda :'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object edtdbVenda: TDBEdit
+              Left = 67
+              Top = 10
+              Width = 78
+              Height = 23
+              DataField = 'VENDA_PRODUTO'
+              DataSource = dsProdutos
+              TabOrder = 0
+              OnChange = edtdbVendaChange
+            end
           end
+          object pnlLucro: TPanel
+            Left = 443
+            Top = 97
+            Width = 158
+            Height = 41
+            Hint = 'Lucro Por Unidade.'
+            BevelOuter = bvLowered
+            ParentShowHint = False
+            ShowHint = True
+            TabOrder = 4
+            object lblLucro: TLabel
+              Left = 10
+              Top = 11
+              Width = 40
+              Height = 17
+              Caption = 'Lucro :'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object edtdbLucro: TDBEdit
+              Left = 67
+              Top = 8
+              Width = 78
+              Height = 23
+              DataField = 'LUCRO_PRODUTO'
+              DataSource = dsProdutos
+              Enabled = False
+              TabOrder = 0
+            end
+          end
+          object pnlEstoque: TPanel
+            Left = 8
+            Top = 97
+            Width = 158
+            Height = 41
+            BevelOuter = bvLowered
+            TabOrder = 5
+            object lblEstoque: TLabel
+              Left = 8
+              Top = 11
+              Width = 52
+              Height = 17
+              Caption = 'Estoque:'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -13
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = [fsBold]
+              ParentFont = False
+            end
+            object edtdbEstoque: TDBEdit
+              Left = 72
+              Top = 10
+              Width = 75
+              Height = 23
+              DataField = 'ESTOQUE_PRODUTO'
+              DataSource = dsProdutos
+              Enabled = False
+              TabOrder = 0
+            end
+          end
+        end
+        object dbGridProdutos: TDBGrid
+          Left = 0
+          Top = 193
+          Width = 765
+          Height = 271
+          Align = alClient
+          DataSource = dsProdutos
+          ImeName = 'Portuguese (Brazilian ABNT)'
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
         end
       end
     end
   end
-  object FDConnection1: TFDConnection
+  object ConexaoProdutos: TFDConnection
+    Params.Strings = (
+      'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Server=localhost'
+      'Port=3050'
+      'DriverID=fB')
+    Connected = True
+    LoginPrompt = False
     Left = 888
     Top = 48
   end
-  object FDQuery1: TFDQuery
-    Connection = FDConnection1
+  object TabelaProdutos: TFDQuery
+    Active = True
+    Connection = ConexaoProdutos
+    SQL.Strings = (
+      'select * from Produtos'
+      '')
     Left = 888
     Top = 184
+    object TabelaProdutosCOD_PRODUTO: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'COD_PRODUTO'
+      Origin = 'COD_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object TabelaProdutosNOME_PRODUTO: TStringField
+      FieldName = 'NOME_PRODUTO'
+      Origin = 'NOME_PRODUTO'
+      Size = 30
+    end
+    object TabelaProdutosCUSTO_PRODUTO: TSingleField
+      FieldName = 'CUSTO_PRODUTO'
+      Origin = 'CUSTO_PRODUTO'
+    end
+    object TabelaProdutosVENDA_PRODUTO: TSingleField
+      FieldName = 'VENDA_PRODUTO'
+      Origin = 'VENDA_PRODUTO'
+    end
+    object TabelaProdutosLUCRO_PRODUTO: TSingleField
+      FieldName = 'LUCRO_PRODUTO'
+      Origin = 'LUCRO_PRODUTO'
+    end
+    object TabelaProdutosESTOQUE_PRODUTO: TIntegerField
+      FieldName = 'ESTOQUE_PRODUTO'
+      Origin = 'ESTOQUE_PRODUTO'
+    end
   end
-  object DataSource1: TDataSource
+  object dsProdutos: TDataSource
+    DataSet = TabelaProdutos
     Left = 888
     Top = 248
   end
-  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+  object fbClient: TFDPhysFBDriverLink
     VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
     Left = 880
     Top = 120

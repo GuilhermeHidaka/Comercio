@@ -707,7 +707,6 @@ object frmCadastroClientes: TfrmCadastroClientes
             ShowHint = True
             TabOrder = 0
             OnClick = btnSalvarClick
-            ExplicitTop = 2
           end
           object btnIncluir: TBitBtn
             AlignWithMargins = True
@@ -1901,8 +1900,6 @@ object frmCadastroClientes: TfrmCadastroClientes
               Color = clMenu
               ParentBackground = False
               TabOrder = 1
-              ExplicitLeft = -4
-              ExplicitTop = 51
               object lblCPF: TLabel
                 Left = 16
                 Top = 21
@@ -1952,7 +1949,6 @@ object frmCadastroClientes: TfrmCadastroClientes
               Color = clMenu
               ParentBackground = False
               TabOrder = 1
-              ExplicitLeft = 0
               object lblCelular: TLabel
                 Left = 16
                 Top = 14
@@ -1986,8 +1982,6 @@ object frmCadastroClientes: TfrmCadastroClientes
               Color = clMenu
               ParentBackground = False
               TabOrder = 2
-              ExplicitLeft = 6
-              ExplicitTop = 51
               object lblCredito: TLabel
                 Left = 16
                 Top = 21

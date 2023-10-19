@@ -9,7 +9,8 @@ uses
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB;
+  FireDAC.Comp.Client, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfrmCadastroProdutos = class(TForm)
@@ -27,17 +28,40 @@ type
     btnModificar: TBitBtn;
     btnExcluir: TBitBtn;
     btnCancelar: TBitBtn;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    FDConnection1: TFDConnection;
-    FDQuery1: TFDQuery;
-    DataSource1: TDataSource;
-    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    pnlDados: TPanel;
+    pnlProCod: TPanel;
+    pnlDescricaoProduto: TPanel;
+    pnlCusto: TPanel;
+    pnlVenda: TPanel;
+    ConexaoProdutos: TFDConnection;
+    TabelaProdutos: TFDQuery;
+    dsProdutos: TDataSource;
+    fbClient: TFDPhysFBDriverLink;
+    lblCodigo: TLabel;
+    edtdbCodigoProduto: TDBEdit;
+    lblDescricao: TLabel;
+    edtdbDescricaoProduto: TDBEdit;
+    lblCusto: TLabel;
+    lblVenda: TLabel;
+    edtdbCusto: TDBEdit;
+    edtdbVenda: TDBEdit;
+    pnlLucro: TPanel;
+    pnlEstoque: TPanel;
+    lblEstoque: TLabel;
+    edtdbEstoque: TDBEdit;
+    lblLucro: TLabel;
+    edtdbLucro: TDBEdit;
+    TabelaProdutosCOD_PRODUTO: TIntegerField;
+    TabelaProdutosNOME_PRODUTO: TStringField;
+    TabelaProdutosCUSTO_PRODUTO: TSingleField;
+    TabelaProdutosVENDA_PRODUTO: TSingleField;
+    TabelaProdutosLUCRO_PRODUTO: TSingleField;
+    TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
+    DBNavigator1: TDBNavigator;
+    dbGridProdutos: TDBGrid;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
+    procedure edtdbCustoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,6 +86,11 @@ procedure TfrmCadastroProdutos.btnHomeClick(Sender: TObject);
 begin
 frmCadastroProdutos.Hide;
 frmCadastro.Show;
+end;
+
+procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);
+begin
+edt
 end;
 
 end.

@@ -3,8 +3,7 @@ unit uCadastroProdutos;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
@@ -51,7 +50,7 @@ type
     lblEstoque: TLabel;
     edtdbEstoque: TDBEdit;
     lblLucro: TLabel;
-    edtdbLucro: TDBEdit;
+    DBEdit1: TDBEdit;
     TabelaProdutosCOD_PRODUTO: TIntegerField;
     TabelaProdutosNOME_PRODUTO: TStringField;
     TabelaProdutosCUSTO_PRODUTO: TSingleField;
@@ -62,7 +61,6 @@ type
     dbGridProdutos: TDBGrid;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
-    procedure edtdbCustoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -80,27 +78,13 @@ uses uCadastro, uCadastroClientes;
 
 procedure TfrmCadastroProdutos.btnFinalizarClick(Sender: TObject);
 begin
-  Application.Terminate;
+Application.Terminate;
 end;
 
 procedure TfrmCadastroProdutos.btnHomeClick(Sender: TObject);
 begin
-  frmCadastroProdutos.Hide;
-  frmCadastro.Show;
-end;
-
-procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);
-//var
- // n: Double;
-begin
-  (* n := StrToFloat(edt1.Text);
-    n := n / StrToFloat(edt2.Text);
-    edt3.Text := FloatToStr(n);
-  n := StrToFloat(edtdbVenda.Text);
-  n := n - StrToFloat(edtdbCusto.Text);
-  edtdbLucro.Text := FloatToStr(n);
-
-  // Venda-Custo=lucro   *)
+frmCadastroProdutos.Hide;
+frmCadastro.Show;
 end;
 
 end.

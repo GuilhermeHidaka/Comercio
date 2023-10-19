@@ -67,8 +67,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
         Color = clHighlight
         ParentBackground = False
         TabOrder = 1
-        ExplicitLeft = 0
-        ExplicitTop = -5
         object lblNomeTela: TLabel
           Left = 8
           Top = 12
@@ -1836,8 +1834,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
         Color = clWhite
         ParentBackground = False
         TabOrder = 2
-        ExplicitLeft = -5
-        ExplicitTop = 61
         object pnlDados: TPanel
           Left = 0
           Top = 0
@@ -1848,8 +1844,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Color = clMenu
           ParentBackground = False
           TabOrder = 0
-          ExplicitLeft = -1
-          ExplicitTop = 4
           object pnlProCod: TPanel
             Left = 8
             Top = 6
@@ -1877,6 +1871,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               Height = 23
               DataField = 'COD_PRODUTO'
               DataSource = dsProdutos
+              Enabled = False
               TabOrder = 0
             end
           end
@@ -1938,6 +1933,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               DataField = 'CUSTO_PRODUTO'
               DataSource = dsProdutos
               TabOrder = 0
+              OnChange = edtdbCustoChange
             end
           end
           object pnlVenda: TPanel
@@ -1993,13 +1989,14 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               Font.Style = [fsBold]
               ParentFont = False
             end
-            object DBEdit1: TDBEdit
+            object edtdbLucro: TDBEdit
               Left = 67
               Top = 8
               Width = 78
               Height = 23
               DataField = 'LUCRO_PRODUTO'
               DataSource = dsProdutos
+              Enabled = False
               TabOrder = 0
             end
           end
@@ -2030,6 +2027,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               Height = 23
               DataField = 'ESTOQUE_PRODUTO'
               DataSource = dsProdutos
+              Enabled = False
               TabOrder = 0
             end
           end

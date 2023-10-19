@@ -137,6 +137,11 @@ ConexaoClientes.Commit;
 btnIncluir.Enabled:=True;
 btnSalvar.Enabled:=False;
 //Voltar enabled incluir
+edtdbNome.Enabled:=False;
+edtdbCPF.Enabled:=False;
+edtdbCelular.Enabled:=False;
+edtdbCredito.Enabled:=False;
+//Voltar Enabled padrão de não inclusão ou alteração
 end;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

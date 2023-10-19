@@ -90,17 +90,17 @@ begin
 end;
 
 procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);
-//var
- // n: Double;
+var
+  n: Double;
 begin
   (* n := StrToFloat(edt1.Text);
     n := n / StrToFloat(edt2.Text);
-    edt3.Text := FloatToStr(n);
+    edt3.Text := FloatToStr(n); *)
   n := StrToFloat(edtdbVenda.Text);
   n := n - StrToFloat(edtdbCusto.Text);
   edtdbLucro.Text := FloatToStr(n);
 
-  // Venda-Custo=lucro   *)
+  // Venda-Custo=lucro
 end;
 
 end.
