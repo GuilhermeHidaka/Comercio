@@ -88,22 +88,26 @@ uses uCadastro, uCadastroProdutos;
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
 TabelaClientes.Cancel;
+//Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
 end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
 TabelaClientes.Delete;
+//Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
 procedure TfrmCadastroClientes.btnFinalizarClick(Sender: TObject);
 begin
 Application.Terminate;
+//Finaliza aplicação
 end;
 
 procedure TfrmCadastroClientes.btnHomeClick(Sender: TObject);
 begin
 frmCadastroClientes.Hide;
 frmCadastro.Show;
+//Troca de janelas, fechando uma e abrindo outra
 end;
 
 procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
@@ -115,20 +119,19 @@ edtdbNome.Enabled:=True;
 edtdbCPF.Enabled:=True;
 edtdbCelular.Enabled:=True;
 edtdbCredito.Enabled:=True;
+//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
 end;
 
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
 TabelaClientes.Edit;
+//utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
 end;
 
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
 begin
 TabelaClientes.Post;
 Conexao.Commit;
-
-
-
 //para gravar no banco de dados todos os registros da Qry (TabelaClientes)
 btnIncluir.Enabled:=True;
 //Voltar enabled incluir
