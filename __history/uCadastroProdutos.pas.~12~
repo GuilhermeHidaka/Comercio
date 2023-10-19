@@ -1,0 +1,72 @@
+unit uCadastroProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
+  Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TfrmCadastroProdutos = class(TForm)
+    pnlCenter: TPanel;
+    pnlMidTop: TPanel;
+    pnlTop2: TPanel;
+    btnFinalizar: TSpeedButton;
+    pnlMidFooter: TPanel;
+    lblNomeTela: TLabel;
+    btnHome: TBitBtn;
+    pnlMid: TPanel;
+    pnlButtons: TPanel;
+    btnSalvar: TBitBtn;
+    btnIncluir: TBitBtn;
+    btnModificar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnCancelar: TBitBtn;
+    Panel1: TPanel;
+    pnlProCod: TPanel;
+    pnlDescricaoProduto: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    FDConnection1: TFDConnection;
+    FDQuery1: TFDQuery;
+    DataSource1: TDataSource;
+    FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+    lblCodigo: TLabel;
+    edtdbCodigoProduto: TDBEdit;
+    lblDescricao: TLabel;
+    edtdbDescricao: TDBEdit;
+    procedure btnFinalizarClick(Sender: TObject);
+    procedure btnHomeClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastroProdutos: TfrmCadastroProdutos;
+
+implementation
+
+{$R *.dfm}
+
+uses uCadastro, uCadastroClientes;
+
+procedure TfrmCadastroProdutos.btnFinalizarClick(Sender: TObject);
+begin
+Application.Terminate;
+end;
+
+procedure TfrmCadastroProdutos.btnHomeClick(Sender: TObject);
+begin
+frmCadastroProdutos.Hide;
+frmCadastro.Show;
+end;
+
+end.

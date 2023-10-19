@@ -3,7 +3,7 @@ object frmCadastroClientes: TfrmCadastroClientes
   Top = 0
   Caption = 'Cadastro Clientes'
   ClientHeight = 600
-  ClientWidth = 1013
+  ClientWidth = 939
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -396,9 +396,9 @@ object frmCadastroClientes: TfrmCadastroClientes
           TabOrder = 0
           OnClick = btnHomeClick
         end
-        object Panel1: TPanel
+        object pnlButtons: TPanel
           Left = 259
-          Top = 0
+          Top = 1
           Width = 303
           Height = 56
           BevelOuter = bvNone
@@ -1875,6 +1875,8 @@ object frmCadastroClientes: TfrmCadastroClientes
               Width = 379
               Height = 55
               Align = alTop
+              Color = clMenu
+              ParentBackground = False
               TabOrder = 0
               object lblNome: TLabel
                 Left = 16
@@ -1896,7 +1898,11 @@ object frmCadastroClientes: TfrmCadastroClientes
               Width = 379
               Height = 55
               Align = alBottom
+              Color = clMenu
+              ParentBackground = False
               TabOrder = 1
+              ExplicitLeft = -4
+              ExplicitTop = 51
               object lblCPF: TLabel
                 Left = 16
                 Top = 21
@@ -1912,7 +1918,7 @@ object frmCadastroClientes: TfrmCadastroClientes
               end
               object edtdbCPF: TDBEdit
                 Left = 69
-                Top = 28
+                Top = 20
                 Width = 293
                 Height = 23
                 DataField = 'CPF_CLIENTE'
@@ -1943,7 +1949,10 @@ object frmCadastroClientes: TfrmCadastroClientes
               Width = 379
               Height = 55
               Align = alTop
+              Color = clMenu
+              ParentBackground = False
               TabOrder = 1
+              ExplicitLeft = 0
               object lblCelular: TLabel
                 Left = 16
                 Top = 14
@@ -1974,7 +1983,11 @@ object frmCadastroClientes: TfrmCadastroClientes
               Width = 379
               Height = 55
               Align = alBottom
+              Color = clMenu
+              ParentBackground = False
               TabOrder = 2
+              ExplicitLeft = 6
+              ExplicitTop = 51
               object lblCredito: TLabel
                 Left = 16
                 Top = 21
@@ -2038,7 +2051,7 @@ object frmCadastroClientes: TfrmCadastroClientes
     TabOrder = 1
     OnEnter = edtdbNomeEnter
   end
-  object Conexao: TFDConnection
+  object ConexaoClientes: TFDConnection
     Params.Strings = (
       'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
       'User_Name=SYSDBA'
@@ -2054,7 +2067,7 @@ object frmCadastroClientes: TfrmCadastroClientes
   object TabelaClientes: TFDQuery
     Active = True
     ChangeAlertName = 'TabelaClientes'
-    Connection = Conexao
+    Connection = ConexaoClientes
     SQL.Strings = (
       'select * from Clientes')
     Left = 848

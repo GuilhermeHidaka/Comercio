@@ -4,7 +4,13 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
+  Vcl.Mask, Vcl.DBCtrls;
 
 type
   TfrmCadastroProdutos = class(TForm)
@@ -16,12 +22,41 @@ type
     lblNomeTela: TLabel;
     btnHome: TBitBtn;
     pnlMid: TPanel;
-    Panel1: TPanel;
-    BitBtn1: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
-    BitBtn5: TBitBtn;
+    pnlButtons: TPanel;
+    btnSalvar: TBitBtn;
+    btnIncluir: TBitBtn;
+    btnModificar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnCancelar: TBitBtn;
+    pnlDados: TPanel;
+    pnlProCod: TPanel;
+    pnlDescricaoProduto: TPanel;
+    pnlCusto: TPanel;
+    pnlVenda: TPanel;
+    ConexaoProdutos: TFDConnection;
+    TabelaProdutos: TFDQuery;
+    dsProdutos: TDataSource;
+    fbClient: TFDPhysFBDriverLink;
+    lblCodigo: TLabel;
+    edtdbCodigoProduto: TDBEdit;
+    lblDescricao: TLabel;
+    edtdbDescricaoProduto: TDBEdit;
+    lblCusto: TLabel;
+    lblVenda: TLabel;
+    edtdbCusto: TDBEdit;
+    edtdbVenda: TDBEdit;
+    pnlLucro: TPanel;
+    pnlEstoque: TPanel;
+    lblEstoque: TLabel;
+    edtdbEstoque: TDBEdit;
+    lblLucro: TLabel;
+    DBEdit1: TDBEdit;
+    TabelaProdutosCOD_PRODUTO: TIntegerField;
+    TabelaProdutosNOME_PRODUTO: TStringField;
+    TabelaProdutosCUSTO_PRODUTO: TSingleField;
+    TabelaProdutosVENDA_PRODUTO: TSingleField;
+    TabelaProdutosLUCRO_PRODUTO: TSingleField;
+    TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
   private

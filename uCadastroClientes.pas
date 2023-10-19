@@ -22,7 +22,7 @@ type
     lblNomeTela: TLabel;
     btnHome: TBitBtn;
     pnlMid: TPanel;
-    Conexao: TFDConnection;
+    ConexaoClientes: TFDConnection;
     TabelaClientes: TFDQuery;
     dsClientes: TDataSource;
     fbClient: TFDPhysFBDriverLink;
@@ -52,7 +52,7 @@ type
     DBgridClientes: TDBGrid;
     lblBuscar: TLabel;
     edtBuscar: TEdit;
-    Panel1: TPanel;
+    pnlButtons: TPanel;
     btnSalvar: TBitBtn;
     btnIncluir: TBitBtn;
     btnModificar: TBitBtn;
@@ -132,7 +132,7 @@ end;
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
 begin
 TabelaClientes.Post;
-Conexao.Commit;
+ConexaoClientes.Commit;
 //para gravar no banco de dados todos os registros da Qry (TabelaClientes)
 btnIncluir.Enabled:=True;
 btnSalvar.Enabled:=False;
@@ -182,7 +182,7 @@ end;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 procedure TfrmCadastroClientes.FormCreate(Sender: TObject);
 begin
-Conexao.Connected:=True;
+ConexaoClientes.Connected:=True;
 TabelaClientes.Open();
 btnSalvar.Enabled:=False;
 
