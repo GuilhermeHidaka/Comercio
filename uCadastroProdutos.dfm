@@ -373,6 +373,64 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           TabOrder = 0
           OnClick = btnHomeClick
         end
+        object Panel1: TPanel
+          Left = 259
+          Top = 0
+          Width = 303
+          Height = 56
+          BevelOuter = bvNone
+          TabOrder = 1
+          object BitBtn1: TBitBtn
+            AlignWithMargins = True
+            Left = 245
+            Top = 3
+            Width = 55
+            Height = 50
+            Align = alRight
+            Caption = 'BitBtn1'
+            TabOrder = 0
+          end
+          object BitBtn2: TBitBtn
+            AlignWithMargins = True
+            Left = 1
+            Top = 3
+            Width = 55
+            Height = 50
+            Align = alRight
+            Caption = 'BitBtn1'
+            TabOrder = 1
+          end
+          object BitBtn3: TBitBtn
+            AlignWithMargins = True
+            Left = 62
+            Top = 3
+            Width = 55
+            Height = 50
+            Align = alRight
+            Caption = 'BitBtn1'
+            TabOrder = 2
+          end
+          object BitBtn4: TBitBtn
+            AlignWithMargins = True
+            Left = 123
+            Top = 3
+            Width = 55
+            Height = 50
+            Align = alRight
+            Caption = 'BitBtn1'
+            TabOrder = 3
+          end
+          object BitBtn5: TBitBtn
+            AlignWithMargins = True
+            Left = 184
+            Top = 3
+            Width = 55
+            Height = 50
+            Align = alRight
+            Caption = 'BitBtn1'
+            TabOrder = 4
+          end
+        end
       end
       object pnlMid: TPanel
         Left = 1

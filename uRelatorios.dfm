@@ -407,6 +407,8 @@ object frmRelatorios: TfrmRelatorios
         Color = clWhite
         ParentBackground = False
         TabOrder = 2
+        ExplicitLeft = -5
+        ExplicitWidth = 6
       end
     end
   end

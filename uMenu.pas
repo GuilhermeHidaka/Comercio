@@ -23,7 +23,6 @@ type
     btnCompras: TBitBtn;
     btnCadastro: TBitBtn;
     lblMenu: TLabel;
-    BitBtn7: TBitBtn;
     Panel1: TPanel;
     procedure btnCadastroClick(Sender: TObject);
     procedure btnComprasClick(Sender: TObject);

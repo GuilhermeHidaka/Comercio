@@ -337,7 +337,6 @@ object frmMenu: TfrmMenu
         ShowHint = True
         TabOrder = 0
         OnClick = btnConfigClick
-        ExplicitTop = 518
       end
       object btnRelatorios: TBitBtn
         AlignWithMargins = True
@@ -647,7 +646,6 @@ object frmMenu: TfrmMenu
         ShowHint = True
         TabOrder = 1
         OnClick = btnRelatoriosClick
-        ExplicitLeft = 6
       end
       object btnEstoque: TBitBtn
         AlignWithMargins = True
@@ -1265,7 +1263,6 @@ object frmMenu: TfrmMenu
         ShowHint = True
         TabOrder = 3
         OnClick = btnVendasClick
-        ExplicitLeft = 6
       end
       object btnCompras: TBitBtn
         AlignWithMargins = True
@@ -1575,7 +1572,6 @@ object frmMenu: TfrmMenu
         ShowHint = True
         TabOrder = 4
         OnClick = btnComprasClick
-        ExplicitLeft = 6
       end
       object btnCadastro: TBitBtn
         AlignWithMargins = True
@@ -1884,7 +1880,6 @@ object frmMenu: TfrmMenu
         ShowHint = True
         TabOrder = 5
         OnClick = btnCadastroClick
-        ExplicitWidth = 51
       end
     end
     object pnlLogo: TPanel
@@ -4042,12 +4037,19 @@ object frmMenu: TfrmMenu
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object BitBtn7: TBitBtn
-          AlignWithMargins = True
-          Left = 584
-          Top = 3
-          Width = 70
-          Height = 67
+        object Panel1: TPanel
+          Left = 74
+          Top = 29
+          Width = 504
+          Height = 12
+          BevelOuter = bvNone
+          TabOrder = 0
+        end
+        object TBitBtn
+          Left = 582
+          Top = 0
+          Width = 75
+          Height = 73
           Align = alRight
           Glyph.Data = {
             42400000424D4240000000000000420000002800000040000000400000000100
@@ -4565,14 +4567,6 @@ object frmMenu: TfrmMenu
             8DFF9F6C8DFF9F6C8DFF9F6C8DFF9F6C8DFF9F6C8DFF9F6C8DFF9F6C8DFF9F6C
             8DFF9F6C8DFF9F6C8DFF9F6C8DFF9F6B8DE3A06C8B4900000000000000000000
             000000000000}
-          TabOrder = 0
-        end
-        object Panel1: TPanel
-          Left = 74
-          Top = 29
-          Width = 504
-          Height = 12
-          BevelOuter = bvNone
           TabOrder = 1
         end
       end

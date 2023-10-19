@@ -34,8 +34,6 @@ object frmCadastro: TfrmCadastro
         Color = clHighlight
         ParentBackground = False
         TabOrder = 0
-        ExplicitLeft = -5
-        ExplicitTop = 513
         object btnFinalizar: TSpeedButton
           Left = 648
           Top = 1
@@ -409,10 +407,6 @@ object frmCadastro: TfrmCadastro
         Color = clWhite
         ParentBackground = False
         TabOrder = 2
-        ExplicitLeft = 224
-        ExplicitTop = 184
-        ExplicitWidth = 185
-        ExplicitHeight = 41
         object pnlLeft: TPanel
           Left = 1
           Top = 1
@@ -752,8 +746,6 @@ object frmCadastro: TfrmCadastro
             ParentFont = False
             TabOrder = 0
             OnClick = btnCadastroProdutosClick
-            ExplicitLeft = 2
-            ExplicitTop = 2
           end
         end
         object Panel1: TPanel
@@ -763,7 +755,6 @@ object frmCadastro: TfrmCadastro
           Height = 462
           Align = alLeft
           TabOrder = 1
-          ExplicitLeft = 353
           object btnCadastroClientes: TBitBtn
             Left = 1
             Top = 1
@@ -1096,8 +1087,6 @@ object frmCadastro: TfrmCadastro
             ParentFont = False
             TabOrder = 0
             OnClick = btnCadastroClientesClick
-            ExplicitLeft = 0
-            ExplicitTop = -2
           end
         end
       end

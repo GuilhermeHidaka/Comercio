@@ -2,9 +2,33 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2023/10/09 17:37:46.000.757,=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/10/18 15:36:48.409,=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/10/18 15:38:04.538,C:\Users\guiik\Desktop\sandbox\Comercio\uMenu.dfm=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2023/10/18 15:38:04.538,C:\Users\guiik\Desktop\sandbox\Comercio\uMenu.pas=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2023/10/18 15:38:27.792,C:\Users\guiik\Desktop\sandbox\Comercio\PrjComercio.dproj=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2023/10/18 15:36:48.000.409,=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 15:38:04.000.538,C:\Users\guiik\Desktop\sandbox\Comercio\uMenu.dfm=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/10/18 15:38:04.000.538,C:\Users\guiik\Desktop\sandbox\Comercio\uMenu.pas=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 15:38:27.000.792,C:\Users\guiik\Desktop\sandbox\Comercio\PrjComercio.dproj=C:\Users\guiik\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2023/10/18 16:04:05.000.850,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 16:04:31.000.058,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uCadastro.pas</Transaction>
+    <Transaction>2023/10/18 16:04:31.000.058,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uCadastro.dfm</Transaction>
+    <Transaction>2023/10/18 16:05:07.000.283,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 16:15:23.000.358,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uCompras.dfm</Transaction>
+    <Transaction>2023/10/18 16:15:23.000.358,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uCompras.pas</Transaction>
+    <Transaction>2023/10/18 16:45:00.000.438,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 16:45:16.000.841,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uVendas.dfm</Transaction>
+    <Transaction>2023/10/18 16:45:16.000.841,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uVendas.pas</Transaction>
+    <Transaction>2023/10/18 16:48:46.000.880,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 16:49:36.000.989,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uEstoque.dfm</Transaction>
+    <Transaction>2023/10/18 16:49:36.000.989,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uEstoque.pas</Transaction>
+    <Transaction>2023/10/18 16:52:32.000.945,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 16:53:10.000.263,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uRelatorios.dfm</Transaction>
+    <Transaction>2023/10/18 16:53:10.000.263,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uRelatorios.pas</Transaction>
+    <Transaction>2023/10/18 16:53:31.000.559,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 16:53:59.000.345,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uConfig.dfm</Transaction>
+    <Transaction>2023/10/18 16:53:59.000.345,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uConfig.pas</Transaction>
+    <Transaction>2023/10/18 18:01:55.000.017,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 18:02:38.000.188,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uCadastroProdutos.pas</Transaction>
+    <Transaction>2023/10/18 18:02:38.000.188,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uCadastroProdutos.dfm</Transaction>
+    <Transaction>2023/10/18 18:02:45.000.140,=C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas</Transaction>
+    <Transaction>2023/10/18 18:03:07.000.579,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.pas=C:\Users\guiik\Desktop\sandbox\Comercio\uCadastroClientes.pas</Transaction>
+    <Transaction>2023/10/18 18:03:07.000.579,C:\Users\guiik\Desktop\sandbox\Comercio\Unit1.dfm=C:\Users\guiik\Desktop\sandbox\Comercio\uCadastroClientes.dfm</Transaction>
   </Transactions>
 </BorlandProject>

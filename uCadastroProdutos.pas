@@ -16,6 +16,12 @@ type
     lblNomeTela: TLabel;
     btnHome: TBitBtn;
     pnlMid: TPanel;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
   private

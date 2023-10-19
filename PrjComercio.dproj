@@ -102,6 +102,38 @@
             <Form>frmMenu</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uCadastro.pas">
+            <Form>frmCadastro</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCompras.pas">
+            <Form>frmCompras</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uVendas.pas">
+            <Form>frmVendas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uEstoque.pas">
+            <Form>frmEstoque</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uRelatorios.pas">
+            <Form>frmRelatorios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uConfig.pas">
+            <Form>frmConfig</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadastroProdutos.pas">
+            <Form>frmCadastroProdutos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uCadastroClientes.pas">
+            <Form>frmCadastroClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
