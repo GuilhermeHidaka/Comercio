@@ -10,7 +10,7 @@ uses
   FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
-  Vcl.Mask, Vcl.DBCtrls;
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfrmCadastroProdutos = class(TForm)
@@ -57,6 +57,8 @@ type
     TabelaProdutosVENDA_PRODUTO: TSingleField;
     TabelaProdutosLUCRO_PRODUTO: TSingleField;
     TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
+    DBNavigator1: TDBNavigator;
+    dbGridProdutos: TDBGrid;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
   private

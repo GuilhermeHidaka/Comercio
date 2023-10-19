@@ -3,7 +3,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Top = 0
   Caption = 'Cadastro Produtos'
   ClientHeight = 600
-  ClientWidth = 800
+  ClientWidth = 1041
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -48,6 +48,13 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Font.Style = [fsBold]
           ParentFont = False
           OnClick = btnFinalizarClick
+        end
+        object DBNavigator1: TDBNavigator
+          Left = 224
+          Top = 6
+          Width = 240
+          Height = 25
+          TabOrder = 0
         end
       end
       object pnlMidFooter: TPanel
@@ -2026,6 +2033,20 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             end
           end
         end
+        object dbGridProdutos: TDBGrid
+          Left = 0
+          Top = 193
+          Width = 765
+          Height = 271
+          Align = alClient
+          ImeName = 'Portuguese (Brazilian ABNT)'
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -12
+          TitleFont.Name = 'Segoe UI'
+          TitleFont.Style = []
+        end
       end
     end
   end
@@ -2051,10 +2072,10 @@ object frmCadastroProdutos: TfrmCadastroProdutos
     Left = 888
     Top = 184
     object TabelaProdutosCOD_PRODUTO: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'COD_PRODUTO'
       Origin = 'COD_PRODUTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object TabelaProdutosNOME_PRODUTO: TStringField
       FieldName = 'NOME_PRODUTO'
