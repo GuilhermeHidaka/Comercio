@@ -71,6 +71,16 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           TabOrder = 0
           OnChange = edtBuscarProdutosChange
         end
+        object cboFiltroProdutos: TComboBox
+          Left = 325
+          Top = 10
+          Width = 92
+          Height = 23
+          TabOrder = 1
+          Items.Strings = (
+            'C'#243'digo'
+            'Nome')
+        end
       end
       object pnlMidFooter: TPanel
         Left = 1

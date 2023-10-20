@@ -3,7 +3,7 @@ object frmCadastroClientes: TfrmCadastroClientes
   Top = 0
   Caption = 'Cadastro Clientes'
   ClientHeight = 600
-  ClientWidth = 939
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -53,9 +53,9 @@ object frmCadastroClientes: TfrmCadastroClientes
         object lblBuscar: TLabel
           Left = 8
           Top = 8
-          Width = 60
+          Width = 57
           Height = 21
-          Caption = 'Buscar : '
+          Caption = 'Buscar: '
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -16
@@ -64,13 +64,26 @@ object frmCadastroClientes: TfrmCadastroClientes
           ParentFont = False
         end
         object edtBuscar: TEdit
-          Left = 74
-          Top = 6
+          Left = 72
+          Top = 10
           Width = 246
           Height = 23
           BevelOuter = bvNone
           TabOrder = 0
           OnChange = edtBuscarChange
+        end
+        object cbo: TComboBox
+          Left = 324
+          Top = 10
+          Width = 92
+          Height = 23
+          TabOrder = 1
+          Text = 'cboFiltroClientes'
+          Items.Strings = (
+            'Nome'
+            'CPF'
+            'Celular'
+            'Cr'#233'dito')
         end
       end
       object pnlMidFooter: TPanel
@@ -1012,7 +1025,6 @@ object frmCadastroClientes: TfrmCadastroClientes
             ShowHint = True
             TabOrder = 1
             OnClick = btnIncluirClick
-            ExplicitTop = 2
           end
           object btnModificar: TBitBtn
             AlignWithMargins = True
@@ -2022,14 +2034,20 @@ object frmCadastroClientes: TfrmCadastroClientes
             Width = 761
             Height = 348
             Align = alClient
+            BorderStyle = bsNone
             DataSource = dsClientes
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            ParentColor = True
+            ParentShowHint = False
+            ReadOnly = True
+            ShowHint = False
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -12
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
+            OnCellClick = DBgridClientesCellClick
           end
         end
       end

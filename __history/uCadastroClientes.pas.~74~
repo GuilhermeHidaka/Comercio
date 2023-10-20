@@ -71,6 +71,7 @@ type
     procedure edtdbCPFChange(Sender: TObject);
     procedure edtdbCelularChange(Sender: TObject);
     procedure edtdbCreditoChange(Sender: TObject);
+    procedure DBgridClientesCellClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -89,6 +90,7 @@ uses uCadastro, uCadastroProdutos;
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
 TabelaClientes.Cancel;
+DBgridClientes.Enabled:=True;
 btnIncluir.Enabled:=False;
 edtdbNome.Enabled:=False;
 edtdbCPF.Enabled:=False;
@@ -96,11 +98,15 @@ edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 btnIncluir.Enabled:=True;
 //Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
+btnSalvar.Enabled:=False;
+btnExcluir.Enabled:=True;
+btnModificar.Enabled:=True;
 end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
 TabelaClientes.Delete;
+btnSalvar.Enabled:=False;
 //Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
@@ -119,6 +125,8 @@ end;
 
 procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
 begin
+btnExcluir.Enabled:=False;
+btnModificar.Enabled:=False;
 TabelaClientes.Insert;
 btnIncluir.Enabled:=False;
 //btnSalvar.Enabled:=True;
@@ -126,13 +134,23 @@ edtdbNome.Enabled:=True;
 edtdbCPF.Enabled:=True;
 edtdbCelular.Enabled:=True;
 edtdbCredito.Enabled:=True;
-//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
+//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)7
+DBgridClientes.Enabled:=False;
+//quando estiver inserindo será impossível clicar no grid e apagar todos os campos
 end;
 
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
+btnIncluir.Enabled:=False;
 TabelaClientes.Edit;
+edtdbNome.Enabled:=True;
+edtdbCPF.Enabled:=True;
+edtdbCelular.Enabled:=True;
+edtdbCredito.Enabled:=True;
+btnExcluir.Enabled:=False;
+btnSalvar.Enabled:=True;
 //utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
+dbGridClientes.Enabled:=False;
 end;
 
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
@@ -148,11 +166,22 @@ edtdbCPF.Enabled:=False;
 edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 //Voltar Enabled padrão de não inclusão ou alteração
+dbGridClientes.Enabled:=True;
+btnExcluir.Enabled:=True;
+btnModificar.Enabled:=True;
 end;
 
 
 
 
+
+procedure TfrmCadastroClientes.DBgridClientesCellClick(Column: TColumn);
+begin
+edtdbNome.Text:='';
+edtdbCPF.Text:='';
+edtdbCredito.Text:='';
+edtdbCelular.Text:='';
+end;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 procedure TfrmCadastroClientes.edtBuscarChange(Sender: TObject);

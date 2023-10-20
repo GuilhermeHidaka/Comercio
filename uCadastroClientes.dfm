@@ -53,9 +53,9 @@ object frmCadastroClientes: TfrmCadastroClientes
         object lblBuscar: TLabel
           Left = 8
           Top = 8
-          Width = 60
+          Width = 57
           Height = 21
-          Caption = 'Buscar : '
+          Caption = 'Buscar: '
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
           Font.Height = -16
@@ -63,14 +63,26 @@ object frmCadastroClientes: TfrmCadastroClientes
           Font.Style = [fsBold]
           ParentFont = False
         end
-        object edtBuscar: TEdit
-          Left = 74
-          Top = 8
+        object edtBuscarClientes: TEdit
+          Left = 69
+          Top = 9
           Width = 246
           Height = 23
           BevelOuter = bvNone
           TabOrder = 0
-          OnChange = edtBuscarChange
+          OnChange = edtBuscarClientesChange
+        end
+        object cboFiltroClientes: TComboBox
+          Left = 324
+          Top = 9
+          Width = 92
+          Height = 23
+          TabOrder = 1
+          Items.Strings = (
+            'Nome'
+            'CPF'
+            'Celular'
+            'Cr'#233'dito')
         end
       end
       object pnlMidFooter: TPanel

@@ -62,6 +62,7 @@ type
     btnCalcLucro: TButton;
     lblBuscarProdutos: TLabel;
     edtBuscarProdutos: TEdit;
+    cboFiltroProdutos: TComboBox;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnCalcLucroClick(Sender: TObject);
@@ -204,7 +205,11 @@ end;
 
 procedure TfrmCadastroProdutos.edtBuscarProdutosChange(Sender: TObject);
 begin
+if cboFiltroProdutos.ItemIndex=1 then
 TabelaProdutos.Locate('NOME_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCaseInsensitive]);
+
+if cboFiltroProdutos.ItemIndex=0 then
+TabelaProdutos.Locate('COD_PRODUTO',edtBuscarProdutos.Text,[LoPartialKey,loCaseInsensitive]);
 //Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
 //loCaseInsensitive %consulta
 //igual do buscar clientes
@@ -258,6 +263,10 @@ begin
   ConexaoProdutos.Connected := True;
   TabelaProdutos.Open();
   btnSalvar.Enabled := False;
+
+
+  cboFiltroProdutos.ItemIndex:=0;
+  //Vetor definição incial combo box
 
   edtdbDescricaoProduto.Enabled := False;
   edtdbEstoque.Enabled := False;

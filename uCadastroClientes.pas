@@ -51,13 +51,14 @@ type
     pnlDBGrid: TPanel;
     DBgridClientes: TDBGrid;
     lblBuscar: TLabel;
-    edtBuscar: TEdit;
+    edtBuscarClientes: TEdit;
     pnlButtons: TPanel;
     btnSalvar: TBitBtn;
     btnIncluir: TBitBtn;
     btnModificar: TBitBtn;
     btnExcluir: TBitBtn;
     btnCancelar: TBitBtn;
+    cboFiltroClientes: TComboBox;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -66,7 +67,7 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure edtBuscarChange(Sender: TObject);
+    procedure edtBuscarClientesChange(Sender: TObject);
     procedure edtdbNomeChange(Sender: TObject);
     procedure edtdbCPFChange(Sender: TObject);
     procedure edtdbCelularChange(Sender: TObject);
@@ -184,9 +185,24 @@ edtdbCelular.Text:='';
 end;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-procedure TfrmCadastroClientes.edtBuscarChange(Sender: TObject);
+procedure TfrmCadastroClientes.edtBuscarClientesChange(Sender: TObject);
 begin
-TabelaClientes.Locate('NOME_CLIENTE',edtBuscar.Text,[loPartialKey,loCaseInsensitive]);
+if cboFiltroClientes.ItemIndex=0 then
+  TabelaClientes.Locate('NOME_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+if cboFiltroClientes.ItemIndex=1 then
+  TabelaClientes.Locate('PCF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+if cboFiltroClientes.ItemIndex=2 then
+  TabelaClientes.Locate('NUMERO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+if cboFiltroClientes.ItemIndex=3 then
+  TabelaClientes.Locate('CREDITO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+
+(*
+  0-Nome
+  1-CPF
+  2-Celular
+  3-Crédito
+*)
+
 //Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
 //loCaseInsensitive %consulta
 end;
@@ -233,6 +249,10 @@ begin
 ConexaoClientes.Connected:=True;
 TabelaClientes.Open();
 btnSalvar.Enabled:=False;
+
+cboFiltroClientes.ItemIndex:=0;
+//inicia setado no primeiro items
+//Filtro Clientes
 
 edtdbNome.Enabled:=False;
 edtdbCPF.Enabled:=False;

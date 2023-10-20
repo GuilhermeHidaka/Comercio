@@ -60,6 +60,8 @@ type
     TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
     dbGridProdutos: TDBGrid;
     btnCalcLucro: TButton;
+    lblBuscarProdutos: TLabel;
+    edtBuscarProdutos: TEdit;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnCalcLucroClick(Sender: TObject);
@@ -74,6 +76,7 @@ type
     procedure edtdbEstoqueChange(Sender: TObject);
     procedure edtdbCustoChange(Sender: TObject);
     procedure edtdbVendaChange(Sender: TObject);
+    procedure edtBuscarProdutosChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -106,12 +109,16 @@ end;
 procedure TfrmCadastroProdutos.btnCancelarClick(Sender: TObject);
 begin
   TabelaProdutos.Cancel;
-  btnIncluir.Enabled := False;
+  TabelaProdutos.Cancel;
+  DBgridProdutos.Enabled:=True;
+  btnIncluir.Enabled := True;
+  btnSalvar.Enabled:=False;
   edtdbDescricaoProduto.Enabled := False;
   edtdbEstoque.Enabled := False;
   edtdbCusto.Enabled := False;
   edtdbVenda.Enabled := False;
   btnIncluir.Enabled := True;
+  btnExcluir.Enabled:=True;
 
   // Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
 end;
@@ -119,6 +126,7 @@ end;
 procedure TfrmCadastroProdutos.btnExcluirClick(Sender: TObject);
 begin
   TabelaProdutos.Delete;
+  btnSalvar.Enabled:=False;
   // Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
@@ -144,12 +152,24 @@ begin
   edtdbVenda.Enabled := True;
   // Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
   dbGridProdutos.Enabled:=False;
+  //Não permite clicar no dbgrid ativando o clear para os camps edtDB enquanto não clicar no botão btnSalvar
+  btnModificar.Enabled:=False;
+  btnExcluir.Enabled:=False;
 end;
 
 procedure TfrmCadastroProdutos.btnModificarClick(Sender: TObject);
 begin
   TabelaProdutos.Edit;
   // utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
+  //teste
+  edtdbDescricaoProduto.Enabled := True;
+  edtdbEstoque.Enabled := True;
+  edtdbCusto.Enabled := True;
+  edtdbVenda.Enabled := True;
+  btnIncluir.Enabled:=False;
+  btnExcluir.Enabled:=False;
+  dbGridProdutos.Enabled:=False;
+
 end;
 
 procedure TfrmCadastroProdutos.btnSalvarClick(Sender: TObject);
@@ -166,6 +186,9 @@ begin
   edtdbVenda.Enabled := False;
   // Voltar Enabled padrão de não inclusão ou alteração
   dbGridProdutos.Enabled:=True;
+  //Volta condição do clique em celular do dbGrid
+  btnExcluir.Enabled := True;
+  btnModificar.Enabled := True;
 end;
 
 procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);
@@ -179,6 +202,15 @@ begin
 
 end;
 
+procedure TfrmCadastroProdutos.edtBuscarProdutosChange(Sender: TObject);
+begin
+TabelaProdutos.Locate('NOME_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCaseInsensitive]);
+//Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
+//loCaseInsensitive %consulta
+//igual do buscar clientes
+//inclusive o buscar clientes está apenas como buscar em suas referências, não como BuscarProdutos nessa tela.
+end;
+
 procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);
 begin
   if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
@@ -187,6 +219,7 @@ begin
   if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
     (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
     btnSalvar.Enabled := False;
+    //A cada mudança de campo no clique, verifica se todos já foram preenchidos para validar a liberação do botão salvar.
 end;
 
 procedure TfrmCadastroProdutos.edtdbDescricaoProdutoChange(Sender: TObject);
@@ -231,6 +264,7 @@ begin
   edtdbCusto.Enabled := False;
   edtdbVenda.Enabled := False;
   // não permitir inserção sem clicar no botão de adicionar
+  //.
 end;
 
 end.

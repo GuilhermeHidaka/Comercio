@@ -51,13 +51,14 @@ type
     pnlDBGrid: TPanel;
     DBgridClientes: TDBGrid;
     lblBuscar: TLabel;
-    edtBuscar: TEdit;
+    edtBuscarClientes: TEdit;
     pnlButtons: TPanel;
     btnSalvar: TBitBtn;
     btnIncluir: TBitBtn;
     btnModificar: TBitBtn;
     btnExcluir: TBitBtn;
     btnCancelar: TBitBtn;
+    cboFiltroClientes: TComboBox;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -66,11 +67,12 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure edtBuscarChange(Sender: TObject);
+    procedure edtBuscarClientesChange(Sender: TObject);
     procedure edtdbNomeChange(Sender: TObject);
     procedure edtdbCPFChange(Sender: TObject);
     procedure edtdbCelularChange(Sender: TObject);
     procedure edtdbCreditoChange(Sender: TObject);
+    procedure DBgridClientesCellClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -89,6 +91,7 @@ uses uCadastro, uCadastroProdutos;
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
 TabelaClientes.Cancel;
+DBgridClientes.Enabled:=True;
 btnIncluir.Enabled:=False;
 edtdbNome.Enabled:=False;
 edtdbCPF.Enabled:=False;
@@ -96,11 +99,15 @@ edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 btnIncluir.Enabled:=True;
 //Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
+btnSalvar.Enabled:=False;
+btnExcluir.Enabled:=True;
+btnModificar.Enabled:=True;
 end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
 TabelaClientes.Delete;
+btnSalvar.Enabled:=False;
 //Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
@@ -119,6 +126,8 @@ end;
 
 procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
 begin
+btnExcluir.Enabled:=False;
+btnModificar.Enabled:=False;
 TabelaClientes.Insert;
 btnIncluir.Enabled:=False;
 //btnSalvar.Enabled:=True;
@@ -126,13 +135,23 @@ edtdbNome.Enabled:=True;
 edtdbCPF.Enabled:=True;
 edtdbCelular.Enabled:=True;
 edtdbCredito.Enabled:=True;
-//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
+//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)7
+DBgridClientes.Enabled:=False;
+//quando estiver inserindo será impossível clicar no grid e apagar todos os campos
 end;
 
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
+btnIncluir.Enabled:=False;
 TabelaClientes.Edit;
+edtdbNome.Enabled:=True;
+edtdbCPF.Enabled:=True;
+edtdbCelular.Enabled:=True;
+edtdbCredito.Enabled:=True;
+btnExcluir.Enabled:=False;
+btnSalvar.Enabled:=True;
 //utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
+dbGridClientes.Enabled:=False;
 end;
 
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
@@ -148,14 +167,38 @@ edtdbCPF.Enabled:=False;
 edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 //Voltar Enabled padrão de não inclusão ou alteração
+dbGridClientes.Enabled:=True;
+btnExcluir.Enabled:=True;
+btnModificar.Enabled:=True;
 end;
 
 
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-procedure TfrmCadastroClientes.edtBuscarChange(Sender: TObject);
+
+
+procedure TfrmCadastroClientes.DBgridClientesCellClick(Column: TColumn);
 begin
-TabelaClientes.Locate('NOME_CLIENTE',edtBuscar.Text,[loPartialKey,loCaseInsensitive]);
+edtdbNome.Text:='';
+edtdbCPF.Text:='';
+edtdbCredito.Text:='';
+edtdbCelular.Text:='';
+end;
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+procedure TfrmCadastroClientes.edtBuscarClientesChange(Sender: TObject);
+begin
+if cboFiltroClientes.ItemIndex=0 then
+  TabelaClientes.Locate('NOME_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+if cboFiltroClientes.ItemIndex=1 then
+  TabelaClientes.Locate('PCF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+
+(*
+  0-Nome
+  1-CPF
+  2-Celular
+  3-Crédito
+*)
+
 //Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
 //loCaseInsensitive %consulta
 end;
@@ -202,6 +245,10 @@ begin
 ConexaoClientes.Connected:=True;
 TabelaClientes.Open();
 btnSalvar.Enabled:=False;
+
+cboFiltroClientes.ItemIndex:=0;
+//inicia setado no primeiro items
+//Filtro Clientes
 
 edtdbNome.Enabled:=False;
 edtdbCPF.Enabled:=False;
