@@ -150,7 +150,6 @@ procedure TfrmCadastroProdutos.btnModificarClick(Sender: TObject);
 begin
   TabelaProdutos.Edit;
   // utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
-  //teste
 end;
 
 procedure TfrmCadastroProdutos.btnSalvarClick(Sender: TObject);
