@@ -236,7 +236,6 @@ begin
   edtdbCusto.Enabled := False;
   edtdbVenda.Enabled := False;
   // não permitir inserção sem clicar no botão de adicionar
-  //.
 end;
 
 end.
