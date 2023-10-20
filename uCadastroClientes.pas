@@ -197,6 +197,7 @@ if cboFiltroClientes.ItemIndex=3 then
   TabelaClientes.Locate('CREDITO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 
 (*
+            ITEMS
   0-Nome
   1-CPF
   2-Celular
