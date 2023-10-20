@@ -3,7 +3,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Top = 0
   Caption = 'Cadastro Produtos'
   ClientHeight = 600
-  ClientWidth = 1041
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -50,13 +50,26 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           ParentFont = False
           OnClick = btnFinalizarClick
         end
-        object DBNavigator1: TDBNavigator
-          Left = 224
-          Top = 6
-          Width = 240
-          Height = 25
-          DataSource = dsProdutos
+        object lblBuscarProdutos: TLabel
+          Left = 10
+          Top = 8
+          Width = 57
+          Height = 21
+          Caption = 'Buscar: '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object edtBuscarProdutos: TEdit
+          Left = 73
+          Top = 10
+          Width = 246
+          Height = 23
           TabOrder = 0
+          Text = 'edtBuscarProdutos'
         end
       end
       object pnlMidFooter: TPanel
@@ -1850,7 +1863,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Color = clMenu
           ParentBackground = False
           TabOrder = 0
-          ExplicitTop = 4
           object pnlProCod: TPanel
             Left = 8
             Top = 6
@@ -1941,6 +1953,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               DataField = 'CUSTO_PRODUTO'
               DataSource = dsProdutos
               TabOrder = 0
+              OnChange = edtdbCustoChange
             end
           end
           object pnlVenda: TPanel
@@ -1964,13 +1977,14 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               ParentFont = False
             end
             object edtdbVenda: TDBEdit
-              Left = 67
-              Top = 10
+              Left = 61
+              Top = 17
               Width = 78
               Height = 23
               DataField = 'VENDA_PRODUTO'
               DataSource = dsProdutos
               TabOrder = 0
+              OnChange = edtdbVendaChange
             end
           end
           object pnlLucro: TPanel
@@ -2036,6 +2050,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               DataSource = dsProdutos
               Enabled = False
               TabOrder = 0
+              OnChange = edtdbEstoqueChange
             end
           end
           object btnCalcLucro: TButton
@@ -2056,12 +2071,15 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Align = alClient
           DataSource = dsProdutos
           ImeName = 'Portuguese (Brazilian ABNT)'
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ReadOnly = True
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -12
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
+          OnCellClick = dbGridProdutosCellClick
         end
       end
     end

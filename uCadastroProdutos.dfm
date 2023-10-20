@@ -50,6 +50,27 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           ParentFont = False
           OnClick = btnFinalizarClick
         end
+        object lblBuscarProdutos: TLabel
+          Left = 10
+          Top = 8
+          Width = 57
+          Height = 21
+          Caption = 'Buscar: '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object edtBuscarProdutos: TEdit
+          Left = 73
+          Top = 10
+          Width = 246
+          Height = 23
+          TabOrder = 0
+          OnChange = edtBuscarProdutosChange
+        end
       end
       object pnlMidFooter: TPanel
         Left = 1
@@ -1883,9 +1904,9 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             object lblDescricao: TLabel
               Left = 8
               Top = 11
-              Width = 64
+              Width = 48
               Height = 17
-              Caption = 'Descri'#231#227'o: '
+              Caption = 'Nome : '
               Font.Charset = ANSI_CHARSET
               Font.Color = clWindowText
               Font.Height = -13
@@ -1894,9 +1915,9 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               ParentFont = False
             end
             object edtdbDescricaoProduto: TDBEdit
-              Left = 78
+              Left = 64
               Top = 10
-              Width = 340
+              Width = 355
               Height = 23
               DataField = 'NOME_PRODUTO'
               DataSource = dsProdutos

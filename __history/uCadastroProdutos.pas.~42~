@@ -204,7 +204,7 @@ end;
 
 procedure TfrmCadastroProdutos.edtBuscarProdutosChange(Sender: TObject);
 begin
-TabelaProdutos.Locate('NOME_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCaseInsensitive]);
+TabelaProdutos.Locate('DESCRICAO_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCaseInsensitive]);
 //Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
 //loCaseInsensitive %consulta
 //igual do buscar clientes

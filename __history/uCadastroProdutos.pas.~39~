@@ -60,8 +60,6 @@ type
     TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
     dbGridProdutos: TDBGrid;
     btnCalcLucro: TButton;
-    lblBuscarProdutos: TLabel;
-    edtBuscarProdutos: TEdit;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnCalcLucroClick(Sender: TObject);
@@ -76,7 +74,6 @@ type
     procedure edtdbEstoqueChange(Sender: TObject);
     procedure edtdbCustoChange(Sender: TObject);
     procedure edtdbVendaChange(Sender: TObject);
-    procedure edtBuscarProdutosChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -200,15 +197,6 @@ begin
       edtdbLucro.Text := '';
       //tentando
 
-end;
-
-procedure TfrmCadastroProdutos.edtBuscarProdutosChange(Sender: TObject);
-begin
-TabelaProdutos.Locate('NOME_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCaseInsensitive]);
-//Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
-//loCaseInsensitive %consulta
-//igual do buscar clientes
-//inclusive o buscar clientes está apenas como buscar em suas referências, não como BuscarProdutos nessa tela.
 end;
 
 procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);

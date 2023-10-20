@@ -65,7 +65,7 @@ object frmCadastroClientes: TfrmCadastroClientes
         end
         object edtBuscar: TEdit
           Left = 74
-          Top = 6
+          Top = 8
           Width = 246
           Height = 23
           BevelOuter = bvNone
