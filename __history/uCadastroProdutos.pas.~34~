@@ -144,8 +144,6 @@ begin
   edtdbVenda.Enabled := True;
   // Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
   dbGridProdutos.Enabled:=False;
-  //Não permite clicar no dbgrid ativando o clear para os camps edtDB enquanto não clicar no botão btnSalvar
-
 end;
 
 procedure TfrmCadastroProdutos.btnModificarClick(Sender: TObject);
@@ -169,7 +167,6 @@ begin
   edtdbVenda.Enabled := False;
   // Voltar Enabled padrão de não inclusão ou alteração
   dbGridProdutos.Enabled:=True;
-  //Volta condição do clique em celular do dbGrid
 end;
 
 procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);
@@ -191,7 +188,6 @@ begin
   if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
     (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
     btnSalvar.Enabled := False;
-    //A cada mudança de campo no clique, verifica se todos já foram preenchidos para validar a liberação do botão salvar.
 end;
 
 procedure TfrmCadastroProdutos.edtdbDescricaoProdutoChange(Sender: TObject);
