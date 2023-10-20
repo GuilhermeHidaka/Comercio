@@ -66,11 +66,12 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure edtdbNomeEnter(Sender: TObject);
-    procedure edtdbCPFEnter(Sender: TObject);
-    procedure edtdbCelularEnter(Sender: TObject);
-    procedure edtdbCreditoEnter(Sender: TObject);
     procedure edtBuscarChange(Sender: TObject);
+    procedure edtdbNomeChange(Sender: TObject);
+    procedure edtdbCPFChange(Sender: TObject);
+    procedure edtdbCelularChange(Sender: TObject);
+    procedure edtdbCreditoChange(Sender: TObject);
+    procedure DBgridClientesCellClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -89,6 +90,12 @@ uses uCadastro, uCadastroProdutos;
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
 TabelaClientes.Cancel;
+btnIncluir.Enabled:=False;
+edtdbNome.Enabled:=False;
+edtdbCPF.Enabled:=False;
+edtdbCelular.Enabled:=False;
+edtdbCredito.Enabled:=False;
+btnIncluir.Enabled:=True;
 //Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
 end;
 
@@ -120,12 +127,19 @@ edtdbNome.Enabled:=True;
 edtdbCPF.Enabled:=True;
 edtdbCelular.Enabled:=True;
 edtdbCredito.Enabled:=True;
-//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
+//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)7
+DBgridClientes.Enabled:=False;
+//quando estiver inserindo será impossível clicar no grid e apagar todos os campos
 end;
 
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
 TabelaClientes.Edit;
+edtdbNome.Enabled:=True;
+edtdbCPF.Enabled:=True;
+edtdbCelular.Enabled:=True;
+edtdbCredito.Enabled:=True;
+
 //utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
 end;
 
@@ -142,17 +156,30 @@ edtdbCPF.Enabled:=False;
 edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 //Voltar Enabled padrão de não inclusão ou alteração
+dbGridClientes.Enabled:=True;
+end;
+
+
+
+
+
+procedure TfrmCadastroClientes.DBgridClientesCellClick(Column: TColumn);
+begin
+edtdbNome.Text:='';
+edtdbCPF.Text:='';
+edtdbCredito.Text:='';
+edtdbCelular.Text:='';
 end;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 procedure TfrmCadastroClientes.edtBuscarChange(Sender: TObject);
 begin
-TabelaClientes.Locate('NOME_CLIENTE',edtBuscar.Text,[loPartialKey]);
+TabelaClientes.Locate('NOME_CLIENTE',edtBuscar.Text,[loPartialKey,loCaseInsensitive]);
 //Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
 //loCaseInsensitive %consulta
 end;
 
-procedure TfrmCadastroClientes.edtdbCelularEnter(Sender: TObject);
+procedure TfrmCadastroClientes.edtdbCelularChange(Sender: TObject);
 begin
 if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
 btnSalvar.Enabled:=True;
@@ -160,7 +187,8 @@ if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdb
 btnSalvar.Enabled:=False;
 end;
 
-procedure TfrmCadastroClientes.edtdbCPFEnter(Sender: TObject);
+
+procedure TfrmCadastroClientes.edtdbCPFChange(Sender: TObject);
 begin
 if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
 btnSalvar.Enabled:=True;
@@ -168,7 +196,8 @@ if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdb
 btnSalvar.Enabled:=False;
 end;
 
-procedure TfrmCadastroClientes.edtdbCreditoEnter(Sender: TObject);
+
+procedure TfrmCadastroClientes.edtdbCreditoChange(Sender: TObject);
 begin
 if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
 btnSalvar.Enabled:=True;
@@ -176,15 +205,17 @@ if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdb
 btnSalvar.Enabled:=False;
 end;
 
-procedure TfrmCadastroClientes.edtdbNomeEnter(Sender: TObject);
+
+procedure TfrmCadastroClientes.edtdbNomeChange(Sender: TObject);
 begin
 if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
 btnSalvar.Enabled:=True;
 if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
 btnSalvar.Enabled:=False;
 end;
-     // Definindo condições para liberar a gravação apenas se todos os campos estiverem preenchidos
+         // Definindo condições para liberar a gravação apenas se todos os campos estiverem preenchidos
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 procedure TfrmCadastroClientes.FormCreate(Sender: TObject);
 begin
 ConexaoClientes.Connected:=True;
@@ -197,5 +228,14 @@ edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 //não permitir inserção sem clicar no botão de adicionar
 end;
+
+(*
+edtdbNome.Enabled:=False;
+edtdbCPF.Enabled:=False;
+edtdbCelular.Enabled:=False;
+edtdbCredito.Enabled:=False;
+
+atribuindo enbled false a todos os edtDB do frmCadastroClientes
+*)
 
 end.

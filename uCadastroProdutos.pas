@@ -58,11 +58,22 @@ type
     TabelaProdutosVENDA_PRODUTO: TSingleField;
     TabelaProdutosLUCRO_PRODUTO: TSingleField;
     TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
-    DBNavigator1: TDBNavigator;
     dbGridProdutos: TDBGrid;
+    btnCalcLucro: TButton;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
+    procedure btnCalcLucroClick(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure edtdbDescricaoProdutoChange(Sender: TObject);
+    procedure dbGridProdutosCellClick(Column: TColumn);
+    procedure edtdbEstoqueChange(Sender: TObject);
     procedure edtdbCustoChange(Sender: TObject);
+    procedure edtdbVendaChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -78,6 +89,39 @@ implementation
 
 uses uCadastro, uCadastroClientes;
 
+procedure TfrmCadastroProdutos.btnCalcLucroClick(Sender: TObject);
+var
+  n: double;
+begin
+  if (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
+    MessageDlg('Os campos Custo e Venda devem estar preenchidos', mtError,
+      [TMsgDlgBtn.mbOK], 0)
+  else if (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
+    n := StrToFloat(edtdbVenda.Text);
+  n := n - StrToFloat(edtdbCusto.Text);
+  edtdbLucro.Text := FloatToStr(n);
+
+end;
+
+procedure TfrmCadastroProdutos.btnCancelarClick(Sender: TObject);
+begin
+  TabelaProdutos.Cancel;
+  btnIncluir.Enabled := False;
+  edtdbDescricaoProduto.Enabled := False;
+  edtdbEstoque.Enabled := False;
+  edtdbCusto.Enabled := False;
+  edtdbVenda.Enabled := False;
+  btnIncluir.Enabled := True;
+
+  // Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
+end;
+
+procedure TfrmCadastroProdutos.btnExcluirClick(Sender: TObject);
+begin
+  TabelaProdutos.Delete;
+  // Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
+end;
+
 procedure TfrmCadastroProdutos.btnFinalizarClick(Sender: TObject);
 begin
   Application.Terminate;
@@ -89,18 +133,104 @@ begin
   frmCadastro.Show;
 end;
 
-procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);
-//var
- // n: Double;
+procedure TfrmCadastroProdutos.btnIncluirClick(Sender: TObject);
 begin
-  (* n := StrToFloat(edt1.Text);
-    n := n / StrToFloat(edt2.Text);
-    edt3.Text := FloatToStr(n);
-  n := StrToFloat(edtdbVenda.Text);
-  n := n - StrToFloat(edtdbCusto.Text);
-  edtdbLucro.Text := FloatToStr(n);
+  TabelaProdutos.Insert;
+  btnIncluir.Enabled := False;
+  // btnSalvar.Enabled:=True;
+  edtdbDescricaoProduto.Enabled := True;
+  edtdbEstoque.Enabled := True;
+  edtdbCusto.Enabled := True;
+  edtdbVenda.Enabled := True;
+  // Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
+  dbGridProdutos.Enabled:=False;
+end;
 
-  // Venda-Custo=lucro   *)
+procedure TfrmCadastroProdutos.btnModificarClick(Sender: TObject);
+begin
+  TabelaProdutos.Edit;
+  // utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
+end;
+
+procedure TfrmCadastroProdutos.btnSalvarClick(Sender: TObject);
+begin
+  TabelaProdutos.Post;
+  ConexaoProdutos.Commit;
+  // para gravar no banco de dados todos os registros da Qry (TabelaClientes)
+  btnIncluir.Enabled := True;
+  btnSalvar.Enabled := False;
+  // Voltar enabled incluir
+  edtdbDescricaoProduto.Enabled := False;
+  edtdbEstoque.Enabled := False;
+  edtdbCusto.Enabled := False;
+  edtdbVenda.Enabled := False;
+  // Voltar Enabled padrão de não inclusão ou alteração
+  dbGridProdutos.Enabled:=True;
+end;
+
+procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);
+begin
+      edtdbDescricaoProduto.Text := '';
+      edtdbEstoque.Text := '';
+      edtdbCusto.Text := '';
+      edtdbVenda.Text := '';
+      edtdbLucro.Text := '';
+      //tentando
+
+end;
+
+procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);
+begin
+  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+    (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
+    (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
+    btnSalvar.Enabled := False;
+end;
+
+procedure TfrmCadastroProdutos.edtdbDescricaoProdutoChange(Sender: TObject);
+begin
+  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+    (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
+    (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
+    btnSalvar.Enabled := False;
+end;
+
+procedure TfrmCadastroProdutos.edtdbEstoqueChange(Sender: TObject);
+begin
+  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+    (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
+    (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
+    btnSalvar.Enabled := False;
+end;
+
+procedure TfrmCadastroProdutos.edtdbVendaChange(Sender: TObject);
+begin
+  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+    (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
+    (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
+    btnSalvar.Enabled := False;
+end;
+
+procedure TfrmCadastroProdutos.FormCreate(Sender: TObject);
+begin
+  edtdbCodigoProduto.Enabled := False;
+  ConexaoProdutos.Connected := True;
+  TabelaProdutos.Open();
+  btnSalvar.Enabled := False;
+
+  edtdbDescricaoProduto.Enabled := False;
+  edtdbEstoque.Enabled := False;
+  edtdbCusto.Enabled := False;
+  edtdbVenda.Enabled := False;
+  // não permitir inserção sem clicar no botão de adicionar
 end;
 
 end.

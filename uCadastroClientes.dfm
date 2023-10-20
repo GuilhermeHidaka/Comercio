@@ -1012,6 +1012,7 @@ object frmCadastroClientes: TfrmCadastroClientes
             ShowHint = True
             TabOrder = 1
             OnClick = btnIncluirClick
+            ExplicitTop = 2
           end
           object btnModificar: TBitBtn
             AlignWithMargins = True
@@ -1921,7 +1922,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 DataField = 'CPF_CLIENTE'
                 DataSource = dsClientes
                 TabOrder = 0
-                OnEnter = edtdbCPFEnter
+                OnChange = edtdbCPFChange
               end
             end
           end
@@ -1970,7 +1971,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 DataField = 'NUMERO_CLIENTE'
                 DataSource = dsClientes
                 TabOrder = 0
-                OnEnter = edtdbCelularEnter
+                OnChange = edtdbCelularChange
               end
             end
             object pnlDadosCredito: TPanel
@@ -2003,7 +2004,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 DataField = 'CREDITO_CLIENTE'
                 DataSource = dsClientes
                 TabOrder = 0
-                OnEnter = edtdbCreditoEnter
+                OnChange = edtdbCreditoChange
               end
             end
           end
@@ -2021,14 +2022,20 @@ object frmCadastroClientes: TfrmCadastroClientes
             Width = 761
             Height = 348
             Align = alClient
+            BorderStyle = bsNone
             DataSource = dsClientes
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            ParentColor = True
+            ParentShowHint = False
+            ReadOnly = True
+            ShowHint = False
             TabOrder = 0
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -12
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
+            OnCellClick = DBgridClientesCellClick
           end
         end
       end
@@ -2043,7 +2050,7 @@ object frmCadastroClientes: TfrmCadastroClientes
     DataSource = dsClientes
     ImeName = 'Portuguese (Brazilian ABNT)'
     TabOrder = 1
-    OnEnter = edtdbNomeEnter
+    OnChange = edtdbNomeChange
   end
   object ConexaoClientes: TFDConnection
     Params.Strings = (

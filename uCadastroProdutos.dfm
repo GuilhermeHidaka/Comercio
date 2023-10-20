@@ -10,6 +10,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object pnlCenter: TPanel
     Left = 8
@@ -49,14 +50,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           ParentFont = False
           OnClick = btnFinalizarClick
         end
-        object DBNavigator1: TDBNavigator
-          Left = 224
-          Top = 6
-          Width = 240
-          Height = 25
-          DataSource = dsProdutos
-          TabOrder = 0
-        end
       end
       object pnlMidFooter: TPanel
         Left = 1
@@ -81,9 +74,9 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           ParentFont = False
         end
         object btnHome: TBitBtn
-          Left = 704
+          Left = 712
           Top = 1
-          Width = 60
+          Width = 52
           Height = 54
           Align = alRight
           Glyph.Data = {
@@ -693,6 +686,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             ParentShowHint = False
             ShowHint = True
             TabOrder = 0
+            OnClick = btnSalvarClick
           end
           object btnIncluir: TBitBtn
             AlignWithMargins = True
@@ -997,6 +991,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             ParentShowHint = False
             ShowHint = True
             TabOrder = 1
+            OnClick = btnIncluirClick
           end
           object btnModificar: TBitBtn
             AlignWithMargins = True
@@ -1213,6 +1208,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             ParentShowHint = False
             ShowHint = True
             TabOrder = 2
+            OnClick = btnModificarClick
           end
           object btnExcluir: TBitBtn
             AlignWithMargins = True
@@ -1517,6 +1513,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             ParentShowHint = False
             ShowHint = True
             TabOrder = 3
+            OnClick = btnExcluirClick
           end
           object btnCancelar: TBitBtn
             AlignWithMargins = True
@@ -1821,6 +1818,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             ParentShowHint = False
             ShowHint = True
             TabOrder = 4
+            OnClick = btnCancelarClick
           end
         end
       end
@@ -1844,6 +1842,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Color = clMenu
           ParentBackground = False
           TabOrder = 0
+          ExplicitTop = 4
           object pnlProCod: TPanel
             Left = 8
             Top = 6
@@ -1897,16 +1896,17 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             end
             object edtdbDescricaoProduto: TDBEdit
               Left = 78
-              Top = 17
+              Top = 10
               Width = 340
               Height = 23
               DataField = 'NOME_PRODUTO'
               DataSource = dsProdutos
               TabOrder = 0
+              OnChange = edtdbDescricaoProdutoChange
             end
           end
           object pnlCusto: TPanel
-            Left = 443
+            Left = 595
             Top = 6
             Width = 158
             Height = 41
@@ -1937,7 +1937,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             end
           end
           object pnlVenda: TPanel
-            Left = 443
+            Left = 595
             Top = 51
             Width = 158
             Height = 41
@@ -1957,17 +1957,18 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               ParentFont = False
             end
             object edtdbVenda: TDBEdit
-              Left = 67
-              Top = 10
+              Left = 61
+              Top = 17
               Width = 78
               Height = 23
               DataField = 'VENDA_PRODUTO'
               DataSource = dsProdutos
               TabOrder = 0
+              OnChange = edtdbVendaChange
             end
           end
           object pnlLucro: TPanel
-            Left = 443
+            Left = 595
             Top = 97
             Width = 158
             Height = 41
@@ -2029,7 +2030,17 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               DataSource = dsProdutos
               Enabled = False
               TabOrder = 0
+              OnChange = edtdbEstoqueChange
             end
+          end
+          object btnCalcLucro: TButton
+            Left = 568
+            Top = 97
+            Width = 27
+            Height = 41
+            Caption = '='
+            TabOrder = 6
+            OnClick = btnCalcLucroClick
           end
         end
         object dbGridProdutos: TDBGrid
@@ -2040,12 +2051,15 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Align = alClient
           DataSource = dsProdutos
           ImeName = 'Portuguese (Brazilian ABNT)'
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ReadOnly = True
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -12
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
+          OnCellClick = dbGridProdutosCellClick
         end
       end
     end

@@ -1,0 +1,143 @@
+unit uCadastroProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase, FireDAC.Phys.FB,
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TfrmCadastroProdutos = class(TForm)
+    pnlCenter: TPanel;
+    pnlMidTop: TPanel;
+    pnlTop2: TPanel;
+    btnFinalizar: TSpeedButton;
+    pnlMidFooter: TPanel;
+    lblNomeTela: TLabel;
+    btnHome: TBitBtn;
+    pnlMid: TPanel;
+    pnlButtons: TPanel;
+    btnSalvar: TBitBtn;
+    btnIncluir: TBitBtn;
+    btnModificar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnCancelar: TBitBtn;
+    pnlDados: TPanel;
+    pnlProCod: TPanel;
+    pnlDescricaoProduto: TPanel;
+    pnlCusto: TPanel;
+    pnlVenda: TPanel;
+    ConexaoProdutos: TFDConnection;
+    TabelaProdutos: TFDQuery;
+    dsProdutos: TDataSource;
+    fbClient: TFDPhysFBDriverLink;
+    lblCodigo: TLabel;
+    edtdbCodigoProduto: TDBEdit;
+    lblDescricao: TLabel;
+    edtdbDescricaoProduto: TDBEdit;
+    lblCusto: TLabel;
+    lblVenda: TLabel;
+    edtdbCusto: TDBEdit;
+    edtdbVenda: TDBEdit;
+    pnlLucro: TPanel;
+    pnlEstoque: TPanel;
+    lblEstoque: TLabel;
+    edtdbEstoque: TDBEdit;
+    lblLucro: TLabel;
+    edtdbLucro: TDBEdit;
+    TabelaProdutosCOD_PRODUTO: TIntegerField;
+    TabelaProdutosNOME_PRODUTO: TStringField;
+    TabelaProdutosCUSTO_PRODUTO: TSingleField;
+    TabelaProdutosVENDA_PRODUTO: TSingleField;
+    TabelaProdutosLUCRO_PRODUTO: TSingleField;
+    TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
+    DBNavigator1: TDBNavigator;
+    dbGridProdutos: TDBGrid;
+    btnCalcLucro: TButton;
+    procedure btnFinalizarClick(Sender: TObject);
+    procedure btnHomeClick(Sender: TObject);
+    procedure btnCalcLucroClick(Sender: TObject);
+    procedure btnIncluirClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnModificarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastroProdutos: TfrmCadastroProdutos;
+
+implementation
+
+{$R *.dfm}
+
+uses uCadastro, uCadastroClientes;
+
+procedure TfrmCadastroProdutos.btnCalcLucroClick(Sender: TObject);
+var
+   n : double;
+begin
+n:= StrToFloat(edtdbVenda.Text);
+n:= n - StrToFloat(edtdbCusto.Text);
+edtdbLucro.Text:=FloatToStr(n);
+end;
+
+procedure TfrmCadastroProdutos.btnExcluirClick(Sender: TObject);
+begin
+TabelaProdutos.Delete;
+//Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
+end;
+
+procedure TfrmCadastroProdutos.btnFinalizarClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TfrmCadastroProdutos.btnHomeClick(Sender: TObject);
+begin
+  frmCadastroProdutos.Hide;
+  frmCadastro.Show;
+end;
+procedure TfrmCadastroProdutos.btnIncluirClick(Sender: TObject);
+begin
+TabelaProdutos.Insert;
+btnIncluir.Enabled:=False;
+//btnSalvar.Enabled:=True;
+edtdbDescricaoProduto.Enabled:=True;
+edtdbEstoque.Enabled:=True;
+edtdbCusto.Enabled:=True;
+edtdbVenda.Enabled:=True;
+//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
+end;
+
+procedure TfrmCadastroProdutos.btnModificarClick(Sender: TObject);
+begin
+TabelaProdutos.Edit;
+//utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
+end;
+
+procedure TfrmCadastroProdutos.FormCreate(Sender: TObject);
+begin
+edtdbCodigoProduto.Enabled:=False;
+ConexaoProdutos.Connected:=True;
+TabelaProdutos.Open();
+btnSalvar.Enabled:=False;
+
+edtdbDescricaoProduto.Enabled:=True;
+edtdbEstoque.Enabled:=True;
+edtdbCusto.Enabled:=True;
+edtdbVenda.Enabled:=True;
+//não permitir inserção sem clicar no botão de adicionar
+end;
+
+end.
