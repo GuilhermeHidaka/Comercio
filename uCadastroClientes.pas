@@ -90,6 +90,7 @@ uses uCadastro, uCadastroProdutos;
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
 TabelaClientes.Cancel;
+DBgridClientes.Enabled:=True;
 btnIncluir.Enabled:=False;
 edtdbNome.Enabled:=False;
 edtdbCPF.Enabled:=False;
@@ -97,6 +98,8 @@ edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 btnIncluir.Enabled:=True;
 //Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
+btnSalvar.Enabled:=False;
+btnExcluir.Enabled:=True;
 end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
@@ -120,6 +123,7 @@ end;
 
 procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
 begin
+btnExcluir.Enabled:=False;
 TabelaClientes.Insert;
 btnIncluir.Enabled:=False;
 //btnSalvar.Enabled:=True;
@@ -134,12 +138,14 @@ end;
 
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
+btnIncluir.Enabled:=False;
 TabelaClientes.Edit;
 edtdbNome.Enabled:=True;
 edtdbCPF.Enabled:=True;
 edtdbCelular.Enabled:=True;
 edtdbCredito.Enabled:=True;
-
+btnExcluir.Enabled:=False;
+btnSalvar.Enabled:=True;
 //utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
 end;
 
@@ -157,6 +163,7 @@ edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 //Voltar Enabled padrão de não inclusão ou alteração
 dbGridClientes.Enabled:=True;
+btnExcluir.Enabled:=True;
 end;
 
 

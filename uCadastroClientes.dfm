@@ -3,7 +3,7 @@ object frmCadastroClientes: TfrmCadastroClientes
   Top = 0
   Caption = 'Cadastro Clientes'
   ClientHeight = 600
-  ClientWidth = 939
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -1230,6 +1230,7 @@ object frmCadastroClientes: TfrmCadastroClientes
             ShowHint = True
             TabOrder = 2
             OnClick = btnModificarClick
+            ExplicitTop = 2
           end
           object btnExcluir: TBitBtn
             AlignWithMargins = True

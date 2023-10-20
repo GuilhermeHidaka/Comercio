@@ -106,7 +106,10 @@ end;
 procedure TfrmCadastroProdutos.btnCancelarClick(Sender: TObject);
 begin
   TabelaProdutos.Cancel;
-  btnIncluir.Enabled := False;
+  TabelaProdutos.Cancel;
+  DBgridProdutos.Enabled:=True;
+  btnIncluir.Enabled := True;
+  btnSalvar.Enabled:=False;
   edtdbDescricaoProduto.Enabled := False;
   edtdbEstoque.Enabled := False;
   edtdbCusto.Enabled := False;
@@ -153,6 +156,10 @@ begin
   TabelaProdutos.Edit;
   // utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
   //teste
+  edtdbDescricaoProduto.Enabled := True;
+  edtdbEstoque.Enabled := True;
+  edtdbCusto.Enabled := True;
+  edtdbVenda.Enabled := True;
 end;
 
 procedure TfrmCadastroProdutos.btnSalvarClick(Sender: TObject);
