@@ -1842,7 +1842,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Color = clMenu
           ParentBackground = False
           TabOrder = 0
-          ExplicitTop = 4
           object pnlProCod: TPanel
             Left = 8
             Top = 6

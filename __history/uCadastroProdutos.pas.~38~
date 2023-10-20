@@ -115,7 +115,6 @@ begin
   edtdbCusto.Enabled := False;
   edtdbVenda.Enabled := False;
   btnIncluir.Enabled := True;
-  btnExcluir.Enabled:=True;
 
   // Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
 end;
@@ -123,7 +122,6 @@ end;
 procedure TfrmCadastroProdutos.btnExcluirClick(Sender: TObject);
 begin
   TabelaProdutos.Delete;
-  btnSalvar.Enabled:=False;
   // Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
@@ -150,8 +148,7 @@ begin
   // Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
   dbGridProdutos.Enabled:=False;
   //Não permite clicar no dbgrid ativando o clear para os camps edtDB enquanto não clicar no botão btnSalvar
-  btnModificar.Enabled:=False;
-  btnExcluir.Enabled:=False;
+
 end;
 
 procedure TfrmCadastroProdutos.btnModificarClick(Sender: TObject);
@@ -163,10 +160,6 @@ begin
   edtdbEstoque.Enabled := True;
   edtdbCusto.Enabled := True;
   edtdbVenda.Enabled := True;
-  btnIncluir.Enabled:=False;
-  btnExcluir.Enabled:=False;
-  dbGridProdutos.Enabled:=False;
-
 end;
 
 procedure TfrmCadastroProdutos.btnSalvarClick(Sender: TObject);
@@ -184,8 +177,6 @@ begin
   // Voltar Enabled padrão de não inclusão ou alteração
   dbGridProdutos.Enabled:=True;
   //Volta condição do clique em celular do dbGrid
-  btnExcluir.Enabled := True;
-  btnModificar.Enabled := True;
 end;
 
 procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);

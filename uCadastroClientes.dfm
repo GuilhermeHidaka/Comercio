@@ -1012,7 +1012,6 @@ object frmCadastroClientes: TfrmCadastroClientes
             ShowHint = True
             TabOrder = 1
             OnClick = btnIncluirClick
-            ExplicitTop = 2
           end
           object btnModificar: TBitBtn
             AlignWithMargins = True
@@ -1230,7 +1229,6 @@ object frmCadastroClientes: TfrmCadastroClientes
             ShowHint = True
             TabOrder = 2
             OnClick = btnModificarClick
-            ExplicitTop = 2
           end
           object btnExcluir: TBitBtn
             AlignWithMargins = True

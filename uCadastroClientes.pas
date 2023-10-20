@@ -100,11 +100,13 @@ btnIncluir.Enabled:=True;
 //Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
 btnSalvar.Enabled:=False;
 btnExcluir.Enabled:=True;
+btnModificar.Enabled:=True;
 end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
 TabelaClientes.Delete;
+btnSalvar.Enabled:=False;
 //Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
@@ -124,6 +126,7 @@ end;
 procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
 begin
 btnExcluir.Enabled:=False;
+btnModificar.Enabled:=False;
 TabelaClientes.Insert;
 btnIncluir.Enabled:=False;
 //btnSalvar.Enabled:=True;
@@ -147,6 +150,7 @@ edtdbCredito.Enabled:=True;
 btnExcluir.Enabled:=False;
 btnSalvar.Enabled:=True;
 //utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
+dbGridClientes.Enabled:=False;
 end;
 
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
@@ -164,6 +168,7 @@ edtdbCredito.Enabled:=False;
 //Voltar Enabled padrão de não inclusão ou alteração
 dbGridClientes.Enabled:=True;
 btnExcluir.Enabled:=True;
+btnModificar.Enabled:=True;
 end;
 
 
