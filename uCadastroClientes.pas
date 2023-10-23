@@ -106,9 +106,9 @@ end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
-
-TabelaClientes.Delete;
-btnSalvar.Enabled:=False;
+if MessageDlg('Confirma exclusão ?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
+  TabelaClientes.Delete;
+  btnSalvar.Enabled:=False;
 //Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 

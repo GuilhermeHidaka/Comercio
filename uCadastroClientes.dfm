@@ -86,9 +86,6 @@ object frmCadastroClientes: TfrmCadastroClientes
           ParentFont = False
           TabOrder = 2
           OnClick = btnVoltarCadastroClientesClick
-          ExplicitLeft = 680
-          ExplicitTop = 6
-          ExplicitHeight = 25
         end
       end
       object pnlMidFooter: TPanel
