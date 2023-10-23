@@ -197,11 +197,13 @@ begin
 if cboFiltroClientes.ItemIndex=0 then
   TabelaClientes.Locate('NOME_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 if cboFiltroClientes.ItemIndex=1 then
-  TabelaClientes.Locate('PCF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+  TabelaClientes.Locate('CPF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 if cboFiltroClientes.ItemIndex=2 then
   TabelaClientes.Locate('NUMERO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 if cboFiltroClientes.ItemIndex=3 then
   TabelaClientes.Locate('CREDITO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+
+    btnSalvar.Enabled:=False;
 
 (*
             ITEMS

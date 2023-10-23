@@ -126,6 +126,7 @@ end;
 
 procedure TfrmCadastroProdutos.btnExcluirClick(Sender: TObject);
 begin
+if MessageDlg('Confirma exclusão ?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
   TabelaProdutos.Delete;
   btnSalvar.Enabled:=False;
   // Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
@@ -216,6 +217,7 @@ TabelaProdutos.Locate('NOME_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCase
 
 if cboFiltroProdutos.ItemIndex=0 then
 TabelaProdutos.Locate('COD_PRODUTO',edtBuscarProdutos.Text,[LoPartialKey,loCaseInsensitive]);
+  btnSalvar.Enabled:=False;
 //Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
 //loCaseInsensitive %consulta
 //igual do buscar clientes
