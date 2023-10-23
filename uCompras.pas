@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids;
 
 type
   TfrmCompras = class(TForm)
@@ -16,6 +17,9 @@ type
     lblNomeTela: TLabel;
     btnHome: TBitBtn;
     pnlMid: TPanel;
+    pnlDbGrid: TPanel;
+    pnlBuscarEstoque: TPanel;
+    DBGrid1: TDBGrid;
     procedure btnHomeClick(Sender: TObject);
     procedure btnFinalizarClick(Sender: TObject);
   private

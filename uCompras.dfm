@@ -407,6 +407,39 @@ object frmCompras: TfrmCompras
         Color = clWhite
         ParentBackground = False
         TabOrder = 2
+        object pnlDbGrid: TPanel
+          Left = 1
+          Top = 56
+          Width = 763
+          Height = 407
+          Align = alBottom
+          Color = cl3DLight
+          ParentBackground = False
+          TabOrder = 0
+          object DBGrid1: TDBGrid
+            Left = 1
+            Top = 1
+            Width = 761
+            Height = 405
+            Align = alClient
+            TabOrder = 0
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -12
+            TitleFont.Name = 'Segoe UI'
+            TitleFont.Style = []
+          end
+        end
+        object pnlBuscarEstoque: TPanel
+          Left = 1
+          Top = 1
+          Width = 763
+          Height = 55
+          Align = alTop
+          Color = cl3DLight
+          ParentBackground = False
+          TabOrder = 1
+        end
       end
     end
   end

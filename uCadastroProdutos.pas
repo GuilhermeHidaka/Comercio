@@ -18,10 +18,8 @@ type
     pnlCenter: TPanel;
     pnlMidTop: TPanel;
     pnlTop2: TPanel;
-    btnFinalizar: TSpeedButton;
     pnlMidFooter: TPanel;
     lblNomeTela: TLabel;
-    btnHome: TBitBtn;
     pnlMid: TPanel;
     pnlButtons: TPanel;
     btnSalvar: TBitBtn;
@@ -63,6 +61,7 @@ type
     lblBuscarProdutos: TLabel;
     edtBuscarProdutos: TEdit;
     cboFiltroProdutos: TComboBox;
+    btnVoltarCadastroProdutos: TBitBtn;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnCalcLucroClick(Sender: TObject);
@@ -78,6 +77,7 @@ type
     procedure edtdbCustoChange(Sender: TObject);
     procedure edtdbVendaChange(Sender: TObject);
     procedure edtBuscarProdutosChange(Sender: TObject);
+    procedure btnVoltarCadastroProdutosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -190,6 +190,12 @@ begin
   //Volta condição do clique em celular do dbGrid
   btnExcluir.Enabled := True;
   btnModificar.Enabled := True;
+end;
+
+procedure TfrmCadastroProdutos.btnVoltarCadastroProdutosClick(Sender: TObject);
+begin
+frmCadastroProdutos.Hide;
+frmCadastro.Show;
 end;
 
 procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);

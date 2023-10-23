@@ -17,10 +17,8 @@ type
     pnlCenter: TPanel;
     pnlMidTop: TPanel;
     pnlTop2: TPanel;
-    btnFinalizar: TSpeedButton;
     pnlMidFooter: TPanel;
     lblNomeTela: TLabel;
-    btnHome: TBitBtn;
     pnlMid: TPanel;
     ConexaoClientes: TFDConnection;
     TabelaClientes: TFDQuery;
@@ -59,6 +57,7 @@ type
     btnExcluir: TBitBtn;
     btnCancelar: TBitBtn;
     cboFiltroClientes: TComboBox;
+    btnVoltarCadastroClientes: TBitBtn;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -73,6 +72,7 @@ type
     procedure edtdbCelularChange(Sender: TObject);
     procedure edtdbCreditoChange(Sender: TObject);
     procedure DBgridClientesCellClick(Column: TColumn);
+    procedure btnVoltarCadastroClientesClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -106,6 +106,7 @@ end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
+
 TabelaClientes.Delete;
 btnSalvar.Enabled:=False;
 //Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
@@ -175,6 +176,12 @@ end;
 
 
 
+
+procedure TfrmCadastroClientes.btnVoltarCadastroClientesClick(Sender: TObject);
+begin
+frmCadastroClientes.Hide;
+frmCadastro.Show;
+end;
 
 procedure TfrmCadastroClientes.DBgridClientesCellClick(Column: TColumn);
 begin
