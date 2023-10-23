@@ -91,7 +91,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadastro, uCadastroClientes;
+uses uCadastro, uCadastroClientes, uCompras;
 
 procedure TfrmCadastroProdutos.btnCalcLucroClick(Sender: TObject);
 var
@@ -271,10 +271,10 @@ begin
   ConexaoProdutos.Connected := True;
   TabelaProdutos.Open();
   btnSalvar.Enabled := False;
-
-
   cboFiltroProdutos.ItemIndex:=0;
   //Vetor definição incial combo box
+
+
 
   edtdbDescricaoProduto.Enabled := False;
   edtdbEstoque.Enabled := False;

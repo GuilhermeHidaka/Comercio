@@ -4,7 +4,10 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TfrmCadastro = class(TForm)
@@ -37,7 +40,7 @@ implementation
 
 {$R *.dfm}
 
-uses uMenu, uCadastroClientes, uCadastroProdutos;
+uses uMenu, uCadastroClientes, uCadastroProdutos, uCompras;
 
 procedure TfrmCadastro.btnCadastroClientesClick(Sender: TObject);
 begin
@@ -49,6 +52,7 @@ procedure TfrmCadastro.btnCadastroProdutosClick(Sender: TObject);
 begin
 frmCadastro.Hide;
 frmCadastroProdutos.Show;
+
 end;
 
 procedure TfrmCadastro.btnFinalizarClick(Sender: TObject);
