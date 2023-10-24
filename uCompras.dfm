@@ -10,6 +10,7 @@ object frmCompras: TfrmCompras
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object pnlCenter: TPanel
     Left = 8
@@ -463,7 +464,7 @@ object frmCompras: TfrmCompras
               ParentFont = False
             end
             object lblQtde: TLabel
-              Left = 224
+              Left = 304
               Top = 9
               Width = 49
               Height = 21
@@ -477,8 +478,8 @@ object frmCompras: TfrmCompras
             end
             object btnSalvarEstoque: TBitBtn
               AlignWithMargins = True
-              Left = 444
-              Top = 5
+              Left = 501
+              Top = 3
               Width = 33
               Height = 36
               Glyph.Data = {
@@ -777,23 +778,25 @@ object frmCompras: TfrmCompras
               OnClick = btnSalvarEstoqueClick
             end
             object pnlEstetico1: TPanel
-              Left = 210
-              Top = 6
+              Left = 271
+              Top = 4
               Width = 3
-              Height = 30
+              Height = 36
               BevelOuter = bvNone
               Color = clActiveCaption
               ParentBackground = False
               TabOrder = 1
             end
             object edtdbQtdeCompras: TDBEdit
-              Left = 279
+              Left = 359
               Top = 10
               Width = 121
               Height = 23
               DataField = 'ESTOQUE_PRODUTO'
+              DataSource = dsProdutos
               ImeName = 'Portuguese (Brazilian ABNT)'
               TabOrder = 2
+              OnClick = edtdbQtdeComprasClick
             end
             object edtCodigoCompras: TEdit
               Left = 76
@@ -805,8 +808,8 @@ object frmCompras: TfrmCompras
               OnChange = edtCodigoComprasChange
             end
             object btnEditEstoque: TBitBtn
-              Left = 520
-              Top = 1
+              Left = 216
+              Top = 2
               Width = 41
               Height = 43
               Glyph.Data = {
@@ -1119,18 +1122,18 @@ object frmCompras: TfrmCompras
       'DriverID=fB')
     Connected = True
     LoginPrompt = False
-    Left = 840
-    Top = 24
+    Left = 856
+    Top = 72
   end
   object fbClient: TFDPhysFBDriverLink
     VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
-    Left = 840
-    Top = 96
+    Left = 856
+    Top = 136
   end
   object dsProdutos: TDataSource
     DataSet = TabelaProdutos
-    Left = 872
-    Top = 248
+    Left = 856
+    Top = 256
   end
   object TabelaProdutos: TFDQuery
     Active = True
@@ -1138,8 +1141,8 @@ object frmCompras: TfrmCompras
     Connection = ConexaoCadastro
     SQL.Strings = (
       'select * from produtos')
-    Left = 864
-    Top = 160
+    Left = 856
+    Top = 192
     object TabelaProdutosCOD_PRODUTO: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'COD_PRODUTO'

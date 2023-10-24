@@ -1825,6 +1825,7 @@ object frmCadastroClientes: TfrmCadastroClientes
             Align = alClient
             BorderStyle = bsNone
             DataSource = dsClientes
+            Enabled = False
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             ParentColor = True
             ParentShowHint = False
@@ -1837,6 +1838,7 @@ object frmCadastroClientes: TfrmCadastroClientes
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
             OnCellClick = DBgridClientesCellClick
+            OnMouseUp = DBgridClientesMouseUp
           end
         end
       end

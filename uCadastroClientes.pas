@@ -73,6 +73,8 @@ type
     procedure edtdbCreditoChange(Sender: TObject);
     procedure DBgridClientesCellClick(Column: TColumn);
     procedure btnVoltarCadastroClientesClick(Sender: TObject);
+    procedure DBgridClientesMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
   public
@@ -189,6 +191,12 @@ edtdbNome.Text:='';
 edtdbCPF.Text:='';
 edtdbCredito.Text:='';
 edtdbCelular.Text:='';
+end;
+
+procedure TfrmCadastroClientes.DBgridClientesMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+btnSalvar.Enabled:=false;
 end;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

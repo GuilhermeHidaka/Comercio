@@ -1870,6 +1870,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Height = 271
           Align = alClient
           DataSource = dsProdutos
+          Enabled = False
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText

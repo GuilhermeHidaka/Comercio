@@ -49,6 +49,8 @@ type
     procedure edtCodigoComprasChange(Sender: TObject);
     procedure btnEditEstoqueClick(Sender: TObject);
     procedure btnSalvarEstoqueClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure edtdbQtdeComprasClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,6 +69,7 @@ uses uMenu;
 
 procedure TfrmCompras.btnEditEstoqueClick(Sender: TObject);
 begin
+  edtdbQtdeCompras.Enabled:=true;
   if edtdbQtdeCompras.Text <> null then
   begin
   //Estoque Atual recebe valor convertido string para inteiro
@@ -89,6 +92,9 @@ end;
 
 procedure TfrmCompras.btnSalvarEstoqueClick(Sender: TObject);
 begin
+  edtdbQtdeCompras.Enabled:=False;
+  btnSalvarEstoque.Enabled:=false;
+  btnEditEstoque.Enabled:=true;
   estoqueNovo:= StrToInt(edtdbQtdeCompras.Text);
   estoqueNovo := estoqueAtual + estoqueNovo;
   edtdbQtdeCompras.Text:=IntToStr(estoqueNovo);
@@ -100,6 +106,20 @@ procedure TfrmCompras.edtCodigoComprasChange(Sender: TObject);
 begin
 TabelaProdutos.Locate('COD_PRODUTO',edtCodigoCompras.Text,[loPartialKey,loCaseInsensitive]);
 
+end;
+
+procedure TfrmCompras.edtdbQtdeComprasClick(Sender: TObject);
+begin
+btnSalvarEstoque.Enabled:=true;
+//edtdbQtdeCompras.Text:='';
+//para limpar o campo edtdbQtde
+
+end;
+
+procedure TfrmCompras.FormCreate(Sender: TObject);
+begin
+edtdbQtdeCompras.Enabled:=False;
+btnSalvarEstoque.Enabled:=False;
 end;
 
 end.
