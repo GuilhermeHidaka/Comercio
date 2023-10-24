@@ -34,20 +34,23 @@ object frmCadastro: TfrmCadastro
         Color = clHighlight
         ParentBackground = False
         TabOrder = 0
-        object btnFinalizar: TSpeedButton
-          Left = 648
-          Top = 1
-          Width = 116
-          Height = 39
+        object btnVoltarCadastroProdutos: TBitBtn
+          AlignWithMargins = True
+          Left = 686
+          Top = 4
+          Width = 75
+          Height = 33
           Align = alRight
-          Caption = 'FINALIZAR'
+          Cancel = True
+          Caption = 'Voltar'
           Font.Charset = ANSI_CHARSET
           Font.Color = clRed
-          Font.Height = -19
-          Font.Name = '@Malgun Gothic'
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
           Font.Style = [fsBold]
           ParentFont = False
-          OnClick = btnFinalizarClick
+          TabOrder = 0
+          OnClick = btnVoltarCadastroProdutosClick
         end
       end
       object pnlMidFooter: TPanel

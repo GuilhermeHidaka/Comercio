@@ -16,17 +16,18 @@ type
     pnlTop2: TPanel;
     pnlMidFooter: TPanel;
     btnHome: TBitBtn;
-    btnFinalizar: TSpeedButton;
     lblNomeTela: TLabel;
     pnlMid: TPanel;
     pnlLeft: TPanel;
     Panel1: TPanel;
     btnCadastroClientes: TBitBtn;
     btnCadastroProdutos: TBitBtn;
+    btnVoltarCadastroProdutos: TBitBtn;
     procedure btnHomeClick(Sender: TObject);
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnCadastroProdutosClick(Sender: TObject);
     procedure btnCadastroClientesClick(Sender: TObject);
+    procedure btnVoltarCadastroProdutosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,6 +62,12 @@ Application.Terminate;
 end;
 
 procedure TfrmCadastro.btnHomeClick(Sender: TObject);
+begin
+frmCadastro.Hide;
+frmMenu.Show;
+end;
+
+procedure TfrmCadastro.btnVoltarCadastroProdutosClick(Sender: TObject);
 begin
 frmCadastro.Hide;
 frmMenu.Show;

@@ -3,7 +3,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Top = 0
   Caption = 'Cadastro Produtos'
   ClientHeight = 600
-  ClientWidth = 1004
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

@@ -18,10 +18,8 @@ type
     pnlCenter: TPanel;
     pnlMidTop: TPanel;
     pnlTop2: TPanel;
-    btnFinalizar: TSpeedButton;
     pnlMidFooter: TPanel;
     lblNomeTela: TLabel;
-    btnHome: TBitBtn;
     pnlMid: TPanel;
     pnlDbGrid: TPanel;
     pnlBuscarEstoque: TPanel;
@@ -44,6 +42,7 @@ type
     TabelaProdutosVENDA_PRODUTO: TSingleField;
     TabelaProdutosLUCRO_PRODUTO: TSingleField;
     TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
+    btnVoltarCadastroProdutos: TBitBtn;
     procedure btnHomeClick(Sender: TObject);
     procedure btnFinalizarClick(Sender: TObject);
     procedure edtCodigoComprasChange(Sender: TObject);
@@ -51,6 +50,7 @@ type
     procedure btnSalvarEstoqueClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure edtdbQtdeComprasClick(Sender: TObject);
+    procedure btnVoltarCadastroProdutosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -100,6 +100,12 @@ begin
   edtdbQtdeCompras.Text:=IntToStr(estoqueNovo);
   TabelaProdutos.Post;
   //Estoque mecânica pt.2
+end;
+
+procedure TfrmCompras.btnVoltarCadastroProdutosClick(Sender: TObject);
+begin
+frmCompras.Hide;
+frmMenu.Show;
 end;
 
 procedure TfrmCompras.edtCodigoComprasChange(Sender: TObject);
