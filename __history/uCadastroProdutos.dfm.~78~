@@ -3,7 +3,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Top = 0
   Caption = 'Cadastro Produtos'
   ClientHeight = 600
-  ClientWidth = 989
+  ClientWidth = 1093
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -48,17 +48,30 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Font.Style = [fsBold]
           ParentFont = False
         end
+        object SpeedButton2: TSpeedButton
+          Left = 422
+          Top = 4
+          Width = 65
+          Height = 33
+          Caption = 'Buscar'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = SpeedButton2Click
+        end
         object edtBuscarProdutos: TEdit
-          Left = 70
-          Top = 10
+          Left = 170
+          Top = 9
           Width = 246
           Height = 23
           TabOrder = 0
-          OnChange = edtBuscarProdutosChange
         end
         object cboFiltroProdutos: TComboBox
-          Left = 325
-          Top = 10
+          Left = 71
+          Top = 9
           Width = 92
           Height = 23
           TabOrder = 1
@@ -1723,6 +1736,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               DataSource = dsProdutos
               TabOrder = 0
               OnChange = edtdbDescricaoProdutoChange
+              OnKeyPress = edtdbDescricaoProdutoKeyPress
             end
           end
           object pnlCusto: TPanel
@@ -1754,6 +1768,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               DataSource = dsProdutos
               TabOrder = 0
               OnChange = edtdbCustoChange
+              OnKeyPress = edtdbCustoKeyPress
             end
           end
           object pnlVenda: TPanel
@@ -1785,6 +1800,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               DataSource = dsProdutos
               TabOrder = 0
               OnChange = edtdbVendaChange
+              OnKeyPress = edtdbVendaKeyPress
             end
           end
           object pnlLucro: TPanel
@@ -1851,6 +1867,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               Enabled = False
               TabOrder = 0
               OnChange = edtdbEstoqueChange
+              OnKeyPress = edtdbEstoqueKeyPress
             end
           end
           object btnCalcLucro: TButton
@@ -1863,13 +1880,13 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             OnClick = btnCalcLucroClick
           end
         end
-        object DBGridProdutos: TDBGrid
+        object DBgridProdutos: TDBGrid
           Left = 0
           Top = 193
           Width = 765
           Height = 271
           Align = alClient
-          DataSource = dsProdutos
+          Enabled = False
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -1881,8 +1898,62 @@ object frmCadastroProdutos: TfrmCadastroProdutos
     end
   end
   object dsProdutos: TDataSource
-    DataSet = DMProdutos.TabelaEstoqueProdutos
-    Left = 888
-    Top = 248
+    DataSet = TabelaProdutos
+    Left = 880
+    Top = 400
+  end
+  object ConexaoCadastro: TFDConnection
+    Params.Strings = (
+      'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Server=localhost'
+      'Port=3050'
+      'DriverID=fB')
+    Connected = True
+    LoginPrompt = False
+    Left = 840
+    Top = 24
+  end
+  object TabelaProdutos: TFDQuery
+    Active = True
+    CachedUpdates = True
+    Connection = ConexaoCadastro
+    SQL.Strings = (
+      'select * from produtos')
+    Left = 872
+    Top = 224
+    object TabelaProdutosCOD_PRODUTO: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'COD_PRODUTO'
+      Origin = 'COD_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object TabelaProdutosNOME_PRODUTO: TStringField
+      FieldName = 'NOME_PRODUTO'
+      Origin = 'NOME_PRODUTO'
+      Size = 30
+    end
+    object TabelaProdutosCUSTO_PRODUTO: TSingleField
+      FieldName = 'CUSTO_PRODUTO'
+      Origin = 'CUSTO_PRODUTO'
+    end
+    object TabelaProdutosVENDA_PRODUTO: TSingleField
+      FieldName = 'VENDA_PRODUTO'
+      Origin = 'VENDA_PRODUTO'
+    end
+    object TabelaProdutosLUCRO_PRODUTO: TSingleField
+      FieldName = 'LUCRO_PRODUTO'
+      Origin = 'LUCRO_PRODUTO'
+    end
+    object TabelaProdutosESTOQUE_PRODUTO: TIntegerField
+      FieldName = 'ESTOQUE_PRODUTO'
+      Origin = 'ESTOQUE_PRODUTO'
+    end
+  end
+  object fbClient: TFDPhysFBDriverLink
+    VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
+    Left = 840
+    Top = 96
   end
 end

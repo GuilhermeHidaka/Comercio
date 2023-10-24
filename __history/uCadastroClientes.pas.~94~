@@ -66,13 +66,14 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure edtBuscarClientesChange(Sender: TObject);
     procedure edtdbNomeChange(Sender: TObject);
     procedure edtdbCPFChange(Sender: TObject);
     procedure edtdbCelularChange(Sender: TObject);
     procedure edtdbCreditoChange(Sender: TObject);
     procedure DBgridClientesCellClick(Column: TColumn);
     procedure btnVoltarCadastroClientesClick(Sender: TObject);
+    procedure DBgridClientesMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
   public
@@ -106,9 +107,9 @@ end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
-
-TabelaClientes.Delete;
-btnSalvar.Enabled:=False;
+if MessageDlg('Confirma exclusão ?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
+  TabelaClientes.Delete;
+  btnSalvar.Enabled:=False;
 //Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
@@ -168,7 +169,7 @@ edtdbCPF.Enabled:=False;
 edtdbCelular.Enabled:=False;
 edtdbCredito.Enabled:=False;
 //Voltar Enabled padrão de não inclusão ou alteração
-dbGridClientes.Enabled:=True;
+
 btnExcluir.Enabled:=True;
 btnModificar.Enabled:=True;
 end;
@@ -180,7 +181,7 @@ end;
 procedure TfrmCadastroClientes.btnVoltarCadastroClientesClick(Sender: TObject);
 begin
 frmCadastroClientes.Hide;
-frmCadastroProdutos.Show;
+frmCadastro.Show;
 end;
 
 procedure TfrmCadastroClientes.DBgridClientesCellClick(Column: TColumn);
@@ -191,30 +192,13 @@ edtdbCredito.Text:='';
 edtdbCelular.Text:='';
 end;
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-procedure TfrmCadastroClientes.edtBuscarClientesChange(Sender: TObject);
+procedure TfrmCadastroClientes.DBgridClientesMouseUp(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-if cboFiltroClientes.ItemIndex=0 then
-  TabelaClientes.Locate('NOME_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
-if cboFiltroClientes.ItemIndex=1 then
-  TabelaClientes.Locate('PCF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
-if cboFiltroClientes.ItemIndex=2 then
-  TabelaClientes.Locate('NUMERO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
-if cboFiltroClientes.ItemIndex=3 then
-  TabelaClientes.Locate('CREDITO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
-
-(*
-            ITEMS
-  0-Nome
-  1-CPF
-  2-Celular
-  3-Crédito
-*)
-
-//Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
-//loCaseInsensitive %consulta
+btnSalvar.Enabled:=false;
 end;
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 procedure TfrmCadastroClientes.edtdbCelularChange(Sender: TObject);
 begin
 if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then

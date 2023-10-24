@@ -56,6 +56,13 @@ type
     ConexaoCadastro: TFDConnection;
     TabelaProdutos: TFDQuery;
     fbClient: TFDPhysFBDriverLink;
+    TabelaProdutosCOD_PRODUTO: TIntegerField;
+    TabelaProdutosNOME_PRODUTO: TStringField;
+    TabelaProdutosCUSTO_PRODUTO: TSingleField;
+    TabelaProdutosVENDA_PRODUTO: TSingleField;
+    TabelaProdutosLUCRO_PRODUTO: TSingleField;
+    TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
+    SpeedButton2: TSpeedButton;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnCalcLucroClick(Sender: TObject);
@@ -71,8 +78,11 @@ type
     procedure edtdbEstoqueChange(Sender: TObject);
     procedure edtdbCustoChange(Sender: TObject);
     procedure edtdbVendaChange(Sender: TObject);
-    procedure edtBuscarProdutosChange(Sender: TObject);
     procedure btnVoltarCadastroProdutosClick(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure edtdbDescricaoProdutoKeyPress(Sender: TObject; var Key: Char);
+    procedure edtdbCustoKeyPress(Sender: TObject; var Key: Char);
+    procedure edtdbVendaKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -86,7 +96,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadastro, uCadastroClientes, uCompras, uDMProdutos;
+uses uCadastro, uCadastroClientes, uCompras;
 
 procedure TfrmCadastroProdutos.btnCalcLucroClick(Sender: TObject);
 var
@@ -105,7 +115,6 @@ end;
 procedure TfrmCadastroProdutos.btnCancelarClick(Sender: TObject);
 begin
   TabelaProdutos.Cancel;
-  DBgridProdutos.Enabled:=True;
   btnIncluir.Enabled := True;
   btnSalvar.Enabled:=False;
   edtdbDescricaoProduto.Enabled := False;
@@ -143,7 +152,6 @@ begin
   btnIncluir.Enabled := False;
   // btnSalvar.Enabled:=True;
   edtdbDescricaoProduto.Enabled := True;
-  edtdbEstoque.Enabled := True;
   edtdbCusto.Enabled := True;
   edtdbVenda.Enabled := True;
   // Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)
@@ -159,7 +167,6 @@ begin
   // utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
   //teste
   edtdbDescricaoProduto.Enabled := True;
-  edtdbEstoque.Enabled := True;
   edtdbCusto.Enabled := True;
   edtdbVenda.Enabled := True;
   btnIncluir.Enabled:=False;
@@ -181,7 +188,7 @@ begin
   edtdbCusto.Enabled := False;
   edtdbVenda.Enabled := False;
   // Voltar Enabled padrão de não inclusão ou alteração
-  dbGridProdutos.Enabled:=True;
+
   //Volta condição do clique em celular do dbGrid
   btnExcluir.Enabled := True;
   btnModificar.Enabled := True;
@@ -191,6 +198,7 @@ procedure TfrmCadastroProdutos.btnVoltarCadastroProdutosClick(Sender: TObject);
 begin
 frmCadastroProdutos.Hide;
 frmCadastro.Show;
+TabelaProdutos.ApplyUpdates;
 end;
 
 procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);
@@ -204,23 +212,9 @@ begin
 
 end;
 
-procedure TfrmCadastroProdutos.edtBuscarProdutosChange(Sender: TObject);
-begin
-if cboFiltroProdutos.ItemIndex=1 then
-TabelaProdutos.Locate('NOME_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCaseInsensitive]);
-
-if cboFiltroProdutos.ItemIndex=0 then
-TabelaProdutos.Locate('COD_PRODUTO',edtBuscarProdutos.Text,[LoPartialKey,loCaseInsensitive]);
-  btnSalvar.Enabled:=False;
-//Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
-//loCaseInsensitive %consulta
-//igual do buscar clientes
-//inclusive o buscar clientes está apenas como buscar em suas referências, não como BuscarProdutos nessa tela.
-end;
-
 procedure TfrmCadastroProdutos.edtdbCustoChange(Sender: TObject);
 begin
-  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+  if (edtdbDescricaoProduto.Text <> '') and
     (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
     btnSalvar.Enabled := True;
   if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
@@ -229,9 +223,15 @@ begin
     //A cada mudança de campo no clique, verifica se todos já foram preenchidos para validar a liberação do botão salvar.
 end;
 
+procedure TfrmCadastroProdutos.edtdbCustoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if Key = #13 then Perform(Wm_NextDlgCtl,0,0);
+end;
+
 procedure TfrmCadastroProdutos.edtdbDescricaoProdutoChange(Sender: TObject);
 begin
-  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+  if (edtdbDescricaoProduto.Text <> '') and
     (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
     btnSalvar.Enabled := True;
   if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
@@ -239,24 +239,36 @@ begin
     btnSalvar.Enabled := False;
 end;
 
+procedure TfrmCadastroProdutos.edtdbDescricaoProdutoKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if Key = #13 then Perform(Wm_NextDlgCtl,0,0);
+end;
+
 procedure TfrmCadastroProdutos.edtdbEstoqueChange(Sender: TObject);
 begin
-  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+  if (edtdbDescricaoProduto.Text <> '') and
     (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
     btnSalvar.Enabled := True;
-  if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
+  if (edtdbDescricaoProduto.Text = '') or
     (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
     btnSalvar.Enabled := False;
 end;
 
 procedure TfrmCadastroProdutos.edtdbVendaChange(Sender: TObject);
 begin
-  if (edtdbDescricaoProduto.Text <> '') and (edtdbEstoque.Text <> '') and
+  if (edtdbDescricaoProduto.Text <> '') and
     (edtdbCusto.Text <> '') and (edtdbVenda.Text <> '') then
     btnSalvar.Enabled := True;
-  if (edtdbDescricaoProduto.Text = '') or (edtdbEstoque.Text = '') or
+  if (edtdbDescricaoProduto.Text = '') or
     (edtdbCusto.Text = '') or (edtdbVenda.Text = '') then
     btnSalvar.Enabled := False;
+end;
+
+procedure TfrmCadastroProdutos.edtdbVendaKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+if Key = #13 then Perform(Wm_NextDlgCtl,0,0);
 end;
 
 procedure TfrmCadastroProdutos.FormCreate(Sender: TObject);
@@ -277,6 +289,20 @@ begin
   edtdbVenda.Enabled := False;
   // não permitir inserção sem clicar no botão de adicionar
   //.
+end;
+
+procedure TfrmCadastroProdutos.SpeedButton2Click(Sender: TObject);
+begin
+if cboFiltroProdutos.ItemIndex=1 then
+TabelaProdutos.Locate('NOME_PRODUTO',edtBuscarProdutos.Text,[loPartialKey,loCaseInsensitive]);
+
+if cboFiltroProdutos.ItemIndex=0 then
+TabelaProdutos.Locate('COD_PRODUTO',edtBuscarProdutos.Text,[LoPartialKey,loCaseInsensitive]);
+  btnSalvar.Enabled:=False;
+//Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
+//loCaseInsensitive %consulta
+//igual do buscar clientes
+//inclusive o buscar clientes está apenas como buscar em suas referências, não como BuscarProdutos nessa tela.
 end;
 
 end.

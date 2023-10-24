@@ -34,7 +34,6 @@ type
     btnEditEstoque: TBitBtn;
     ConexaoCadastro: TFDConnection;
     fbClient: TFDPhysFBDriverLink;
-    dsProdutos: TDataSource;
     TabelaProdutos: TFDQuery;
     TabelaProdutosCOD_PRODUTO: TIntegerField;
     TabelaProdutosNOME_PRODUTO: TStringField;
@@ -43,14 +42,15 @@ type
     TabelaProdutosLUCRO_PRODUTO: TSingleField;
     TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
     btnVoltarCadastroProdutos: TBitBtn;
+    btnBuscar: TSpeedButton;
     procedure btnHomeClick(Sender: TObject);
     procedure btnFinalizarClick(Sender: TObject);
-    procedure edtCodigoComprasChange(Sender: TObject);
     procedure btnEditEstoqueClick(Sender: TObject);
     procedure btnSalvarEstoqueClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure edtdbQtdeComprasClick(Sender: TObject);
     procedure btnVoltarCadastroProdutosClick(Sender: TObject);
+    procedure btnBuscarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,7 +65,7 @@ implementation
 
 {$R *.dfm}
 
-uses uMenu;
+uses uMenu, uCadastroProdutos;
 
 procedure TfrmCompras.btnEditEstoqueClick(Sender: TObject);
 begin
@@ -108,12 +108,6 @@ frmCompras.Hide;
 frmMenu.Show;
 end;
 
-procedure TfrmCompras.edtCodigoComprasChange(Sender: TObject);
-begin
-TabelaProdutos.Locate('COD_PRODUTO',edtCodigoCompras.Text,[loPartialKey,loCaseInsensitive]);
-
-end;
-
 procedure TfrmCompras.edtdbQtdeComprasClick(Sender: TObject);
 begin
 btnSalvarEstoque.Enabled:=true;
@@ -126,6 +120,11 @@ procedure TfrmCompras.FormCreate(Sender: TObject);
 begin
 edtdbQtdeCompras.Enabled:=False;
 btnSalvarEstoque.Enabled:=False;
+end;
+
+procedure TfrmCompras.btnBuscarClick(Sender: TObject);
+begin
+TabelaProdutos.Locate('COD_PRODUTO',edtCodigoCompras.Text,[loPartialKey,loCaseInsensitive]);
 end;
 
 end.

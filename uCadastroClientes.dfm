@@ -36,7 +36,7 @@ object frmCadastroClientes: TfrmCadastroClientes
         ParentBackground = False
         TabOrder = 0
         object lblBuscar: TLabel
-          Left = 8
+          Left = 10
           Top = 8
           Width = 57
           Height = 21
@@ -48,17 +48,30 @@ object frmCadastroClientes: TfrmCadastroClientes
           Font.Style = [fsBold]
           ParentFont = False
         end
+        object SpeedButton1: TSpeedButton
+          Left = 422
+          Top = 4
+          Width = 65
+          Height = 33
+          Caption = 'Buscar'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = SpeedButton1Click
+        end
         object edtBuscarClientes: TEdit
-          Left = 69
+          Left = 170
           Top = 9
           Width = 246
           Height = 23
           BevelOuter = bvNone
           TabOrder = 0
-          OnChange = edtBuscarClientesChange
         end
         object cboFiltroClientes: TComboBox
-          Left = 324
+          Left = 71
           Top = 9
           Width = 92
           Height = 23

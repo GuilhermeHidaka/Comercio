@@ -3,7 +3,7 @@ object frmCompras: TfrmCompras
   Top = 0
   Caption = 'Compras'
   ClientHeight = 590
-  ClientWidth = 784
+  ClientWidth = 1091
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -101,7 +101,7 @@ object frmCompras: TfrmCompras
             Width = 761
             Height = 405
             Align = alClient
-            DataSource = dsProdutos
+            DataSource = frmCadastroProdutos.dsProdutos
             ImeName = 'Portuguese (Brazilian ABNT)'
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             TabOrder = 0
@@ -123,13 +123,13 @@ object frmCompras: TfrmCompras
           TabOrder = 1
           object pnlDados: TPanel
             Left = 7
-            Top = 5
+            Top = 6
             Width = 749
             Height = 44
             BevelOuter = bvLowered
             TabOrder = 0
             object Label1: TLabel
-              Left = 8
+              Left = 14
               Top = 9
               Width = 62
               Height = 21
@@ -142,7 +142,7 @@ object frmCompras: TfrmCompras
               ParentFont = False
             end
             object lblQtde: TLabel
-              Left = 304
+              Left = 457
               Top = 9
               Width = 49
               Height = 21
@@ -154,9 +154,24 @@ object frmCompras: TfrmCompras
               Font.Style = [fsBold]
               ParentFont = False
             end
+            object btnBuscar: TSpeedButton
+              AlignWithMargins = True
+              Left = 209
+              Top = 6
+              Width = 65
+              Height = 31
+              Caption = 'Buscar'
+              Font.Charset = ANSI_CHARSET
+              Font.Color = clNavy
+              Font.Height = -16
+              Font.Name = 'Segoe UI Semibold'
+              Font.Style = [fsBold]
+              ParentFont = False
+              OnClick = btnBuscarClick
+            end
             object btnSalvarEstoque: TBitBtn
               AlignWithMargins = True
-              Left = 501
+              Left = 642
               Top = 3
               Width = 33
               Height = 36
@@ -456,8 +471,8 @@ object frmCompras: TfrmCompras
               OnClick = btnSalvarEstoqueClick
             end
             object pnlEstetico1: TPanel
-              Left = 271
-              Top = 4
+              Left = 416
+              Top = 3
               Width = 3
               Height = 36
               BevelOuter = bvNone
@@ -466,28 +481,26 @@ object frmCompras: TfrmCompras
               TabOrder = 1
             end
             object edtdbQtdeCompras: TDBEdit
-              Left = 359
+              Left = 510
               Top = 10
               Width = 121
               Height = 23
               DataField = 'ESTOQUE_PRODUTO'
-              DataSource = dsProdutos
               ImeName = 'Portuguese (Brazilian ABNT)'
               TabOrder = 2
               OnClick = edtdbQtdeComprasClick
             end
             object edtCodigoCompras: TEdit
-              Left = 76
+              Left = 82
               Top = 10
               Width = 121
               Height = 23
               ImeName = 'Portuguese (Brazilian ABNT)'
               TabOrder = 3
-              OnChange = edtCodigoComprasChange
             end
             object btnEditEstoque: TBitBtn
-              Left = 216
-              Top = 2
+              Left = 305
+              Top = 1
               Width = 41
               Height = 43
               Glyph.Data = {
@@ -807,11 +820,6 @@ object frmCompras: TfrmCompras
     VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
     Left = 856
     Top = 136
-  end
-  object dsProdutos: TDataSource
-    DataSet = TabelaProdutos
-    Left = 856
-    Top = 256
   end
   object TabelaProdutos: TFDQuery
     Active = True
