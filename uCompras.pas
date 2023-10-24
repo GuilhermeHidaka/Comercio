@@ -31,13 +31,19 @@ type
     lblQtde: TLabel;
     btnSalvarEstoque: TBitBtn;
     pnlEstetico1: TPanel;
-    ConexaoCompras: TFDConnection;
-    TabelaParaEstoque: TFDQuery;
-    fbClient: TFDPhysFBDriverLink;
-    dsCompras: TDataSource;
     edtdbQtdeCompras: TDBEdit;
     edtCodigoCompras: TEdit;
     btnEditEstoque: TBitBtn;
+    ConexaoCadastro: TFDConnection;
+    fbClient: TFDPhysFBDriverLink;
+    dsProdutos: TDataSource;
+    TabelaProdutos: TFDQuery;
+    TabelaProdutosCOD_PRODUTO: TIntegerField;
+    TabelaProdutosNOME_PRODUTO: TStringField;
+    TabelaProdutosCUSTO_PRODUTO: TSingleField;
+    TabelaProdutosVENDA_PRODUTO: TSingleField;
+    TabelaProdutosLUCRO_PRODUTO: TSingleField;
+    TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
     procedure btnHomeClick(Sender: TObject);
     procedure btnFinalizarClick(Sender: TObject);
     procedure edtCodigoComprasChange(Sender: TObject);
@@ -86,13 +92,13 @@ begin
   estoqueNovo:= StrToInt(edtdbQtdeCompras.Text);
   estoqueNovo := estoqueAtual + estoqueNovo;
   edtdbQtdeCompras.Text:=IntToStr(estoqueNovo);
-  TabelaParaEstoque.Post;
+  TabelaProdutos.Post;
   //Estoque mecânica pt.2
 end;
 
 procedure TfrmCompras.edtCodigoComprasChange(Sender: TObject);
 begin
-TabelaParaEstoque.Locate('COD_PRODUTO',edtCodigoCompras.Text,[loPartialKey,loCaseInsensitive]);
+TabelaProdutos.Locate('COD_PRODUTO',edtCodigoCompras.Text,[loPartialKey,loCaseInsensitive]);
 
 end;
 

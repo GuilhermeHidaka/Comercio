@@ -3,7 +3,7 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Top = 0
   Caption = 'Cadastro Produtos'
   ClientHeight = 600
-  ClientWidth = 784
+  ClientWidth = 1004
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -1777,8 +1777,8 @@ object frmCadastroProdutos: TfrmCadastroProdutos
               ParentFont = False
             end
             object edtdbVenda: TDBEdit
-              Left = 61
-              Top = 17
+              Left = 67
+              Top = 10
               Width = 78
               Height = 23
               DataField = 'VENDA_PRODUTO'
@@ -1863,28 +1863,29 @@ object frmCadastroProdutos: TfrmCadastroProdutos
             OnClick = btnCalcLucroClick
           end
         end
-        object dbGridProdutos: TDBGrid
+        object DBgridProdutos: TDBGrid
           Left = 0
           Top = 193
           Width = 765
           Height = 271
           Align = alClient
           DataSource = dsProdutos
-          ImeName = 'Portuguese (Brazilian ABNT)'
-          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
-          ReadOnly = True
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -12
           TitleFont.Name = 'Segoe UI'
           TitleFont.Style = []
-          OnCellClick = dbGridProdutosCellClick
         end
       end
     end
   end
-  object ConexaoProdutos: TFDConnection
+  object dsProdutos: TDataSource
+    DataSet = TabelaProdutos
+    Left = 880
+    Top = 400
+  end
+  object ConexaoCadastro: TFDConnection
     Params.Strings = (
       'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
       'User_Name=SYSDBA'
@@ -1894,17 +1895,17 @@ object frmCadastroProdutos: TfrmCadastroProdutos
       'DriverID=fB')
     Connected = True
     LoginPrompt = False
-    Left = 888
-    Top = 48
+    Left = 840
+    Top = 24
   end
   object TabelaProdutos: TFDQuery
     Active = True
-    Connection = ConexaoProdutos
+    CachedUpdates = True
+    Connection = ConexaoCadastro
     SQL.Strings = (
-      'select * from Produtos'
-      '')
-    Left = 888
-    Top = 184
+      'select * from produtos')
+    Left = 872
+    Top = 224
     object TabelaProdutosCOD_PRODUTO: TIntegerField
       AutoGenerateValue = arAutoInc
       FieldName = 'COD_PRODUTO'
@@ -1933,14 +1934,9 @@ object frmCadastroProdutos: TfrmCadastroProdutos
       Origin = 'ESTOQUE_PRODUTO'
     end
   end
-  object dsProdutos: TDataSource
-    DataSet = TabelaProdutos
-    Left = 888
-    Top = 248
-  end
   object fbClient: TFDPhysFBDriverLink
     VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
-    Left = 880
-    Top = 120
+    Left = 840
+    Top = 96
   end
 end

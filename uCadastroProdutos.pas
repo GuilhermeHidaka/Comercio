@@ -32,10 +32,7 @@ type
     pnlDescricaoProduto: TPanel;
     pnlCusto: TPanel;
     pnlVenda: TPanel;
-    ConexaoProdutos: TFDConnection;
-    TabelaProdutos: TFDQuery;
     dsProdutos: TDataSource;
-    fbClient: TFDPhysFBDriverLink;
     lblCodigo: TLabel;
     edtdbCodigoProduto: TDBEdit;
     lblDescricao: TLabel;
@@ -50,22 +47,26 @@ type
     edtdbEstoque: TDBEdit;
     lblLucro: TLabel;
     edtdbLucro: TDBEdit;
+    btnCalcLucro: TButton;
+    lblBuscarProdutos: TLabel;
+    edtBuscarProdutos: TEdit;
+    cboFiltroProdutos: TComboBox;
+    btnVoltarCadastroProdutos: TBitBtn;
+    DBgridProdutos: TDBGrid;
+    ConexaoCadastro: TFDConnection;
+    TabelaProdutos: TFDQuery;
+    fbClient: TFDPhysFBDriverLink;
     TabelaProdutosCOD_PRODUTO: TIntegerField;
     TabelaProdutosNOME_PRODUTO: TStringField;
     TabelaProdutosCUSTO_PRODUTO: TSingleField;
     TabelaProdutosVENDA_PRODUTO: TSingleField;
     TabelaProdutosLUCRO_PRODUTO: TSingleField;
     TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
-    dbGridProdutos: TDBGrid;
-    btnCalcLucro: TButton;
-    lblBuscarProdutos: TLabel;
-    edtBuscarProdutos: TEdit;
-    cboFiltroProdutos: TComboBox;
-    btnVoltarCadastroProdutos: TBitBtn;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnCalcLucroClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
+
     procedure FormCreate(Sender: TObject);
     procedure btnModificarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -109,7 +110,6 @@ end;
 
 procedure TfrmCadastroProdutos.btnCancelarClick(Sender: TObject);
 begin
-  TabelaProdutos.Cancel;
   TabelaProdutos.Cancel;
   DBgridProdutos.Enabled:=True;
   btnIncluir.Enabled := True;
@@ -177,7 +177,7 @@ end;
 procedure TfrmCadastroProdutos.btnSalvarClick(Sender: TObject);
 begin
   TabelaProdutos.Post;
-  ConexaoProdutos.Commit;
+  ConexaoCadastro.Commit;
   // para gravar no banco de dados todos os registros da Qry (TabelaClientes)
   btnIncluir.Enabled := True;
   btnSalvar.Enabled := False;
@@ -197,6 +197,7 @@ procedure TfrmCadastroProdutos.btnVoltarCadastroProdutosClick(Sender: TObject);
 begin
 frmCadastroProdutos.Hide;
 frmCadastro.Show;
+TabelaProdutos.ApplyUpdates;
 end;
 
 procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);
@@ -267,8 +268,9 @@ end;
 
 procedure TfrmCadastroProdutos.FormCreate(Sender: TObject);
 begin
+
   edtdbCodigoProduto.Enabled := False;
-  ConexaoProdutos.Connected := True;
+  ConexaoCadastro.Connected := True;
   TabelaProdutos.Open();
   btnSalvar.Enabled := False;
   cboFiltroProdutos.ItemIndex:=0;

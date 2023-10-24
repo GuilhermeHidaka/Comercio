@@ -1,0 +1,35 @@
+unit uDMProdutos;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
+  Data.DB, FireDAC.Comp.Client, FireDAC.Phys.FBDef, FireDAC.Phys.IBBase,
+  FireDAC.Phys.FB, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, FireDAC.Comp.DataSet;
+
+type
+  TDMProdutos = class(TDataModule)
+    ConexaoProdutos: TFDConnection;
+    fbClient: TFDPhysFBDriverLink;
+    TabelaEstoqueProdutos: TFDQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMProdutos: TDMProdutos;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses uCadastroProdutos, uCompras;
+
+{$R *.dfm}
+
+end.

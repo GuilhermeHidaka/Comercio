@@ -1,0 +1,34 @@
+object DMProdutos: TDMProdutos
+  Height = 480
+  Width = 640
+  object ConexaoProdutos: TFDConnection
+    Params.Strings = (
+      'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'Server=localhost'
+      'Port=3050'
+      'DriverID=fB')
+    Connected = True
+    LoginPrompt = False
+    Left = 88
+    Top = 72
+  end
+  object fbClient: TFDPhysFBDriverLink
+    VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
+    Left = 88
+    Top = 136
+  end
+  object TabelaEstoqueProdutos: TFDQuery
+    Active = True
+    CachedUpdates = True
+    Connection = ConexaoProdutos
+    UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
+    UpdateOptions.AutoCommitUpdates = True
+    SQL.Strings = (
+      'select * from produtos'
+      '')
+    Left = 88
+    Top = 16
+  end
+end

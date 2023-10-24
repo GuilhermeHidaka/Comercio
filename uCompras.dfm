@@ -3,7 +3,7 @@ object frmCompras: TfrmCompras
   Top = 0
   Caption = 'Compras'
   ClientHeight = 590
-  ClientWidth = 792
+  ClientWidth = 957
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -422,7 +422,7 @@ object frmCompras: TfrmCompras
             Width = 761
             Height = 405
             Align = alClient
-            DataSource = dsCompras
+            DataSource = dsProdutos
             ImeName = 'Portuguese (Brazilian ABNT)'
             Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
             TabOrder = 0
@@ -792,7 +792,6 @@ object frmCompras: TfrmCompras
               Width = 121
               Height = 23
               DataField = 'ESTOQUE_PRODUTO'
-              DataSource = dsCompras
               ImeName = 'Portuguese (Brazilian ABNT)'
               TabOrder = 2
             end
@@ -1110,36 +1109,63 @@ object frmCompras: TfrmCompras
       end
     end
   end
-  object ConexaoCompras: TFDConnection
+  object ConexaoCadastro: TFDConnection
     Params.Strings = (
       'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Server=localhost'
       'Port=3050'
-      'DriverID=FB')
+      'DriverID=fB')
     Connected = True
     LoginPrompt = False
-    Left = 832
-    Top = 16
-  end
-  object TabelaParaEstoque: TFDQuery
-    Active = True
-    Connection = ConexaoCompras
-    SQL.Strings = (
-      'select * from produtos'
-      '')
-    Left = 856
-    Top = 80
+    Left = 840
+    Top = 24
   end
   object fbClient: TFDPhysFBDriverLink
     VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
-    Left = 856
-    Top = 144
+    Left = 840
+    Top = 96
   end
-  object dsCompras: TDataSource
-    DataSet = TabelaParaEstoque
-    Left = 856
-    Top = 208
+  object dsProdutos: TDataSource
+    DataSet = TabelaProdutos
+    Left = 872
+    Top = 248
+  end
+  object TabelaProdutos: TFDQuery
+    Active = True
+    CachedUpdates = True
+    Connection = ConexaoCadastro
+    SQL.Strings = (
+      'select * from produtos')
+    Left = 864
+    Top = 160
+    object TabelaProdutosCOD_PRODUTO: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'COD_PRODUTO'
+      Origin = 'COD_PRODUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object TabelaProdutosNOME_PRODUTO: TStringField
+      FieldName = 'NOME_PRODUTO'
+      Origin = 'NOME_PRODUTO'
+      Size = 30
+    end
+    object TabelaProdutosCUSTO_PRODUTO: TSingleField
+      FieldName = 'CUSTO_PRODUTO'
+      Origin = 'CUSTO_PRODUTO'
+    end
+    object TabelaProdutosVENDA_PRODUTO: TSingleField
+      FieldName = 'VENDA_PRODUTO'
+      Origin = 'VENDA_PRODUTO'
+    end
+    object TabelaProdutosLUCRO_PRODUTO: TSingleField
+      FieldName = 'LUCRO_PRODUTO'
+      Origin = 'LUCRO_PRODUTO'
+    end
+    object TabelaProdutosESTOQUE_PRODUTO: TIntegerField
+      FieldName = 'ESTOQUE_PRODUTO'
+      Origin = 'ESTOQUE_PRODUTO'
+    end
   end
 end
