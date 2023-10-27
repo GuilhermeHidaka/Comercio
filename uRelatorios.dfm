@@ -10,6 +10,7 @@ object frmRelatorios: TfrmRelatorios
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   TextHeight = 15
   object pnlCenter: TPanel
     Left = 8
@@ -407,8 +408,6 @@ object frmRelatorios: TfrmRelatorios
         Color = clWhite
         ParentBackground = False
         TabOrder = 2
-        ExplicitLeft = -5
-        ExplicitWidth = 6
       end
     end
   end

@@ -3,13 +3,15 @@ object frmCadastroProdutos: TfrmCadastroProdutos
   Top = 0
   Caption = 'Cadastro Produtos'
   ClientHeight = 600
-  ClientWidth = 1093
+  ClientWidth = 784
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
+  Visible = True
   OnCreate = FormCreate
   TextHeight = 15
   object pnlCenter: TPanel
@@ -126,8 +128,6 @@ object frmCadastroProdutos: TfrmCadastroProdutos
           Width = 303
           Height = 56
           BevelOuter = bvNone
-          Color = clHighlight
-          ParentBackground = False
           TabOrder = 0
           object btnSalvar: TBitBtn
             AlignWithMargins = True
@@ -1899,62 +1899,8 @@ object frmCadastroProdutos: TfrmCadastroProdutos
     end
   end
   object dsProdutos: TDataSource
-    DataSet = TabelaProdutos
-    Left = 880
-    Top = 400
-  end
-  object ConexaoCadastro: TFDConnection
-    Params.Strings = (
-      'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
-      'User_Name=SYSDBA'
-      'Password=masterkey'
-      'Server=localhost'
-      'Port=3050'
-      'DriverID=fB')
-    Connected = True
-    LoginPrompt = False
-    Left = 840
-    Top = 24
-  end
-  object TabelaProdutos: TFDQuery
-    Active = True
-    CachedUpdates = True
-    Connection = ConexaoCadastro
-    SQL.Strings = (
-      'select * from produtos')
-    Left = 872
-    Top = 224
-    object TabelaProdutosCOD_PRODUTO: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'COD_PRODUTO'
-      Origin = 'COD_PRODUTO'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
-    object TabelaProdutosNOME_PRODUTO: TStringField
-      FieldName = 'NOME_PRODUTO'
-      Origin = 'NOME_PRODUTO'
-      Size = 30
-    end
-    object TabelaProdutosCUSTO_PRODUTO: TSingleField
-      FieldName = 'CUSTO_PRODUTO'
-      Origin = 'CUSTO_PRODUTO'
-    end
-    object TabelaProdutosVENDA_PRODUTO: TSingleField
-      FieldName = 'VENDA_PRODUTO'
-      Origin = 'VENDA_PRODUTO'
-    end
-    object TabelaProdutosLUCRO_PRODUTO: TSingleField
-      FieldName = 'LUCRO_PRODUTO'
-      Origin = 'LUCRO_PRODUTO'
-    end
-    object TabelaProdutosESTOQUE_PRODUTO: TIntegerField
-      FieldName = 'ESTOQUE_PRODUTO'
-      Origin = 'ESTOQUE_PRODUTO'
-    end
-  end
-  object fbClient: TFDPhysFBDriverLink
-    VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
-    Left = 840
-    Top = 96
+    DataSet = DM.TabelaProdutos
+    Left = 856
+    Top = 272
   end
 end

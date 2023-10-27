@@ -10,7 +10,8 @@ uses
   uRelatorios in 'uRelatorios.pas' {frmRelatorios},
   uConfig in 'uConfig.pas' {frmConfig},
   uCadastroProdutos in 'uCadastroProdutos.pas' {frmCadastroProdutos},
-  uCadastroClientes in 'uCadastroClientes.pas' {frmCadastroClientes};
+  uCadastroClientes in 'uCadastroClientes.pas' {frmCadastroClientes},
+  uDM in 'uDM.pas' {DM: TDataModule};
 
 {$R *.res}
 
@@ -26,5 +27,6 @@ begin
   Application.CreateForm(TfrmConfig, frmConfig);
   Application.CreateForm(TfrmCadastroProdutos, frmCadastroProdutos);
   Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
+  Application.CreateForm(TDM, DM);
   Application.Run;
 end.

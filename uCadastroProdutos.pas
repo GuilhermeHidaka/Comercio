@@ -21,22 +21,14 @@ type
     pnlMidFooter: TPanel;
     lblNomeTela: TLabel;
     pnlMid: TPanel;
-    pnlButtons: TPanel;
-    btnSalvar: TBitBtn;
-    btnIncluir: TBitBtn;
-    btnModificar: TBitBtn;
-    btnExcluir: TBitBtn;
-    btnCancelar: TBitBtn;
     pnlDados: TPanel;
     pnlProCod: TPanel;
     pnlDescricaoProduto: TPanel;
     pnlCusto: TPanel;
     pnlVenda: TPanel;
-    dsProdutos: TDataSource;
     lblCodigo: TLabel;
     edtdbCodigoProduto: TDBEdit;
     lblDescricao: TLabel;
-    edtdbDescricaoProduto: TDBEdit;
     lblCusto: TLabel;
     lblVenda: TLabel;
     edtdbCusto: TDBEdit;
@@ -52,17 +44,16 @@ type
     edtBuscarProdutos: TEdit;
     cboFiltroProdutos: TComboBox;
     btnVoltarCadastroProdutos: TBitBtn;
-    DBgridProdutos: TDBGrid;
-    ConexaoCadastro: TFDConnection;
-    TabelaProdutos: TFDQuery;
-    fbClient: TFDPhysFBDriverLink;
-    TabelaProdutosCOD_PRODUTO: TIntegerField;
-    TabelaProdutosNOME_PRODUTO: TStringField;
-    TabelaProdutosCUSTO_PRODUTO: TSingleField;
-    TabelaProdutosVENDA_PRODUTO: TSingleField;
-    TabelaProdutosLUCRO_PRODUTO: TSingleField;
-    TabelaProdutosESTOQUE_PRODUTO: TIntegerField;
     SpeedButton2: TSpeedButton;
+    dsProdutos: TDataSource;
+    pnlButtons: TPanel;
+    btnSalvar: TBitBtn;
+    btnIncluir: TBitBtn;
+    btnModificar: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnCancelar: TBitBtn;
+    DBgridProdutos: TDBGrid;
+    edtdbDescricaoProduto: TDBEdit;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure btnCalcLucroClick(Sender: TObject);
@@ -97,7 +88,7 @@ implementation
 
 {$R *.dfm}
 
-uses uCadastro, uCadastroClientes, uCompras;
+uses uCadastro, uCadastroClientes, uCompras, uDM;
 
 procedure TfrmCadastroProdutos.btnCalcLucroClick(Sender: TObject);
 var
@@ -115,7 +106,7 @@ end;
 
 procedure TfrmCadastroProdutos.btnCancelarClick(Sender: TObject);
 begin
-  TabelaProdutos.Cancel;
+  Dm.TabelaProdutos.Cancel;
   btnIncluir.Enabled := True;
   btnSalvar.Enabled := False;
   edtdbDescricaoProduto.Enabled := False;
@@ -132,7 +123,7 @@ procedure TfrmCadastroProdutos.btnExcluirClick(Sender: TObject);
 begin
   if MessageDlg('Confirma exclusão ?', mtConfirmation, [mbYes, mbNo], 0) = mrYes
   then
-    TabelaProdutos.Delete;
+    DM.TabelaProdutos.Delete;
   btnSalvar.Enabled := False;
   // Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
@@ -151,7 +142,7 @@ end;
 procedure TfrmCadastroProdutos.btnIncluirClick(Sender: TObject);
 begin
 
-  TabelaProdutos.Insert;
+  DM.TabelaProdutos.Insert;
   btnIncluir.Enabled := False;
   // btnSalvar.Enabled:=True;
   edtdbDescricaoProduto.Enabled := True;
@@ -167,7 +158,7 @@ end;
 
 procedure TfrmCadastroProdutos.btnModificarClick(Sender: TObject);
 begin
-  TabelaProdutos.Edit;
+  DM.TabelaProdutos.Edit;
   // utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
   // teste
   edtdbDescricaoProduto.Enabled := True;
@@ -181,8 +172,8 @@ end;
 
 procedure TfrmCadastroProdutos.btnSalvarClick(Sender: TObject);
 begin
-  TabelaProdutos.Post;
-  ConexaoCadastro.Commit;
+  DM.TabelaProdutos.Post;
+  DM.Conexao.Commit;
   // para gravar no banco de dados todos os registros da Qry (TabelaClientes)
   btnIncluir.Enabled := True;
   btnSalvar.Enabled := False;
@@ -202,7 +193,7 @@ procedure TfrmCadastroProdutos.btnVoltarCadastroProdutosClick(Sender: TObject);
 begin
   frmCadastroProdutos.Hide;
   frmCadastro.Show;
-  TabelaProdutos.ApplyUpdates;
+  DM.TabelaProdutos.ApplyUpdates;
 end;
 
 procedure TfrmCadastroProdutos.dbGridProdutosCellClick(Column: TColumn);
@@ -289,8 +280,8 @@ procedure TfrmCadastroProdutos.FormCreate(Sender: TObject);
 begin
 
   edtdbCodigoProduto.Enabled := False;
-  ConexaoCadastro.Connected := True;
-  TabelaProdutos.Open();
+  DM.Conexao.Connected := True;
+  DM.TabelaProdutos.Open();
   btnSalvar.Enabled := False;
   cboFiltroProdutos.ItemIndex := 0;
   // Vetor definição incial combo box
@@ -306,11 +297,11 @@ end;
 procedure TfrmCadastroProdutos.SpeedButton2Click(Sender: TObject);
 begin
   if cboFiltroProdutos.ItemIndex = 1 then
-    TabelaProdutos.Locate('NOME_PRODUTO', edtBuscarProdutos.Text,
+    DM.TabelaProdutos.Locate('NOME_PRODUTO', edtBuscarProdutos.Text,
       [loPartialKey, loCaseInsensitive]);
 
   if cboFiltroProdutos.ItemIndex = 0 then
-    TabelaProdutos.Locate('COD_PRODUTO', edtBuscarProdutos.Text,
+    DM.TabelaProdutos.Locate('COD_PRODUTO', edtBuscarProdutos.Text,
       [loPartialKey, loCaseInsensitive]);
   btnSalvar.Enabled := False;
   // Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);

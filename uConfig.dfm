@@ -10,6 +10,7 @@ object frmConfig: TfrmConfig
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   TextHeight = 15
   object pnlCenter: TPanel
     Left = 8

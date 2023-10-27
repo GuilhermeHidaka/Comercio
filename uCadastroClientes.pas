@@ -20,16 +20,6 @@ type
     pnlMidFooter: TPanel;
     lblNomeTela: TLabel;
     pnlMid: TPanel;
-    ConexaoClientes: TFDConnection;
-    TabelaClientes: TFDQuery;
-    dsClientes: TDataSource;
-    fbClient: TFDPhysFBDriverLink;
-    TabelaClientesID_CLIENTE: TIntegerField;
-    TabelaClientesNOME_CLIENTE: TStringField;
-    TabelaClientesCPF_CLIENTE: TStringField;
-    TabelaClientesNUMERO_CLIENTE: TStringField;
-    TabelaClientesCREDITO_CLIENTE: TSingleField;
-    TabelaClientesCOINS_CLIENTE: TSingleField;
     pnlDadosClientes: TPanel;
     pnlLDados: TPanel;
     pnlRDados: TPanel;
@@ -59,6 +49,7 @@ type
     cboFiltroClientes: TComboBox;
     btnVoltarCadastroClientes: TBitBtn;
     SpeedButton1: TSpeedButton;
+    dsClientes: TDataSource;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -89,11 +80,11 @@ implementation
 
 {$R *.dfm}
 
-uses uCadastro, uCadastroProdutos;
+uses uCadastro, uCadastroProdutos, uDM;
 
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
-TabelaClientes.Cancel;
+DM.TabelaClientes.Cancel;
 btnIncluir.Enabled:=False;
 edtdbNome.Enabled:=False;
 edtdbCPF.Enabled:=False;
@@ -109,7 +100,7 @@ end;
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
 if MessageDlg('Confirma exclusão ?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
-  TabelaClientes.Delete;
+  DM.TabelaClientes.Delete;
   btnSalvar.Enabled:=False;
 //Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
@@ -131,7 +122,7 @@ procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
 begin
 btnExcluir.Enabled:=False;
 btnModificar.Enabled:=False;
-TabelaClientes.Insert;
+DM.TabelaClientes.Insert;
 btnIncluir.Enabled:=False;
 //btnSalvar.Enabled:=True;
 edtdbNome.Enabled:=True;
@@ -146,7 +137,7 @@ end;
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
 btnIncluir.Enabled:=False;
-TabelaClientes.Edit;
+DM.TabelaClientes.Edit;
 edtdbNome.Enabled:=True;
 edtdbCPF.Enabled:=True;
 edtdbCelular.Enabled:=True;
@@ -159,8 +150,7 @@ end;
 
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
 begin
-TabelaClientes.Post;
-ConexaoClientes.Commit;
+DM.TabelaClientes.Post;
 //para gravar no banco de dados todos os registros da Qry (TabelaClientes)
 btnIncluir.Enabled:=True;
 btnSalvar.Enabled:=False;
@@ -239,8 +229,8 @@ end;
 
 procedure TfrmCadastroClientes.FormCreate(Sender: TObject);
 begin
-ConexaoClientes.Connected:=True;
-TabelaClientes.Open();
+DM.Conexao.Connected := True;
+DM.TabelaClientes.Open();
 btnSalvar.Enabled:=False;
 
 cboFiltroClientes.ItemIndex:=0;
@@ -257,13 +247,13 @@ end;
 procedure TfrmCadastroClientes.SpeedButton1Click(Sender: TObject);
 begin
 if cboFiltroClientes.ItemIndex=0 then
-  TabelaClientes.Locate('NOME_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+  DM.TabelaClientes.Locate('NOME_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 if cboFiltroClientes.ItemIndex=1 then
-  TabelaClientes.Locate('CPF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+  DM.TabelaClientes.Locate('CPF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 if cboFiltroClientes.ItemIndex=2 then
-  TabelaClientes.Locate('NUMERO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+  DM.TabelaClientes.Locate('NUMERO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 if cboFiltroClientes.ItemIndex=3 then
-  TabelaClientes.Locate('CREDITO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+  DM.TabelaClientes.Locate('CREDITO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
 
     btnSalvar.Enabled:=False;
 

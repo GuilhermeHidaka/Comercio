@@ -3,13 +3,14 @@ object frmCompras: TfrmCompras
   Top = 0
   Caption = 'Compras'
   ClientHeight = 590
-  ClientWidth = 1091
+  ClientWidth = 800
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   OnCreate = FormCreate
   TextHeight = 15
   object pnlCenter: TPanel
@@ -805,24 +806,22 @@ object frmCompras: TfrmCompras
   end
   object ConexaoCadastro: TFDConnection
     Params.Strings = (
-      'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
+      'Database=C:\Users\guiik\Desktop\Comercio\DB\COMERCIO.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Server=localhost'
       'Port=3050'
       'DriverID=fB')
-    Connected = True
     LoginPrompt = False
     Left = 856
     Top = 72
   end
   object fbClient: TFDPhysFBDriverLink
-    VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
+    VendorLib = 'C:\Users\guiik\Desktop\Comercio\dlls\fbclient.dll'
     Left = 856
     Top = 136
   end
   object TabelaProdutos: TFDQuery
-    Active = True
     CachedUpdates = True
     Connection = ConexaoCadastro
     SQL.Strings = (

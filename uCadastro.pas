@@ -10,6 +10,7 @@ uses
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
+
   TfrmCadastro = class(TForm)
     pnlCenter: TPanel;
     pnlMidTop: TPanel;

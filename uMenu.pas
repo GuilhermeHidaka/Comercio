@@ -48,6 +48,7 @@ uses uCadastro, uCompras, uConfig, uEstoque, uRelatorios, uVendas;
 
 procedure TfrmMenu.btnCadastroClick(Sender: TObject);
 begin
+frmCadastro := TfrmCadastro.Create(self);
 frmMenu.Hide;
 frmCadastro.Show;
 end;
@@ -86,5 +87,6 @@ begin
 frmMenu.Hide;
 frmVendas.Show;
 end;
+
 
 end.

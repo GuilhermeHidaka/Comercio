@@ -10,6 +10,7 @@ object frmCadastroClientes: TfrmCadastroClientes
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
   OnCreate = FormCreate
   TextHeight = 15
   object pnlCenter: TPanel
@@ -1735,6 +1736,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 Height = 23
                 DataField = 'CPF_CLIENTE'
                 DataSource = dsClientes
+                ReadOnly = True
                 TabOrder = 0
                 OnChange = edtdbCPFChange
               end
@@ -1784,6 +1786,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 Height = 23
                 DataField = 'NUMERO_CLIENTE'
                 DataSource = dsClientes
+                ReadOnly = True
                 TabOrder = 0
                 OnChange = edtdbCelularChange
               end
@@ -1817,6 +1820,7 @@ object frmCadastroClientes: TfrmCadastroClientes
                 Height = 23
                 DataField = 'CREDITO_CLIENTE'
                 DataSource = dsClientes
+                ReadOnly = True
                 TabOrder = 0
                 OnChange = edtdbCreditoChange
               end
@@ -1865,68 +1869,13 @@ object frmCadastroClientes: TfrmCadastroClientes
     DataField = 'NOME_CLIENTE'
     DataSource = dsClientes
     ImeName = 'Portuguese (Brazilian ABNT)'
+    ReadOnly = True
     TabOrder = 1
     OnChange = edtdbNomeChange
   end
-  object ConexaoClientes: TFDConnection
-    Params.Strings = (
-      'Database=C:\Users\guiik\Desktop\sandbox\Comercio\DB\COMERCIO.FDB'
-      'User_Name=SYSDBA'
-      'Password=masterkey'
-      'Server=localhost'
-      'Port=3050'
-      'DriverID=FB')
-    Connected = True
-    LoginPrompt = False
-    Left = 846
-    Top = 7
-  end
-  object TabelaClientes: TFDQuery
-    Active = True
-    ChangeAlertName = 'TabelaClientes'
-    Connection = ConexaoClientes
-    SQL.Strings = (
-      'select * from Clientes')
-    Left = 848
-    Top = 64
-    object TabelaClientesID_CLIENTE: TIntegerField
-      AutoGenerateValue = arAutoInc
-      FieldName = 'ID_CLIENTE'
-      Origin = 'ID_CLIENTE'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      MinValue = 1
-    end
-    object TabelaClientesNOME_CLIENTE: TStringField
-      FieldName = 'NOME_CLIENTE'
-      Origin = 'NOME_CLIENTE'
-      Size = 28
-    end
-    object TabelaClientesCPF_CLIENTE: TStringField
-      FieldName = 'CPF_CLIENTE'
-      Origin = 'CPF_CLIENTE'
-    end
-    object TabelaClientesNUMERO_CLIENTE: TStringField
-      FieldName = 'NUMERO_CLIENTE'
-      Origin = 'NUMERO_CLIENTE'
-      Size = 18
-    end
-    object TabelaClientesCREDITO_CLIENTE: TSingleField
-      FieldName = 'CREDITO_CLIENTE'
-      Origin = 'CREDITO_CLIENTE'
-    end
-    object TabelaClientesCOINS_CLIENTE: TSingleField
-      FieldName = 'COINS_CLIENTE'
-      Origin = 'COINS_CLIENTE'
-    end
-  end
   object dsClientes: TDataSource
-    DataSet = TabelaClientes
-    Left = 848
-    Top = 176
-  end
-  object fbClient: TFDPhysFBDriverLink
-    VendorLib = 'C:\Users\guiik\Desktop\sandbox\Comercio\dlls\fbclient.dll'
-    Left = 848
-    Top = 120
+    DataSet = DM.TabelaClientes
+    Left = 864
+    Top = 240
   end
 end

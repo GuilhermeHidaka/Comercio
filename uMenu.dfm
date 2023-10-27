@@ -1,8 +1,10 @@
 object frmMenu: TfrmMenu
+  AlignWithMargins = True
   Left = 0
   Top = 0
+  BorderStyle = bsNone
   Caption = 'Menu'
-  ClientHeight = 600
+  ClientHeight = 610
   ClientWidth = 800
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,14 +12,17 @@ object frmMenu: TfrmMenu
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poDesktopCenter
+  PrintScale = poNone
   TextHeight = 15
   object pnlCentral: TPanel
-    Left = 0
-    Top = 0
-    Width = 800
-    Height = 600
-    Align = alClient
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 790
+    Height = 603
     BevelOuter = bvNone
+    BorderStyle = bsSingle
     Color = clWindow
     ParentBackground = False
     TabOrder = 0
