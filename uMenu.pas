@@ -3,8 +3,10 @@ unit uMenu;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Imaging.pngimage;
 
 type
   TfrmMenu = class(TForm)
@@ -13,7 +15,6 @@ type
     pnlLogo: TPanel;
     pnlTopCenter: TPanel;
     pnlTopFooter: TPanel;
-    btnFinalizar: TSpeedButton;
     imgLogo: TImage;
     btnConfig: TBitBtn;
     pnlLateralBarra: TPanel;
@@ -22,8 +23,10 @@ type
     btnVendas: TBitBtn;
     btnCompras: TBitBtn;
     btnCadastro: TBitBtn;
-    lblMenu: TLabel;
-    Panel1: TPanel;
+    Image1: TImage;
+    Image2: TImage;
+    btnFinalizar: TSpeedButton;
+    Label1: TLabel;
     procedure btnCadastroClick(Sender: TObject);
     procedure btnComprasClick(Sender: TObject);
     procedure btnVendasClick(Sender: TObject);
@@ -31,6 +34,7 @@ type
     procedure btnRelatoriosClick(Sender: TObject);
     procedure btnConfigClick(Sender: TObject);
     procedure btnFinalizarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -48,45 +52,56 @@ uses uCadastro, uCompras, uConfig, uEstoque, uRelatorios, uVendas;
 
 procedure TfrmMenu.btnCadastroClick(Sender: TObject);
 begin
-frmCadastro := TfrmCadastro.Create(self);
-frmMenu.Hide;
-frmCadastro.Show;
+  frmCadastro := TfrmCadastro.Create(self);
+  frmMenu.Hide;
+  frmCadastro.Show;
 end;
 
 procedure TfrmMenu.btnComprasClick(Sender: TObject);
 begin
-frmMenu.Hide;
-frmCompras.Show;
+  frmCompras := TfrmCompras.Create(self);
+  frmMenu.Hide;
+  frmCompras.Show;
 end;
 
 procedure TfrmMenu.btnConfigClick(Sender: TObject);
 begin
-frmMenu.Hide;
-frmConfig.Show;
+  frmConfig := TfrmConfig.Create(self);
+  frmMenu.Hide;
+  frmConfig.Show;
 end;
 
 procedure TfrmMenu.btnEstoqueClick(Sender: TObject);
 begin
-frmMenu.Hide;
-frmEstoque.Show;
+  frmEstoque := TfrmEstoque.Create(self);
+  frmMenu.Hide;
+  frmEstoque.Show;
 end;
 
 procedure TfrmMenu.btnFinalizarClick(Sender: TObject);
 begin
-Application.Terminate;
+  Application.Terminate;
 end;
 
 procedure TfrmMenu.btnRelatoriosClick(Sender: TObject);
 begin
-frmMenu.Hide;
-frmRelatorios.Show;
+  frmRelatorios := TfrmRelatorios.Create(self);
+  frmMenu.Hide;
+  frmRelatorios.Show;
 end;
 
 procedure TfrmMenu.btnVendasClick(Sender: TObject);
 begin
-frmMenu.Hide;
-frmVendas.Show;
+  frmVendas := TfrmVendas.Create(self);
+  frmMenu.Hide;
+  frmVendas.Show;
 end;
 
+procedure TfrmMenu.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Application.Terminate;
+frmMenu.Close;
+frmMenu.Free;
+end;
 
 end.

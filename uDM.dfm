@@ -29,6 +29,7 @@ object DM: TDM
     Left = 144
     Top = 144
     object TabelaClientesID_CLIENTE: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'ID_CLIENTE'
       Origin = 'ID_CLIENTE'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -67,6 +68,7 @@ object DM: TDM
     Left = 72
     Top = 112
     object TabelaProdutosCOD_PRODUTO: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'COD_PRODUTO'
       Origin = 'COD_PRODUTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]

@@ -3,7 +3,8 @@ unit uEstoque;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
@@ -35,13 +36,15 @@ uses uMenu;
 
 procedure TfrmEstoque.btnFinalizarClick(Sender: TObject);
 begin
-Application.Terminate;
+  frmMenu.Show;
+  frmEstoque.Close;
+  frmEstoque.Free;
 end;
 
 procedure TfrmEstoque.btnHomeClick(Sender: TObject);
 begin
-frmEstoque.Hide;
-frmMenu.Show;
+  frmEstoque.Hide;
+  frmMenu.Show;
 end;
 
 end.

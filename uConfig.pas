@@ -3,7 +3,8 @@ unit uConfig;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
 
 type
@@ -35,13 +36,15 @@ uses uMenu;
 
 procedure TfrmConfig.btnFinalizarClick(Sender: TObject);
 begin
-Application.Terminate;
+  frmMenu.Show;
+  frmConfig.Close;
+  frmConfig.Free;
 end;
 
 procedure TfrmConfig.btnHomeClick(Sender: TObject);
 begin
-frmConfig.Hide;
-frmMenu.Show;
+  frmConfig.Hide;
+  frmMenu.Show;
 end;
 
 end.

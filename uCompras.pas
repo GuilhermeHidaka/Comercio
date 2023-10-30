@@ -54,7 +54,7 @@ type
   private
     { Private declarations }
   public
-  estoqueAtual, estoqueNovo : integer;
+    estoqueAtual, estoqueNovo: integer;
     { Public declarations }
   end;
 
@@ -69,14 +69,14 @@ uses uMenu, uCadastroProdutos;
 
 procedure TfrmCompras.btnEditEstoqueClick(Sender: TObject);
 begin
-  edtdbQtdeCompras.Enabled:=true;
+  edtdbQtdeCompras.Enabled := true;
   if edtdbQtdeCompras.Text <> null then
   begin
-  //Estoque Atual recebe valor convertido string para inteiro
+    // Estoque Atual recebe valor convertido string para inteiro
     estoqueAtual := StrToInt(edtdbQtdeCompras.Text);
   end;
-  btnEditEstoque.Enabled:=False;
-    //Estoque mecânica pt.1
+  btnEditEstoque.Enabled := False;
+  // Estoque mecânica pt.1
 end;
 
 procedure TfrmCompras.btnFinalizarClick(Sender: TObject);
@@ -92,39 +92,42 @@ end;
 
 procedure TfrmCompras.btnSalvarEstoqueClick(Sender: TObject);
 begin
-  edtdbQtdeCompras.Enabled:=False;
-  btnSalvarEstoque.Enabled:=false;
-  btnEditEstoque.Enabled:=true;
-  estoqueNovo:= StrToInt(edtdbQtdeCompras.Text);
+  edtdbQtdeCompras.Enabled := False;
+  btnSalvarEstoque.Enabled := False;
+  btnEditEstoque.Enabled := true;
+  estoqueNovo := StrToInt(edtdbQtdeCompras.Text);
   estoqueNovo := estoqueAtual + estoqueNovo;
-  edtdbQtdeCompras.Text:=IntToStr(estoqueNovo);
+  edtdbQtdeCompras.Text := IntToStr(estoqueNovo);
   TabelaProdutos.Post;
-  //Estoque mecânica pt.2
+  // Estoque mecânica pt.2
 end;
 
 procedure TfrmCompras.btnVoltarCadastroProdutosClick(Sender: TObject);
 begin
-frmCompras.Hide;
-frmMenu.Show;
+  frmCompras.Hide;
+  frmCompras.Close;
+  frmCompras.Free;
+  frmMenu.Show;
 end;
 
 procedure TfrmCompras.edtdbQtdeComprasClick(Sender: TObject);
 begin
-btnSalvarEstoque.Enabled:=true;
-//edtdbQtdeCompras.Text:='';
-//para limpar o campo edtdbQtde
+  btnSalvarEstoque.Enabled := true;
+  // edtdbQtdeCompras.Text:='';
+  // para limpar o campo edtdbQtde
 
 end;
 
 procedure TfrmCompras.FormCreate(Sender: TObject);
 begin
-edtdbQtdeCompras.Enabled:=False;
-btnSalvarEstoque.Enabled:=False;
+  edtdbQtdeCompras.Enabled := False;
+  btnSalvarEstoque.Enabled := False;
 end;
 
 procedure TfrmCompras.btnBuscarClick(Sender: TObject);
 begin
-TabelaProdutos.Locate('COD_PRODUTO',edtCodigoCompras.Text,[loPartialKey,loCaseInsensitive]);
+  TabelaProdutos.Locate('COD_PRODUTO', edtCodigoCompras.Text,
+    [loPartialKey, loCaseInsensitive]);
 end;
 
 end.

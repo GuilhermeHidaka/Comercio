@@ -3,14 +3,15 @@ unit uCadastroClientes;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Phys.IBBase, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  Vcl.DBCtrls, Vcl.Mask, Vcl.Grids, Vcl.DBGrids;
+  Vcl.DBCtrls, Vcl.Mask, Vcl.Grids, Vcl.DBGrids, Vcl.Imaging.pngimage;
 
 type
   TfrmCadastroClientes = class(TForm)
@@ -18,7 +19,6 @@ type
     pnlMidTop: TPanel;
     pnlTop2: TPanel;
     pnlMidFooter: TPanel;
-    lblNomeTela: TLabel;
     pnlMid: TPanel;
     pnlDadosClientes: TPanel;
     pnlLDados: TPanel;
@@ -40,16 +40,18 @@ type
     DBgridClientes: TDBGrid;
     lblBuscar: TLabel;
     edtBuscarClientes: TEdit;
+    cboFiltroClientes: TComboBox;
+    btnVoltarCadastroClientes: TBitBtn;
+    SpeedButton1: TSpeedButton;
+    dsClientes: TDataSource;
+    Image1: TImage;
     pnlButtons: TPanel;
     btnSalvar: TBitBtn;
     btnIncluir: TBitBtn;
     btnModificar: TBitBtn;
     btnExcluir: TBitBtn;
     btnCancelar: TBitBtn;
-    cboFiltroClientes: TComboBox;
-    btnVoltarCadastroClientes: TBitBtn;
-    SpeedButton1: TSpeedButton;
-    dsClientes: TDataSource;
+    lblCadastroClientes: TLabel;
     procedure btnFinalizarClick(Sender: TObject);
     procedure btnHomeClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -84,198 +86,207 @@ uses uCadastro, uCadastroProdutos, uDM;
 
 procedure TfrmCadastroClientes.btnCancelarClick(Sender: TObject);
 begin
-DM.TabelaClientes.Cancel;
-btnIncluir.Enabled:=False;
-edtdbNome.Enabled:=False;
-edtdbCPF.Enabled:=False;
-edtdbCelular.Enabled:=False;
-edtdbCredito.Enabled:=False;
-btnIncluir.Enabled:=True;
-//Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
-btnSalvar.Enabled:=False;
-btnExcluir.Enabled:=True;
-btnModificar.Enabled:=True;
+  DM.TabelaClientes.Cancel;
+  btnIncluir.Enabled := False;
+  edtdbNome.Enabled := False;
+  edtdbCPF.Enabled := False;
+  edtdbCelular.Enabled := False;
+  edtdbCredito.Enabled := False;
+  btnIncluir.Enabled := True;
+  // Utilizando função Qry.Cancel para cancelar o registro que estejasendo inserido porém não gravado
+  btnSalvar.Enabled := False;
+  btnExcluir.Enabled := True;
+  btnModificar.Enabled := True;
 end;
 
 procedure TfrmCadastroClientes.btnExcluirClick(Sender: TObject);
 begin
-if MessageDlg('Confirma exclusão ?', mtConfirmation, [mbYes, mbNo],0) = mrYes then
-  DM.TabelaClientes.Delete;
-  btnSalvar.Enabled:=False;
-//Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
+  if MessageDlg('Confirma exclusão ?', mtConfirmation, [mbYes, mbNo], 0) = mrYes
+  then
+    DM.TabelaClientes.Delete;
+  btnSalvar.Enabled := False;
+  // Utilizando função Qry.Delete para excluir determinado registro setado no RowSelect ou o próximo do dbGrid
 end;
 
 procedure TfrmCadastroClientes.btnFinalizarClick(Sender: TObject);
 begin
-Application.Terminate;
-//Finaliza aplicação
+  Application.Terminate;
+  // Finaliza aplicação
 end;
 
 procedure TfrmCadastroClientes.btnHomeClick(Sender: TObject);
 begin
-frmCadastroClientes.Hide;
-frmCadastro.Show;
-//Troca de janelas, fechando uma e abrindo outra
+  frmCadastroClientes.Hide;
+  frmCadastro.Show;
+  // Troca de janelas, fechando uma e abrindo outra
 end;
 
 procedure TfrmCadastroClientes.btnIncluirClick(Sender: TObject);
 begin
-btnExcluir.Enabled:=False;
-btnModificar.Enabled:=False;
-DM.TabelaClientes.Insert;
-btnIncluir.Enabled:=False;
-//btnSalvar.Enabled:=True;
-edtdbNome.Enabled:=True;
-edtdbCPF.Enabled:=True;
-edtdbCelular.Enabled:=True;
-edtdbCredito.Enabled:=True;
-//Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)7
-DBgridClientes.Enabled:=False;
-//quando estiver inserindo será impossível clicar no grid e apagar todos os campos
+  btnExcluir.Enabled := False;
+  btnModificar.Enabled := False;
+  DM.TabelaClientes.Insert;
+  btnIncluir.Enabled := False;
+  // btnSalvar.Enabled:=True;
+  edtdbNome.Enabled := True;
+  edtdbCPF.Enabled := True;
+  edtdbCelular.Enabled := True;
+  edtdbCredito.Enabled := True;
+  // Liberação dos campos para inserção de valor apenas após apertar o botão de incluir (btnIncluir)7
+  DBgridClientes.Enabled := False;
+  // quando estiver inserindo será impossível clicar no grid e apagar todos os campos
 end;
 
 procedure TfrmCadastroClientes.btnModificarClick(Sender: TObject);
 begin
-btnIncluir.Enabled:=False;
-DM.TabelaClientes.Edit;
-edtdbNome.Enabled:=True;
-edtdbCPF.Enabled:=True;
-edtdbCelular.Enabled:=True;
-edtdbCredito.Enabled:=True;
-btnExcluir.Enabled:=False;
-btnSalvar.Enabled:=True;
-//utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
-dbGridClientes.Enabled:=False;
+  btnIncluir.Enabled := False;
+  DM.TabelaClientes.Edit;
+  edtdbNome.Enabled := True;
+  edtdbCPF.Enabled := True;
+  edtdbCelular.Enabled := True;
+  edtdbCredito.Enabled := True;
+  btnExcluir.Enabled := False;
+  btnSalvar.Enabled := True;
+  // utilizando função Qry.Edit para editar registro já salvo pela função Qry.Post
+  DBgridClientes.Enabled := False;
 end;
 
 procedure TfrmCadastroClientes.btnSalvarClick(Sender: TObject);
 begin
-DM.TabelaClientes.Post;
-//para gravar no banco de dados todos os registros da Qry (TabelaClientes)
-btnIncluir.Enabled:=True;
-btnSalvar.Enabled:=False;
-//Voltar enabled incluir
-edtdbNome.Enabled:=False;
-edtdbCPF.Enabled:=False;
-edtdbCelular.Enabled:=False;
-edtdbCredito.Enabled:=False;
-//Voltar Enabled padrão de não inclusão ou alteração
+  DM.TabelaClientes.Post;
+  // para gravar no banco de dados todos os registros da Qry (TabelaClientes)
+  btnIncluir.Enabled := True;
+  btnSalvar.Enabled := False;
+  // Voltar enabled incluir
+  edtdbNome.Enabled := False;
+  edtdbCPF.Enabled := False;
+  edtdbCelular.Enabled := False;
+  edtdbCredito.Enabled := False;
+  // Voltar Enabled padrão de não inclusão ou alteração
 
-btnExcluir.Enabled:=True;
-btnModificar.Enabled:=True;
+  btnExcluir.Enabled := True;
+  btnModificar.Enabled := True;
 end;
-
-
-
-
 
 procedure TfrmCadastroClientes.btnVoltarCadastroClientesClick(Sender: TObject);
 begin
-frmCadastroClientes.Hide;
-frmCadastro.Show;
+  frmCadastroClientes.Hide;
+  frmCadastro.Show;
+  // fechar:
+  frmCadastroClientes.Close;
+  frmCadastroClientes.Free;
 end;
 
 procedure TfrmCadastroClientes.DBgridClientesCellClick(Column: TColumn);
 begin
-edtdbNome.Text:='';
-edtdbCPF.Text:='';
-edtdbCredito.Text:='';
-edtdbCelular.Text:='';
+  edtdbNome.Text := '';
+  edtdbCPF.Text := '';
+  edtdbCredito.Text := '';
+  edtdbCelular.Text := '';
 end;
 
 procedure TfrmCadastroClientes.DBgridClientesMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-btnSalvar.Enabled:=false;
+  btnSalvar.Enabled := False;
 end;
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 procedure TfrmCadastroClientes.edtdbCelularChange(Sender: TObject);
 begin
-if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
-btnSalvar.Enabled:=True;
-if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
-btnSalvar.Enabled:=False;
+  if (edtdbNome.Text <> '') and (edtdbCPF.Text <> '') and
+    (edtdbCelular.Text <> '') and (edtdbCredito.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbNome.Text = '') or (edtdbCPF.Text = '') or (edtdbCelular.Text = '')
+    or (edtdbCredito.Text = '') then
+    btnSalvar.Enabled := False;
 end;
-
 
 procedure TfrmCadastroClientes.edtdbCPFChange(Sender: TObject);
 begin
-if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
-btnSalvar.Enabled:=True;
-if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
-btnSalvar.Enabled:=False;
+  if (edtdbNome.Text <> '') and (edtdbCPF.Text <> '') and
+    (edtdbCelular.Text <> '') and (edtdbCredito.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbNome.Text = '') or (edtdbCPF.Text = '') or (edtdbCelular.Text = '')
+    or (edtdbCredito.Text = '') then
+    btnSalvar.Enabled := False;
 end;
-
 
 procedure TfrmCadastroClientes.edtdbCreditoChange(Sender: TObject);
 begin
-if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
-btnSalvar.Enabled:=True;
-if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
-btnSalvar.Enabled:=False;
+  if (edtdbNome.Text <> '') and (edtdbCPF.Text <> '') and
+    (edtdbCelular.Text <> '') and (edtdbCredito.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbNome.Text = '') or (edtdbCPF.Text = '') or (edtdbCelular.Text = '')
+    or (edtdbCredito.Text = '') then
+    btnSalvar.Enabled := False;
 end;
-
 
 procedure TfrmCadastroClientes.edtdbNomeChange(Sender: TObject);
 begin
-if (edtdbNome.Text<>'') and (edtdbCPF.Text<>'') and (edtdbCelular.Text<>'') and (edtdbCredito.Text<>'') then
-btnSalvar.Enabled:=True;
-if (edtdbNome.Text='') or (edtdbCPF.Text='') or (edtdbCelular.Text='') or (edtdbCredito.Text='') then
-btnSalvar.Enabled:=False;
+  if (edtdbNome.Text <> '') and (edtdbCPF.Text <> '') and
+    (edtdbCelular.Text <> '') and (edtdbCredito.Text <> '') then
+    btnSalvar.Enabled := True;
+  if (edtdbNome.Text = '') or (edtdbCPF.Text = '') or (edtdbCelular.Text = '')
+    or (edtdbCredito.Text = '') then
+    btnSalvar.Enabled := False;
 end;
-         // Definindo condições para liberar a gravação apenas se todos os campos estiverem preenchidos
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Definindo condições para liberar a gravação apenas se todos os campos estiverem preenchidos
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 procedure TfrmCadastroClientes.FormCreate(Sender: TObject);
 begin
-DM.Conexao.Connected := True;
-DM.TabelaClientes.Open();
-btnSalvar.Enabled:=False;
+  DM.Conexao.Connected := True;
+  DM.TabelaClientes.Open();
+  btnSalvar.Enabled := False;
 
-cboFiltroClientes.ItemIndex:=0;
-//inicia setado no primeiro items
-//Filtro Clientes
+  cboFiltroClientes.ItemIndex := 0;
+  // inicia setado no primeiro items
+  // Filtro Clientes
 
-edtdbNome.Enabled:=False;
-edtdbCPF.Enabled:=False;
-edtdbCelular.Enabled:=False;
-edtdbCredito.Enabled:=False;
-//não permitir inserção sem clicar no botão de adicionar
+  edtdbNome.Enabled := False;
+  edtdbCPF.Enabled := False;
+  edtdbCelular.Enabled := False;
+  edtdbCredito.Enabled := False;
+  // não permitir inserção sem clicar no botão de adicionar
 end;
 
 procedure TfrmCadastroClientes.SpeedButton1Click(Sender: TObject);
 begin
-if cboFiltroClientes.ItemIndex=0 then
-  DM.TabelaClientes.Locate('NOME_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
-if cboFiltroClientes.ItemIndex=1 then
-  DM.TabelaClientes.Locate('CPF_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
-if cboFiltroClientes.ItemIndex=2 then
-  DM.TabelaClientes.Locate('NUMERO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
-if cboFiltroClientes.ItemIndex=3 then
-  DM.TabelaClientes.Locate('CREDITO_CLIENTE',edtBuscarClientes.Text,[loPartialKey,loCaseInsensitive]);
+  if cboFiltroClientes.ItemIndex = 0 then
+    DM.TabelaClientes.Locate('NOME_CLIENTE', edtBuscarClientes.Text,
+      [loPartialKey, loCaseInsensitive]);
+  if cboFiltroClientes.ItemIndex = 1 then
+    DM.TabelaClientes.Locate('CPF_CLIENTE', edtBuscarClientes.Text,
+      [loPartialKey, loCaseInsensitive]);
+  if cboFiltroClientes.ItemIndex = 2 then
+    DM.TabelaClientes.Locate('NUMERO_CLIENTE', edtBuscarClientes.Text,
+      [loPartialKey, loCaseInsensitive]);
+  if cboFiltroClientes.ItemIndex = 3 then
+    DM.TabelaClientes.Locate('CREDITO_CLIENTE', edtBuscarClientes.Text,
+      [loPartialKey, loCaseInsensitive]);
 
-    btnSalvar.Enabled:=False;
+  btnSalvar.Enabled := False;
 
-(*
-            ITEMS
-  0-Nome
-  1-CPF
-  2-Celular
-  3-Crédito
-*)
+  (*
+    ITEMS
+    0-Nome
+    1-CPF
+    2-Celular
+    3-Crédito
+  *)
 
-//Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
-//loCaseInsensitive %consulta
+  // Qry.Locate('COLUNA',componente.propriedade,[loPartialKey,loCaseInsensitive]);
+  // loCaseInsensitive %consulta
 end;
 
 (*
-edtdbNome.Enabled:=False;
-edtdbCPF.Enabled:=False;
-edtdbCelular.Enabled:=False;
-edtdbCredito.Enabled:=False;
+  edtdbNome.Enabled:=False;
+  edtdbCPF.Enabled:=False;
+  edtdbCelular.Enabled:=False;
+  edtdbCredito.Enabled:=False;
 
-atribuindo enbled false a todos os edtDB do frmCadastroClientes
+  atribuindo enbled false a todos os edtDB do frmCadastroClientes
 *)
 
 end.

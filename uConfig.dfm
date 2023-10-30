@@ -41,7 +41,7 @@ object frmConfig: TfrmConfig
           Width = 116
           Height = 39
           Align = alRight
-          Caption = 'FINALIZAR'
+          Caption = 'Voltar'
           Font.Charset = ANSI_CHARSET
           Font.Color = clRed
           Font.Height = -19
